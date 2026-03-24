@@ -1,0 +1,139 @@
+// ============================================
+// XButton 组件样式
+// ============================================
+
+@import '../../styles/variables.less';
+
+// 基础样式
+.xbtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: @xbtn-icon-gap;
+  transition: all @xbtn-transition-duration ease;
+
+  // 图标包装器
+  .xbtn-icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // 加载图标动画
+  .xbtn-loading-icon {
+    animation: xbtn-spin 1s linear infinite;
+  }
+
+  // 自定义图标
+  .xbtn-custom-icon {
+    font-size: 1em;
+  }
+}
+
+// 尺寸样式
+.xbtn-large {
+  height: @xbtn-height-large;
+  padding: @xbtn-padding-large;
+  font-size: @xbtn-font-size-large;
+}
+
+.xbtn-middle {
+  height: @xbtn-height-middle;
+  padding: @xbtn-padding-middle;
+  font-size: @xbtn-font-size-middle;
+}
+
+.xbtn-small {
+  height: @xbtn-height-small;
+  padding: @xbtn-padding-small;
+  font-size: @xbtn-font-size-small;
+}
+
+// 加载状态样式
+.xbtn-loading {
+  cursor: not-allowed;
+  opacity: 0.7;
+
+  // 加载时隐藏普通图标
+  &:not(.xbtn-with-icon) .xbtn-custom-icon {
+    display: none;
+  }
+}
+
+// 禁用状态样式
+.xbtn-disabled {
+  cursor: not-allowed;
+}
+
+// 块级按钮样式
+.xbtn-block {
+  width: 100%;
+}
+
+// 带图标按钮的间距调整
+.xbtn-with-icon {
+  .ant-btn-icon {
+    margin-inline-end: @xbtn-icon-gap;
+  }
+}
+
+// 旋转动画
+@keyframes xbtn-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 点击波纹效果（可选）
+.xbtn:not(.xbtn-disabled):not(.xbtn-loading) {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.3s ease,
+      height 0.3s ease;
+    pointer-events: none;
+  }
+
+  &:active::after {
+    width: 200%;
+    height: 200%;
+  }
+}
+
+// 类型样式增强
+.xbtn-primary {
+  &.xbtn-ghost {
+    color: @primary-color;
+    border-color: @primary-color;
+
+    &:hover:not(.xbtn-disabled) {
+      color: @primary-color-hover;
+      border-color: @primary-color-hover;
+    }
+  }
+}
+
+// 危险按钮样式增强
+.xbtn-danger {
+  &.xbtn-ghost {
+    color: @error-color;
+    border-color: @error-color;
+
+    &:hover:not(.xbtn-disabled) {
+      color: lighten(@error-color, 10%);
+      border-color: lighten(@error-color, 10%);
+    }
+  }
+}

@@ -1,0 +1,200 @@
+// ============================================
+// XInput 组件样式
+// ============================================
+
+@import '../../styles/variables.less';
+
+// 基础样式
+.xinput-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.xinput {
+  transition: all @xbtn-transition-duration ease;
+
+  // 前缀图标样式
+  .xinput-prefix-icon {
+    display: inline-flex;
+    align-items: center;
+    color: @text-color-secondary;
+    font-size: 14px;
+    margin-right: 4px;
+  }
+
+  // 后缀图标样式
+  .xinput-suffix-icon {
+    display: inline-flex;
+    align-items: center;
+    color: @text-color-secondary;
+    font-size: 14px;
+    margin-left: 4px;
+  }
+
+  // 聚焦状态样式增强
+  &:focus-within {
+    box-shadow: 0 0 0 2px @primary-color-outline;
+  }
+}
+
+// 尺寸样式
+.xinput-large {
+  .xinput {
+    font-size: @xbtn-font-size-large;
+  }
+}
+
+.xinput-middle {
+  .xinput {
+    font-size: @xbtn-font-size-middle;
+  }
+}
+
+.xinput-small {
+  .xinput {
+    font-size: @xbtn-font-size-small;
+  }
+}
+
+// 禁用状态样式
+.xinput-disabled {
+  .xinput {
+    cursor: not-allowed;
+    background-color: @background-color-base;
+  }
+}
+
+// 必填状态样式
+.xinput-required {
+  position: relative;
+
+  &::before {
+    content: '*';
+    position: absolute;
+    top: 50%;
+    left: -12px;
+    transform: translateY(-50%);
+    color: @error-color;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .xinput {
+    // 可以添加必填标识样式
+  }
+}
+
+// 错误状态样式
+.xinput-has-error {
+  .xinput {
+    border-color: @error-color;
+    transition: all @xbtn-transition-duration ease;
+
+    &:focus-within {
+      box-shadow: 0 0 0 2px rgba(245, 34, 45, 0.2);
+      border-color: @error-color;
+    }
+  }
+}
+
+// 错误提示信息样式
+.xinput-error-message {
+  color: @error-color;
+  font-size: 12px;
+  margin-top: 4px;
+  line-height: 1.5;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all @xbtn-transition-duration ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  // 错误信息淡入动画
+  &::before {
+    content: '⚠️ ';
+    margin-right: 4px;
+    font-size: 10px;
+    vertical-align: middle;
+  }
+}
+
+// 校验状态动画
+.xinput {
+  transition:
+    border-color @xbtn-transition-duration ease,
+    box-shadow @xbtn-transition-duration ease;
+}
+
+// 成功状态样式（预留）
+.xinput-has-success {
+  .xinput {
+    border-color: @success-color;
+
+    &:focus-within {
+      box-shadow: 0 0 0 2px rgba(82, 196, 26, 0.2);
+    }
+  }
+
+  .xinput-error-message {
+    color: @success-color;
+
+    &::before {
+      content: '✓ ';
+    }
+  }
+}
+
+// 不同类型输入框样式
+.xinput-type-password {
+  // 密码输入框特殊样式
+}
+
+.xinput-type-textarea {
+  // 文本域特殊样式
+}
+
+.xinput-type-number {
+  // 数字输入框特殊样式
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+// 清除按钮样式增强
+.xinput {
+  .ant-input-clear-icon {
+    color: @text-color-secondary;
+    transition: color @xbtn-transition-duration;
+
+    &:hover {
+      color: @text-color;
+    }
+  }
+}
+
+// 字数统计样式增强
+.xinput {
+  .ant-input-show-count-suffix {
+    color: @text-color-secondary;
+    font-size: 12px;
+  }
+}
+
+// 前置/后置标签样式
+.xinput {
+  .ant-input-group-addon {
+    background-color: @background-color-base;
+    color: @text-color;
+    border-color: @border-color-base;
+  }
+}
