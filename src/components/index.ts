@@ -5,22 +5,21 @@
 import type { App, Plugin } from 'vue'
 import XButton from './XButton'
 import XInput from './XInput'
+import XSelect from './XSelect'
 
 // 导出所有组件
-export { XButton, XInput }
+export { XButton, XInput, XSelect }
 
 // 导出所有类型
 export * from './XButton/types'
 export * from './XInput/types'
-
-// 所有组件列表
-const components = [XButton, XInput]
+export * from './XSelect/types'
 
 // 全局安装方法
 const install = (app: App) => {
-  components.forEach((component) => {
-    app.use(component)
-  })
+  app.component('XButton', XButton)
+  app.component('XInput', XInput)
+  app.component('XSelect', XSelect)
 }
 
 // 默认导出

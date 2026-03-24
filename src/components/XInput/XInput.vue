@@ -14,6 +14,7 @@
       :class="inputClasses"
       :status="computedErrorMessage ? 'error' : undefined"
       v-bind="$attrs"
+      style="width: 100%"
       @update:value="handleUpdateValue"
       @input="handleInput"
       @change="handleChange"

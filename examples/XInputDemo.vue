@@ -487,16 +487,16 @@
 
   .demo-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 16px;
-    align-items: center;
+    width: 100%;
   }
 
   .demo-col {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    max-width: 400px;
+    width: 100%;
     margin-bottom: 24px;
   }
 

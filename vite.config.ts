@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   const isComponentsMode = mode === 'components'
 
   // 组件列表配置
-  const components = ['XButton', 'XInput']
+  const components = ['XButton', 'XInput', 'XSelect']
 
   // 多入口配置（用于按需引入）
   const entries: Record<string, string> = {
