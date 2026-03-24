@@ -166,6 +166,7 @@
     flex-wrap: wrap;
     gap: 16px;
     align-items: center;
+    width: 100%;
 
     &.ghost-bg {
       background: #1890ff;
@@ -178,6 +179,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
   }
 
   .demo-tip {

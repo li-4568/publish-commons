@@ -15,6 +15,7 @@
       <XButtonDemo v-if="currentTab === 'button'" />
       <XInputDemo v-if="currentTab === 'input'" />
       <XSelectDemo v-if="currentTab === 'select'" />
+      <XDatePickerDemo v-if="currentTab === 'datepicker'" />
     </main>
   </div>
 </template>
@@ -24,11 +25,13 @@
   import XButtonDemo from './XButtonDemo.vue'
   import XInputDemo from './XInputDemo.vue'
   import XSelectDemo from './XSelectDemo.vue'
+  import XDatePickerDemo from './XDatePickerDemo.vue'
 
   const tabs = [
     { key: 'button', label: 'XButton 按钮' },
     { key: 'input', label: 'XInput 输入框' },
-    { key: 'select', label: 'XSelect 下拉框' }
+    { key: 'select', label: 'XSelect 下拉框' },
+    { key: 'datepicker', label: 'XDatePicker 日期选择器' }
   ]
 
   const currentTab = ref('button')

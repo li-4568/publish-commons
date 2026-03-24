@@ -8,12 +8,13 @@ import type { App, Plugin } from 'vue'
 import XButton from './components/XButton'
 import XInput from './components/XInput'
 import XSelect from './components/XSelect'
+import XDatePicker from './components/XDatePicker'
 
 // 导入样式
 import './styles/index.less'
 
 // 导出组件
-export { XButton, XInput, XSelect }
+export { XButton, XInput, XSelect, XDatePicker }
 
 // 导出组件类型
 export type {
@@ -38,12 +39,18 @@ export type {
   SelectOption,
   SelectMode
 } from './components/XSelect/types'
+export type {
+  XDatePickerProps,
+  DatePickerSize,
+  DatePickerType
+} from './components/XDatePicker/types'
 
 // 全局安装方法
 const install = (app: App) => {
   app.component('XButton', XButton)
   app.component('XInput', XInput)
   app.component('XSelect', XSelect)
+  app.component('XDatePicker', XDatePicker)
 }
 
 // 默认导出
