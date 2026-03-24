@@ -4,6 +4,7 @@
   "description": "公共组件库，封装通用组件、业务需求组件和可定制组件",
   "main": "dist/ant-commons.umd.js",
   "module": "dist/ant-commons.es.js",
+  "private": false,
   "files": [
     "dist",
     "es",
