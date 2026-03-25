@@ -16,6 +16,6 @@ XSelect.install = (app: App) => {
 }
 
 // 导出组件
-
+export { XSelect }
 export default XSelect
 export type { XSelectProps, SelectOption }

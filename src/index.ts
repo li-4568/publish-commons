@@ -5,10 +5,10 @@
 import type { App, Plugin } from 'vue'
 
 // 导入组件
-import XButton from './components/XButton'
-import XInput from './components/XInput'
-import XSelect from './components/XSelect'
-import XDatePicker from './components/XDatePicker'
+import { XButton } from './components/XButton'
+import { XInput } from './components/XInput'
+import { XSelect } from './components/XSelect'
+import { XDatePicker } from './components/XDatePicker'
 
 // 导入样式
 import './styles/index.less'

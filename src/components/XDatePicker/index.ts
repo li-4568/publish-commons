@@ -13,4 +13,5 @@ XDatePicker.install = (app: App) => {
   return app
 }
 
+export { XDatePicker }
 export default XDatePicker

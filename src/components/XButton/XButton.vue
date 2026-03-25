@@ -140,6 +140,4 @@
   }
 </script>
 
-<style scoped lang="less">
-  @import './style.less';
-</style>
+<style lang="less">  @import './style.less';</style>
