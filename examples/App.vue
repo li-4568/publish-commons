@@ -66,11 +66,43 @@
   const currentTab = ref('button')
 </script>
 
+<style>
+  /* 全局样式重置 */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html, body {
+    height: 100%;
+    overflow: hidden !important;
+  }
+  #app {
+    height: 100%;
+    overflow: hidden !important;
+  }
+  /* 确保所有可能的滚动区域都被正确控制 */
+  .app, .aside, .main {
+    overflow: hidden !important;
+  }
+  .aside {
+    overflow-y: auto !important;
+  }
+  .main {
+    overflow-y: auto !important;
+  }
+</style>
+
 <style scoped lang="less">
   .app {
-    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     background: #f5f5f5;
+    overflow: hidden;
   }
 
   .aside {
@@ -105,8 +137,11 @@
 
   .main {
     flex: 1;
-    padding: 24px;
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
+    padding: 24px;
+    box-sizing: border-box;
   }
 
   .content-card {
@@ -115,7 +150,6 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     padding: 24px;
-    min-height: calc(100vh - 96px);
   }
 
   /* 统一组件示例样式，与XButtonDemo保持一致 */
