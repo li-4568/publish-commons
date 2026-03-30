@@ -544,7 +544,7 @@ const handleSearch = (value: string) => {
   addLog(`搜索: ${value}`)
 }
 
-const handleSelect = (value: any, node: any) => {
+const handleSelect = (value: any, _node: any) => {
   addLog(`选择节点: ${value}`)
 }
 

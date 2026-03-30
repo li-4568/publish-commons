@@ -1,4 +1,7 @@
-// XNotification组件类型定义
+// ============================================
+// XNotification 组件类型定义
+// ============================================
+
 
 export type XNotificationType = 'info' | 'success' | 'warning' | 'error'
 export type XNotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'

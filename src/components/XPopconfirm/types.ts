@@ -1,3 +1,7 @@
+// ============================================
+// XPopconfirm 组件类型定义
+// ============================================
+
 import type { VueNode } from 'ant-design-vue/es/_util/type'
 
 export type XPopconfirmPlacement = 

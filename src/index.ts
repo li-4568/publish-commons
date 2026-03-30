@@ -13,12 +13,34 @@ import { XCascader } from './components/XCascader'
 import { XCheckbox, XCheckboxGroup } from './components/XCheckbox'
 import { XRadio, XRadioGroup } from './components/XRadio'
 import { XPopover } from './components/XPopover'
+import { XTooltip } from './components/XTooltip'
+import { XTree } from './components/XTree'
+import { XTreeSelect } from './components/XTreeSelect'
+import { XPopconfirm } from './components/XPopconfirm'
+import { XNotification, notification } from './components/XNotification'
 
 // 导入样式
 import './styles/index.less'
 
 // 导出组件
-export { XButton, XInput, XSelect, XDatePicker, XCascader, XCheckbox, XCheckboxGroup, XRadio, XRadioGroup, XPopover }
+export {
+  XButton,
+  XInput,
+  XSelect,
+  XDatePicker,
+  XCascader,
+  XCheckbox,
+  XCheckboxGroup,
+  XRadio,
+  XRadioGroup,
+  XPopover,
+  XTooltip,
+  XTree,
+  XTreeSelect,
+  XPopconfirm,
+  XNotification,
+  notification
+}
 
 // 导出组件类型
 export type {
@@ -79,6 +101,42 @@ export type {
   PopoverPlacement,
   PopoverTrigger
 } from './components/XPopover/types'
+export type {
+  XTooltipProps,
+  XTooltipEmits,
+  XTooltipSlots,
+  TooltipPlacement,
+  TooltipTrigger
+} from './components/XTooltip/types'
+export type {
+  XTreeProps,
+  XTreeEmits,
+  XTreeSlots,
+  XTreeNode
+} from './components/XTree/types'
+export type {
+  XTreeSelectProps,
+  XTreeSelectEmits,
+  XTreeSelectSlots,
+  TreeNode,
+  TreeSelectSize,
+  TreeSelectMode
+} from './components/XTreeSelect/types'
+export type {
+  XPopconfirmProps,
+  XPopconfirmEmits,
+  XPopconfirmSlots,
+  XPopconfirmPlacement,
+  XPopconfirmTrigger
+} from './components/XPopconfirm/types'
+export type {
+  XNotificationProps,
+  XNotificationOptions,
+  XNotificationInstance,
+  XNotificationApi,
+  XNotificationType,
+  XNotificationPlacement
+} from './components/XNotification/types'
 
 // 全局安装方法
 const install = (app: App) => {
@@ -92,6 +150,11 @@ const install = (app: App) => {
   app.component('XRadio', XRadio)
   app.component('XRadioGroup', XRadioGroup)
   app.component('XPopover', XPopover)
+  app.component('XTooltip', XTooltip)
+  app.component('XTree', XTree)
+  app.component('XTreeSelect', XTreeSelect)
+  app.component('XPopconfirm', XPopconfirm)
+  app.component('XNotification', XNotification)
 }
 
 // 默认导出

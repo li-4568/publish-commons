@@ -159,7 +159,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { XCheckbox, XCheckboxGroup } from '../src/index'
 
 // 响应式数据
@@ -189,15 +189,15 @@ const eventLog = ref('')
 const groupEventLog = ref('')
 
 // 事件处理函数
-const handleChange = (checked: boolean) => {
+const handleChange = (checked: any) => {
   eventLog.value = `change: ${checked}`
 }
 
-const handleClick = (event: MouseEvent) => {
+const handleClick = (_event: MouseEvent) => {
   eventLog.value = `click`
 }
 
-const handleGroupChange = (value: any[]) => {
+const handleGroupChange = (value: string[]) => {
   groupEventLog.value = `change: ${JSON.stringify(value)}`
 }
 </script>

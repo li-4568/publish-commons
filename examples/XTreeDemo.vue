@@ -128,7 +128,7 @@
   import { ref, reactive } from 'vue'
   import { Button } from 'ant-design-vue'
   import XTree from '../src/components/XTree/XTree.vue'
-  import type { XTreeNode } from '../src/components/XTree/types'
+  // XTreeNode type is used in template via TreeData
   
   // 基本树形数据
   const basicTreeData = [
@@ -264,11 +264,6 @@
   
   // 处理拖拽事件
   const handleDrop = (info: any) => {
-    const dropKey = info.node.key
-    const dragKey = info.dragNode.key
-    const dropPos = info.node.pos.split('-')
-    const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1])
-    
     const log = `将节点 "${info.dragNode.title}" 拖拽到 "${info.node.title}" ${getDropPositionText(info.dropPosition)}`
     dropLogs.value.unshift(log)
     
