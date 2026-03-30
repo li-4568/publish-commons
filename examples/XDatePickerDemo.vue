@@ -9,6 +9,23 @@
         <XDatePicker v-model="value1" placeholder="选择日期" />
       </div>
       <p class="demo-value">选择值: {{ value1 }}</p>
+    
+      <div class="code-example">
+        <h3>基础用法</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XDatePicker v-model="value1" placeholder="选择日期" /&gt;
+  &lt;/div&gt;
+  &lt;p class="demo-value"&gt;选择值: {{ value1 }}&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XDatePicker from 'your-component-library/XDatePicker/XDatePicker.vue'
+
+const value1 = ref(undefined)
+&lt;/script&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 日期选择器类型 -->
@@ -21,6 +38,30 @@
         <XDatePicker v-model="value5" type="year" placeholder="选择年份" />
         <XDatePicker v-model="value6" type="week" placeholder="选择周" />
       </div>
+    
+      <div class="code-example">
+        <h3>日期选择器类型</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-col"&gt;
+    &lt;XDatePicker v-model="value2" type="date" placeholder="选择日期" /&gt;
+    &lt;XDatePicker v-model="value3" type="datetime" placeholder="选择日期时间" /&gt;
+    &lt;XDatePicker v-model="value4" type="month" placeholder="选择月份" /&gt;
+    &lt;XDatePicker v-model="value5" type="year" placeholder="选择年份" /&gt;
+    &lt;XDatePicker v-model="value6" type="week" placeholder="选择周" /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XDatePicker from 'your-component-library/XDatePicker/XDatePicker.vue'
+
+const value2 = ref(undefined)
+const value3 = ref(undefined)
+const value4 = ref(undefined)
+const value5 = ref(undefined)
+const value6 = ref(undefined)
+&lt;/script&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 范围选择器 -->
@@ -30,6 +71,26 @@
         <XDatePicker v-model="value7" type="daterange" placeholder="选择日期范围" />
         <XDatePicker v-model="value8" type="datetimerange" placeholder="选择日期时间范围" />
         <XDatePicker v-model="value9" type="daterange" placeholder="自定义范围占位符" :start-placeholder="'开始日期'" :end-placeholder="'结束日期'" />
+      </div>
+    
+      <div class="code-example">
+        <h3>范围选择器</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-col"&gt;
+    &lt;XDatePicker v-model="value7" type="daterange" placeholder="选择日期范围" /&gt;
+    &lt;XDatePicker v-model="value8" type="datetimerange" placeholder="选择日期时间范围" /&gt;
+    &lt;XDatePicker v-model="value9" type="daterange" placeholder="自定义范围占位符" :start-placeholder="'开始日期'" :end-placeholder="'结束日期'" /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XDatePicker from 'your-component-library/XDatePicker/XDatePicker.vue'
+
+const value7 = ref(undefined)
+const value8 = ref(undefined)
+const value9 = ref(undefined)
+&lt;/script&gt;</code></pre>
       </div>
     </section>
 
@@ -41,6 +102,26 @@
         <XDatePicker v-model="value11" type="date" size="middle" placeholder="中号日期选择器" />
         <XDatePicker v-model="value12" type="date" size="small" placeholder="小号日期选择器" />
       </div>
+    
+      <div class="code-example">
+        <h3>输入框尺寸</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-col"&gt;
+    &lt;XDatePicker v-model="value10" type="date" size="large" placeholder="大号日期选择器" /&gt;
+    &lt;XDatePicker v-model="value11" type="date" size="middle" placeholder="中号日期选择器" /&gt;
+    &lt;XDatePicker v-model="value12" type="date" size="small" placeholder="小号日期选择器" /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XDatePicker from 'your-component-library/XDatePicker/XDatePicker.vue'
+
+const value10 = ref(undefined)
+const value11 = ref(undefined)
+const value12 = ref(undefined)
+&lt;/script&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 带清除按钮 -->
@@ -50,6 +131,23 @@
         <XDatePicker v-model="value13" type="date" clearable placeholder="选择日期（可清除）" />
       </div>
       <p class="demo-value">选择值: {{ value13 }}</p>
+    
+      <div class="code-example">
+        <h3>带清除按钮</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XDatePicker v-model="value13" type="date" clearable placeholder="选择日期（可清除）" /&gt;
+  &lt;/div&gt;
+  &lt;p class="demo-value"&gt;选择值: {{ value13 }}&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XDatePicker from 'your-component-library/XDatePicker/XDatePicker.vue'
+
+const value13 = ref(undefined)
+&lt;/script&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 禁用状态 -->
@@ -59,6 +157,24 @@
         <XDatePicker v-model="value14" type="date" disabled placeholder="禁用的日期选择器" />
         <XDatePicker v-model="value15" type="daterange" disabled placeholder="禁用的范围选择器" />
       </div>
+    
+      <div class="code-example">
+        <h3>禁用状态</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-col"&gt;
+    &lt;XDatePicker v-model="value14" type="date" disabled placeholder="禁用的日期选择器" /&gt;
+    &lt;XDatePicker v-model="value15" type="daterange" disabled placeholder="禁用的范围选择器" /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XDatePicker from 'your-component-library/XDatePicker/XDatePicker.vue'
+
+const value14 = ref(undefined)
+const value15 = ref(undefined)
+&lt;/script&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 错误状态 -->
@@ -66,6 +182,22 @@
       <h2>错误状态</h2>
       <div class="demo-row">
         <XDatePicker v-model="value16" type="date" error placeholder="错误的日期选择器" />
+      </div>
+    
+      <div class="code-example">
+        <h3>错误状态</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XDatePicker v-model="value16" type="date" error placeholder="错误的日期选择器" /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XDatePicker from 'your-component-library/XDatePicker/XDatePicker.vue'
+
+const value16 = ref(undefined)
+&lt;/script&gt;</code></pre>
       </div>
     </section>
 
@@ -82,6 +214,39 @@
         <div v-else class="event-log-list">
           <div v-for="(log, index) in eventLogs" :key="index" class="event-log-item">{{ log }}</div>
         </div>
+      </div>
+    
+      <div class="code-example">
+        <h3>事件演示</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XDatePicker v-model="value17" type="date" @change="handleDateChange" placeholder="选择日期" /&gt;
+  &lt;/div&gt;
+  &lt;p class="demo-value"&gt;选择值: {{ value17 }}&lt;/p&gt;
+  &lt;div class="event-log"&gt;
+    &lt;h3&gt;事件日志:&lt;/h3&gt;
+    &lt;div v-if="eventLogs.length === 0" class="event-log-empty"&gt;暂无事件&lt;/div&gt;
+    &lt;div v-else class="event-log-list"&gt;
+      &lt;div v-for="(log, index) in eventLogs" :key="index" class="event-log-item">{{ log }}&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XDatePicker from 'your-component-library/XDatePicker/XDatePicker.vue'
+
+const value17 = ref(undefined)
+
+// 处理日期变化事件
+const handleDateChange = (value: XDatePickerProps['modelValue']) => {
+  const log = `日期变化: ${value ? JSON.stringify(value) : '清空'}`
+  eventLogs.value.unshift(log)
+  if (eventLogs.value.length > 10) {
+    eventLogs.value.pop()
+  }
+}
+&lt;/script&gt;</code></pre>
       </div>
     </section>
   </div>
@@ -220,5 +385,29 @@ const handleDateChange = (value: any) => {
 
 .event-log-item:last-child {
   border-bottom: none;
+}
+
+.code-example {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.code-example h3 {
+  padding: 10px 16px;
+  margin: 0;
+  background-color: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.code-example pre {
+  margin: 0;
+  padding: 16px;
+  background: #fff;
+  overflow-x: auto;
 }
 </style>

@@ -11,6 +11,57 @@
         <XButton type="warning" @click="showWarning">警告通知</XButton>
         <XButton type="error" @click="showError">错误通知</XButton>
       </div>
+      
+      <div class="code-example">
+        <h3>基本用法</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XButton type="primary" @click="showInfo"&gt;信息通知&lt;/XButton&gt;
+    &lt;XButton type="success" @click="showSuccess"&gt;成功通知&lt;/XButton&gt;
+    &lt;XButton type="warning" @click="showWarning"&gt;警告通知&lt;/XButton&gt;
+    &lt;XButton type="error" @click="showError"&gt;错误通知&lt;/XButton&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XNotification from 'your-component-library/XNotification/notification'
+import { XButton } from 'your-component-library'
+
+// 基本通知类型
+const showInfo = () => {
+  XNotification.info({
+    title: '信息',
+    message: '这是一条信息类型的通知',
+    duration: 3000
+  })
+}
+
+const showSuccess = () => {
+  XNotification.success({
+    title: '成功',
+    message: '操作执行成功',
+    duration: 3000
+  })
+}
+
+const showWarning = () => {
+  XNotification.warning({
+    title: '警告',
+    message: '请检查输入信息',
+    duration: 4000
+  })
+}
+
+const showError = () => {
+  XNotification.error({
+    title: '错误',
+    message: '操作执行失败，请重试',
+    duration: 4000
+  })
+}
+&lt;/script&gt;</code></pre>
+      </div>
     </section>
     
     <!-- 自定义内容 -->
@@ -21,6 +72,50 @@
         <XButton @click="showOnlyMessage">仅内容</XButton>
         <XButton @click="showLongMessage">长文本内容</XButton>
       </div>
+      
+      <div class="code-example">
+        <h3>自定义内容</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XButton @click="showWithTitle"&gt;标题+内容&lt;/XButton&gt;
+    &lt;XButton @click="showOnlyMessage"&gt;仅内容&lt;/XButton&gt;
+    &lt;XButton @click="showLongMessage"&gt;长文本内容&lt;/XButton&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XNotification from 'your-component-library/XNotification/notification'
+import { XButton } from 'your-component-library'
+
+// 自定义内容
+const showWithTitle = () => {
+  XNotification({
+    type: 'info',
+    title: '自定义标题',
+    message: '这是一条带有标题和内容的通知',
+    duration: 4500
+  })
+}
+
+const showOnlyMessage = () => {
+  XNotification({
+    type: 'success',
+    message: '这是一条只有内容的通知',
+    duration: 3500
+  })
+}
+
+const showLongMessage = () => {
+  XNotification({
+    type: 'warning',
+    title: '长文本通知',
+    message: '这是一条包含大量文本内容的通知示例，用于展示长文本在通知中的显示效果。通知组件会自动处理长文本的换行和溢出问题。',
+    duration: 6000
+  })
+}
+&lt;/script&gt;</code></pre>
+      </div>
     </section>
     
     <!-- 自动关闭设置 -->
@@ -30,6 +125,49 @@
         <XButton @click="showFast">快速关闭 (2秒)</XButton>
         <XButton @click="showSlow">缓慢关闭 (8秒)</XButton>
         <XButton @click="showNoAutoClose">不自动关闭</XButton>
+      </div>
+      
+      <div class="code-example">
+        <h3>自动关闭设置</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XButton @click="showFast"&gt;快速关闭 (2秒)&lt;/XButton&gt;
+    &lt;XButton @click="showSlow"&gt;缓慢关闭 (8秒)&lt;/XButton&gt;
+    &lt;XButton @click="showNoAutoClose"&gt;不自动关闭&lt;/XButton&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XNotification from 'your-component-library/XNotification/notification'
+import { XButton } from 'your-component-library'
+
+// 自动关闭设置
+const showFast = () => {
+  XNotification.success({
+    title: '快速关闭',
+    message: '这条通知将在2秒后自动关闭',
+    duration: 2000
+  })
+}
+
+const showSlow = () => {
+  XNotification.info({
+    title: '缓慢关闭',
+    message: '这条通知将在8秒后自动关闭',
+    duration: 8000
+  })
+}
+
+const showNoAutoClose = () => {
+  XNotification.warning({
+    title: '不自动关闭',
+    message: '这条通知不会自动关闭，需要手动点击关闭按钮',
+    duration: 0, // 0表示不自动关闭
+    closeable: true // 显示关闭按钮
+  })
+}
+&lt;/script&gt;</code></pre>
       </div>
     </section>
     
@@ -42,6 +180,65 @@
         <XButton @click="showBottomLeft">左下角</XButton>
         <XButton @click="showBottomRight">右下角</XButton>
       </div>
+      
+      <div class="code-example">
+        <h3>位置设置</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XButton @click="showTopLeft"&gt;左上角&lt;/XButton&gt;
+    &lt;XButton @click="showTopRight"&gt;右上角&lt;/XButton&gt;
+    &lt;XButton @click="showBottomLeft"&gt;左下角&lt;/XButton&gt;
+    &lt;XButton @click="showBottomRight"&gt;右下角&lt;/XButton&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XNotification from 'your-component-library/XNotification/notification'
+import { XButton } from 'your-component-library'
+
+// 位置设置
+const showTopLeft = () => {
+  XNotification({
+    type: 'info',
+    title: '左上角通知',
+    message: '这条通知显示在左上角',
+    placement: 'topLeft',
+    duration: 3000
+  })
+}
+
+const showTopRight = () => {
+  XNotification({
+    type: 'success',
+    title: '右上角通知',
+    message: '这条通知显示在右上角',
+    placement: 'topRight',
+    duration: 3000
+  })
+}
+
+const showBottomLeft = () => {
+  XNotification({
+    type: 'warning',
+    title: '左下角通知',
+    message: '这条通知显示在左下角',
+    placement: 'bottomLeft',
+    duration: 3000
+  })
+}
+
+const showBottomRight = () => {
+  XNotification({
+    type: 'error',
+    title: '右下角通知',
+    message: '这条通知显示在右下角',
+    placement: 'bottomRight',
+    duration: 3000
+  })
+}
+&lt;/script&gt;</code></pre>
+      </div>
     </section>
     
     <!-- 事件处理 -->
@@ -50,6 +247,47 @@
       <div class="demo-row">
         <XButton @click="showWithClick">点击事件</XButton>
         <XButton @click="showWithClose">关闭事件</XButton>
+      </div>
+      
+      <div class="code-example">
+        <h3>事件处理</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XButton @click="showWithClick"&gt;点击事件&lt;/XButton&gt;
+    &lt;XButton @click="showWithClose"&gt;关闭事件&lt;/XButton&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XNotification from 'your-component-library/XNotification/notification'
+import { XButton } from 'your-component-library'
+
+// 事件处理
+const showWithClick = () => {
+  XNotification({
+    type: 'info',
+    title: '点击事件',
+    message: '点击这条通知查看效果',
+    onClick: () => {
+      alert('通知被点击了！')
+    },
+    duration: 4000
+  })
+}
+
+const showWithClose = () => {
+  XNotification({
+    type: 'success',
+    title: '关闭事件',
+    message: '关闭这条通知查看效果',
+    onClose: () => {
+      console.log('通知被关闭了！')
+    },
+    duration: 4000
+  })
+}
+&lt;/script&gt;</code></pre>
       </div>
     </section>
     
@@ -60,6 +298,48 @@
         <XButton @click="showClosable">显示通知</XButton>
         <XButton @click="closeNotification" :disabled="!notificationInstance">关闭通知</XButton>
         <XButton @click="closeAll">关闭所有</XButton>
+      </div>
+      
+      <div class="code-example">
+        <h3>编程式关闭</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XButton @click="showClosable"&gt;显示通知&lt;/XButton&gt;
+    &lt;XButton @click="closeNotification" :disabled="!notificationInstance"&gt;关闭通知&lt;/XButton&gt;
+    &lt;XButton @click="closeAll"&gt;关闭所有&lt;/XButton&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XNotification from 'your-component-library/XNotification/notification'
+import { XButton } from 'your-component-library'
+import type { XNotificationInstance } from 'your-component-library/XNotification/types'
+
+// 通知实例引用
+const notificationInstance = ref&lt;XNotificationInstance | null&gt;(null)
+
+// 编程式关闭
+const showClosable = () => {
+  notificationInstance.value = XNotification({
+    type: 'warning',
+    title: '可关闭通知',
+    message: '点击下面的按钮可以关闭这条通知',
+    duration: 0 // 不自动关闭
+  })
+}
+
+const closeNotification = () => {
+  if (notificationInstance.value) {
+    notificationInstance.value.close()
+    notificationInstance.value = null
+  }
+}
+
+const closeAll = () => {
+  XNotification.closeAll() // 关闭所有通知
+}
+&lt;/script&gt;</code></pre>
       </div>
     </section>
   </div>
@@ -280,5 +560,34 @@ const closeAll = () => {
   gap: 16px;
   align-items: center;
   width: 100%;
+}
+
+// 代码示例样式
+.code-example {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.code-example h3 {
+  padding: 10px 16px;
+  margin: 0;
+  background-color: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.code-example pre {
+  margin: 0;
+  padding: 16px;
+  background: #fff;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #333;
 }
 </style>

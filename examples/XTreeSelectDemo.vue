@@ -13,6 +13,73 @@
         />
       </div>
       <p class="demo-value">选择值: {{ value1 }}</p>
+      
+      <div class="code-example">
+        <h3>基础用法</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value1"
+      :tree-data="treeData"
+      placeholder="请选择"
+    /&gt;
+  &lt;/div&gt;
+  &lt;p class="demo-value"&gt;选择值: {{ value1 }}&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值
+const value1 = ref('')
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部',
+    children: [
+      {
+        key: '1-1',
+        value: '1-1',
+        title: '前端组',
+        children: [
+          { key: '1-1-1', value: '1-1-1', title: 'Vue小组' },
+          { key: '1-1-2', value: '1-1-2', title: 'React小组' }
+        ]
+      },
+      {
+        key: '1-2',
+        value: '1-2',
+        title: '后端组',
+        children: [
+          { key: '1-2-1', value: '1-2-1', title: 'Java小组' },
+          { key: '1-2-2', value: '1-2-2', title: 'Go小组' },
+          { key: '1-2-3', value: '1-2-3', title: 'Node小组' }
+        ]
+      }
+    ]
+  }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.demo-value {
+  margin-top: 10px;
+  color: #666;
+}
+&lt;/style&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 不同尺寸 -->
@@ -38,6 +105,72 @@
           placeholder="小号选择器"
         />
       </div>
+      
+      <div class="code-example">
+        <h3>不同尺寸</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-col"&gt;
+    &lt;XTreeSelect
+      v-model="value2"
+      :tree-data="treeData"
+      size="large"
+      placeholder="大号选择器"
+    /&gt;
+    &lt;XTreeSelect
+      v-model="value3"
+      :tree-data="treeData"
+      size="middle"
+      placeholder="中号选择器"
+    /&gt;
+    &lt;XTreeSelect
+      v-model="value4"
+      :tree-data="treeData"
+      size="small"
+      placeholder="小号选择器"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值
+const value2 = ref('')
+const value3 = ref('')
+const value4 = ref('')
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部',
+    children: [
+      {
+        key: '1-1',
+        value: '1-1',
+        title: '前端组'
+      },
+      {
+        key: '1-2',
+        value: '1-2',
+        title: '后端组'
+      }
+    ]
+  }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 多选模式 -->
@@ -52,6 +185,70 @@
         />
       </div>
       <p class="demo-value">选择值: {{ value5 }}</p>
+      
+      <div class="code-example">
+        <h3>多选模式</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value5"
+      :tree-data="treeData"
+      mode="multiple"
+      placeholder="可多选"
+    /&gt;
+  &lt;/div&gt;
+  &lt;p class="demo-value"&gt;选择值: {{ value5 }}&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值（多选模式下为数组）
+const value5 = ref([])
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部',
+    children: [
+      {
+        key: '1-1',
+        value: '1-1',
+        title: '前端组'
+      },
+      {
+        key: '1-2',
+        value: '1-2',
+        title: '后端组'
+      }
+    ]
+  },
+  {
+    key: '2',
+    value: '2',
+    title: '产品部'
+  }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.demo-value {
+  margin-top: 10px;
+  color: #666;
+}
+&lt;/style&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 带复选框 -->
@@ -67,6 +264,70 @@
         />
       </div>
       <p class="demo-value">选择值: {{ value6 }}</p>
+      
+      <div class="code-example">
+        <h3>带复选框（多选模式）</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value6"
+      :tree-data="treeData"
+      mode="multiple"
+      tree-checkable
+      placeholder="勾选节点选择"
+    /&gt;
+  &lt;/div&gt;
+  &lt;p class="demo-value"&gt;选择值: {{ value6 }}&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值（多选模式下为数组）
+const value6 = ref([])
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部',
+    children: [
+      {
+        key: '1-1',
+        value: '1-1',
+        title: '前端组',
+        children: [
+          { key: '1-1-1', value: '1-1-1', title: 'Vue小组' },
+          { key: '1-1-2', value: '1-1-2', title: 'React小组' }
+        ]
+      },
+      {
+        key: '1-2',
+        value: '1-2',
+        title: '后端组'
+      }
+    ]
+  }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.demo-value {
+  margin-top: 10px;
+  color: #666;
+}
+&lt;/style&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 严格勾选模式 -->
@@ -78,11 +339,76 @@
           :tree-data="treeData"
           mode="multiple"
           tree-checkable
-          :tree-check-strictly="false"
-          placeholder="父子节点关联勾选"
+          :tree-check-strictly="true"
+          placeholder="严格勾选"
         />
       </div>
       <p class="demo-value">选择值: {{ value7 }}</p>
+      
+      <div class="code-example">
+        <h3>严格勾选模式</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value7"
+      :tree-data="treeData"
+      mode="multiple"
+      tree-checkable
+      :tree-check-strictly="true"
+      placeholder="严格勾选"
+    /&gt;
+  &lt;/div&gt;
+  &lt;p class="demo-value"&gt;选择值: {{ value7 }}&lt;/p&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值（多选模式下为数组）
+const value7 = ref([])
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部',
+    children: [
+      {
+        key: '1-1',
+        value: '1-1',
+        title: '前端组',
+        children: [
+          { key: '1-1-1', value: '1-1-1', title: 'Vue小组' },
+          { key: '1-1-2', value: '1-1-2', title: 'React小组' }
+        ]
+      },
+      {
+        key: '1-2',
+        value: '1-2',
+        title: '后端组'
+      }
+    ]
+  }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.demo-value {
+  margin-top: 10px;
+  color: #666;
+}
+&lt;/style&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 带清除按钮 -->
@@ -95,6 +421,52 @@
           clearable
           placeholder="可清除选择"
         />
+      </div>
+      
+      <div class="code-example">
+        <h3>带清除按钮</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value8"
+      :tree-data="treeData"
+      clearable
+      placeholder="可清除选择"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值
+const value8 = ref('')
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部',
+    children: [
+      { key: '1-1', value: '1-1', title: '前端组' },
+      { key: '1-2', value: '1-2', title: '后端组' }
+    ]
+  },
+  { key: '2', value: '2', title: '产品部' }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
       </div>
     </section>
 
@@ -109,6 +481,53 @@
           placeholder="可搜索节点"
         />
       </div>
+      
+      <div class="code-example">
+        <h3>搜索功能</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value9"
+      :tree-data="treeData"
+      searchable
+      placeholder="可搜索节点"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值
+const value9 = ref('')
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部',
+    children: [
+      { key: '1-1', value: '1-1', title: '前端组' },
+      { key: '1-2', value: '1-2', title: '后端组' }
+    ]
+  },
+  { key: '2', value: '2', title: '产品部' },
+  { key: '3', value: '3', title: '市场部' }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 默认展开所有 -->
@@ -121,6 +540,64 @@
           tree-default-expand-all
           placeholder="展开所有节点"
         />
+      </div>
+      
+      <div class="code-example">
+        <h3>默认展开所有节点</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value10"
+      :tree-data="treeData"
+      tree-default-expand-all
+      placeholder="展开所有节点"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值
+const value10 = ref('')
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部',
+    children: [
+      {
+        key: '1-1',
+        value: '1-1',
+        title: '前端组',
+        children: [
+          { key: '1-1-1', value: '1-1-1', title: 'Vue小组' },
+          { key: '1-1-2', value: '1-1-2', title: 'React小组' }
+        ]
+      },
+      {
+        key: '1-2',
+        value: '1-2',
+        title: '后端组'
+      }
+    ]
+  },
+  { key: '2', value: '2', title: '产品部' }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
       </div>
     </section>
 
@@ -140,6 +617,83 @@
           placeholder="部分节点禁用"
         />
       </div>
+      
+      <div class="code-example">
+        <h3>禁用状态</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-col"&gt;
+    &lt;!-- 禁用整个组件 --&gt;
+    &lt;XTreeSelect
+      v-model="value11"
+      :tree-data="treeData"
+      disabled
+      placeholder="禁用状态"
+    /&gt;
+    
+    &lt;!-- 部分节点禁用 --&gt;
+    &lt;XTreeSelect
+      v-model="value12"
+      :tree-data="treeDataWithDisabled"
+      placeholder="部分节点禁用"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值
+const value11 = ref('')
+const value12 = ref('')
+
+// 正常树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部'
+  },
+  { key: '2', value: '2', title: '产品部' }
+])
+
+// 带禁用节点的数据
+const treeDataWithDisabled = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '可选项1',
+    children: [
+      { key: '1-1', value: '1-1', title: '子选项1' },
+      { key: '1-2', value: '1-2', title: '禁用子选项', disabled: true }
+    ]
+  },
+  {
+    key: '2',
+    value: '2',
+    title: '禁用项',
+    disabled: true,
+    children: [
+      { key: '2-1', value: '2-1', title: '子选项' }
+    ]
+  },
+  {
+    key: '3',
+    value: '3',
+    title: '可选项2'
+  }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 必填状态 -->
@@ -152,6 +706,49 @@
           required
           placeholder="必填项"
         />
+      </div>
+      
+      <div class="code-example">
+        <h3>必填状态</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value13"
+      :tree-data="treeData"
+      required
+      placeholder="必填项"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值
+const value13 = ref('')
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部'
+  },
+  { key: '2', value: '2', title: '产品部' },
+  { key: '3', value: '3', title: '市场部' }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
       </div>
     </section>
 
@@ -166,6 +763,49 @@
           placeholder="错误状态"
         />
       </div>
+      
+      <div class="code-example">
+        <h3>错误状态</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value14"
+      :tree-data="treeData"
+      error-message="请选择一个节点"
+      placeholder="错误状态"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值
+const value14 = ref('')
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部'
+  },
+  { key: '2', value: '2', title: '产品部' },
+  { key: '3', value: '3', title: '市场部' }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
+      </div>
     </section>
 
     <!-- 最大标签数量 -->
@@ -176,9 +816,58 @@
           v-model="value15"
           :tree-data="treeData"
           mode="multiple"
-          :max-tag-count="2"
-          placeholder="最多显示2个标签"
+          :max-tag-count="3"
+          placeholder="最多显示3个标签"
         />
+      </div>
+      
+      <div class="code-example">
+        <h3>最大标签数量</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value15"
+      :tree-data="treeData"
+      mode="multiple"
+      :max-tag-count="3"
+      placeholder="最多显示3个标签"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值（多选模式下为数组）
+const value15 = ref([])
+
+// 树形数据
+const treeData = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '技术部',
+    children: [
+      { key: '1-1', value: '1-1', title: '前端组' },
+      { key: '1-2', value: '1-2', title: '后端组' },
+      { key: '1-3', value: '1-3', title: '测试组' }
+    ]
+  },
+  { key: '2', value: '2', title: '产品部' },
+  { key: '3', value: '3', title: '市场部' }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
       </div>
     </section>
 
@@ -189,9 +878,62 @@
         <XTreeSelect
           v-model="value16"
           :tree-data="treeDataWithIcon"
-          show-icon
-          placeholder="带图标的树"
+          placeholder="带图标的节点"
         />
+      </div>
+      
+      <div class="code-example">
+        <h3>显示图标</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value16"
+      :tree-data="treeDataWithIcon"
+      placeholder="带图标的节点"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+
+// 选择值
+const value16 = ref('')
+
+// 带图标的树形数据
+const treeDataWithIcon = ref([
+  {
+    key: '1',
+    value: '1',
+    title: '📁 文件夹',
+    children: [
+      { key: '1-1', value: '1-1', title: '📄 文档.txt' },
+      { key: '1-2', value: '1-2', title: '📄 报告.doc' },
+      { key: '1-3', value: '1-3', title: '📊 数据.xls' }
+    ]
+  },
+  {
+    key: '2',
+    value: '2',
+    title: '📁 图片',
+    children: [
+      { key: '2-1', value: '2-1', title: '🖼️ logo.png' },
+      { key: '2-2', value: '2-2', title: '🖼️ banner.jpg' }
+    ]
+  }
+])
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
       </div>
     </section>
 
@@ -205,6 +947,66 @@
           placeholder="异步加载"
         />
         <XButton type="primary" @click="loadTreeData">加载数据</XButton>
+      </div>
+      
+      <div class="code-example">
+        <h3>异步加载数据</h3>
+        <pre v-pre><code>&lt;template&gt;
+  &lt;div class="demo-row"&gt;
+    &lt;XTreeSelect
+      v-model="value17"
+      :tree-data="asyncTreeData"
+      placeholder="异步加载"
+    /&gt;
+    &lt;XButton type="primary" @click="loadTreeData"&gt;加载数据&lt;/XButton&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import XTreeSelect from 'your-component-library/XTreeSelect/XTreeSelect.vue'
+import XButton from 'your-component-library/XButton/XButton.vue'
+
+// 选择值
+const value17 = ref('')
+
+// 异步树形数据
+const asyncTreeData = ref([])
+
+// 模拟异步加载数据
+const loadTreeData = async () => {
+  // 模拟网络请求延迟
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  
+  // 加载数据
+  asyncTreeData.value = [
+    {
+      key: 'async-1',
+      value: 'async-1',
+      title: '异步部门1',
+      children: [
+        { key: 'async-1-1', value: 'async-1-1', title: '异步小组1' },
+        { key: 'async-1-2', value: 'async-1-2', title: '异步小组2' }
+      ]
+    },
+    {
+      key: 'async-2',
+      value: 'async-2',
+      title: '异步部门2'
+    }
+  ]
+}
+&lt;/script&gt;
+
+&lt;style scoped&gt;
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+&lt;/style&gt;</code></pre>
       </div>
     </section>
 
@@ -643,6 +1445,37 @@ const loadTreeData = () => {
     color: rgba(0, 0, 0, 0.65);
     line-height: 1.8;
     font-family: monospace;
+  }
+}
+
+.code-example {
+  margin-top: 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  overflow: hidden;
+
+  h3 {
+    margin: 0;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #fafafa;
+    border-bottom: 1px solid #d9d9d9;
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  pre {
+    margin: 0;
+    padding: 16px;
+    background-color: #fafafa;
+    overflow-x: auto;
+
+    code {
+      font-family: Menlo, Monaco, 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(0, 0, 0, 0.85);
+    }
   }
 }
 </style>
