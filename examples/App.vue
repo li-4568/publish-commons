@@ -18,6 +18,7 @@
       <XDatePickerDemo v-if="currentTab === 'datepicker'" />
       <XCascaderDemo v-if="currentTab === 'cascader'" />
       <XCheckboxDemo v-if="currentTab === 'checkbox'" />
+      <XRadioDemo v-if="currentTab === 'radio'" />
     </main>
   </div>
 </template>
@@ -30,6 +31,7 @@
   import XDatePickerDemo from './XDatePickerDemo.vue'
   import XCascaderDemo from './XCascaderDemo.vue'
   import XCheckboxDemo from './XCheckboxDemo.vue'
+  import XRadioDemo from './XRadioDemo.vue'
 
   const tabs = [
     { key: 'button', label: 'XButton 按钮' },
@@ -37,7 +39,8 @@
     { key: 'select', label: 'XSelect 下拉框' },
     { key: 'datepicker', label: 'XDatePicker 日期选择器' },
     { key: 'cascader', label: 'XCascader 级联选择' },
-    { key: 'checkbox', label: 'XCheckbox 复选框' }
+    { key: 'checkbox', label: 'XCheckbox 复选框' },
+    { key: 'radio', label: 'XRadio 单选框' }
   ]
 
   const currentTab = ref('button')

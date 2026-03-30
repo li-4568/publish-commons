@@ -12,12 +12,13 @@ import { XDatePicker } from './components/XDatePicker'
 import { XCascader } from './components/XCascader'
 import { XCheckbox } from './components/XCheckbox'
 import { XCheckboxGroup } from './components/XCheckboxGroup'
+import { XRadio, XRadioGroup } from './components/XRadio'
 
 // 导入样式
 import './styles/index.less'
 
 // 导出组件
-export { XButton, XInput, XSelect, XDatePicker, XCascader, XCheckbox, XCheckboxGroup }
+export { XButton, XInput, XSelect, XDatePicker, XCascader, XCheckbox, XCheckboxGroup, XRadio, XRadioGroup }
 
 // 导出组件类型
 export type {
@@ -64,6 +65,15 @@ export type {
   XCheckboxGroupProps,
   XCheckboxGroupEmits
 } from './components/XCheckboxGroup/types'
+export type {
+  XRadioProps,
+  XRadioEmits,
+  XRadioSlots,
+  XRadioGroupProps,
+  XRadioGroupEmits,
+  XRadioGroupSlots,
+  RadioSize
+} from './components/XRadio/types'
 
 // 全局安装方法
 const install = (app: App) => {
@@ -74,6 +84,8 @@ const install = (app: App) => {
   app.component('XCascader', XCascader)
   app.component('XCheckbox', XCheckbox)
   app.component('XCheckboxGroup', XCheckboxGroup)
+  app.component('XRadio', XRadio)
+  app.component('XRadioGroup', XRadioGroup)
 }
 
 // 默认导出

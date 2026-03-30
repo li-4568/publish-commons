@@ -1,0 +1,77 @@
+// ============================================
+// XRadio 组件样式
+// ============================================
+
+@import '../../styles/variables.less';
+
+.xradio-wrapper {
+  display: inline-flex;
+  align-items: center;
+  
+  // 错误状态样式
+  &.ant-radio-wrapper-error {
+    .ant-radio {
+      + .ant-radio-label {
+        color: @error-color;
+      }
+    }
+  }
+  
+  // 警告状态样式
+  &.ant-radio-wrapper-warning {
+    .ant-radio {
+      + .ant-radio-label {
+        color: @warning-color;
+      }
+    }
+  }
+  
+  // 禁用状态样式
+  &.ant-radio-wrapper-disabled {
+    .ant-radio {
+      + .ant-radio-label {
+        color: @disabled-color;
+      }
+    }
+  }
+  
+  // 标签间距调整
+  .ant-radio {
+    + .ant-radio-label {
+      margin-left: 8px;
+    }
+  }
+}
+
+// 尺寸样式
+  .ant-radio {
+    &-wrapper-checked {
+      &:hover {
+        .ant-radio-inner {
+          border-color: @primary-color;
+        }
+      }
+    }
+    
+    &-large {
+      .ant-radio-inner {
+        width: 20px;
+        height: 20px;
+      }
+      
+      + .ant-radio-label {
+        font-size: @xbtn-font-size-large;
+      }
+    }
+    
+    &-small {
+      .ant-radio-inner {
+        width: 16px;
+        height: 16px;
+      }
+      
+      + .ant-radio-label {
+        font-size: @xbtn-font-size-small;
+      }
+    }
+  }

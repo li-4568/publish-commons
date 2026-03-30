@@ -37,10 +37,10 @@ const emit = defineEmits<XCheckboxGroupEmits>()
 
 // 提供 CheckboxGroup 上下文，供子 Checkbox 组件使用
 provide('CheckboxGroup', {
-  value: props.modelValue,
-  disabled: props.disabled,
-  size: props.size,
-  name: props.name,
+  get value() { return props.modelValue },  // 使用 getter 确保获取最新值
+  get disabled() { return props.disabled },
+  get size() { return props.size },
+  get name() { return props.name },
   onChange: (value: any[]) => emit('update:modelValue', value)
 })
 </script>
