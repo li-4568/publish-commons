@@ -35,12 +35,14 @@ export default defineConfig({
       fileName: (format) => `publish-commons.${format}.js`
     },
     rollupOptions: {
-      external: ['vue', 'ant-design-vue', '@ant-design/icons-vue'],
+      external: ['vue', 'ant-design-vue', '@ant-design/icons-vue', 'dayjs'],
       output: {
+        exports: 'named',
         globals: {
           vue: 'Vue',
           'ant-design-vue': 'AntDesignVue',
-          '@ant-design/icons-vue': 'AntDesignIconsVue'
+          '@ant-design/icons-vue': 'AntDesignIconsVue',
+          dayjs: 'dayjs'
         }
       }
     }

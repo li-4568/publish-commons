@@ -6,9 +6,7 @@
   "module": "dist/publish-commons.es.js",
   "private": false,
   "files": [
-    "dist",
-    "es",
-    "lib"
+    "dist"
   ],
   "sideEffects": [
     "*.less",
@@ -35,7 +33,8 @@
   "type": "module",
   "peerDependencies": {
     "ant-design-vue": "^4.0.0",
-    "vue": "^3.3.0"
+    "vue": "^3.3.0",
+    "dayjs": "^1.11.0"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",

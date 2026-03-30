@@ -161,7 +161,7 @@ defineExpose({
    * 获取当前值
    */
   getValue: () => internalValue.value,
-  
+
   /**
    * 聚焦
    */
@@ -169,7 +169,7 @@ defineExpose({
     const select = document.querySelector<HTMLElement>('.xselect-wrapper .ant-select-selector')
     select?.focus()
   },
-  
+
   /**
    * 失焦
    */
@@ -179,3 +179,7 @@ defineExpose({
   }
 })
 </script>
+
+<style scoped lang="less">
+  @import './style.less';
+</style>

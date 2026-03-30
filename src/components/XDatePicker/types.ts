@@ -1,5 +1,9 @@
 import { DatePickerProps as AntDatePickerProps } from 'ant-design-vue'
 
+// ============================================
+// XDatePicker 组件类型定义
+// ============================================
+
 /**
  * 日期选择器尺寸
  */
@@ -69,4 +73,19 @@ export interface XDatePickerProps extends Omit<AntDatePickerProps, 'size' | 'val
    * @default false
    */
   error?: boolean
+}
+
+/**
+ * XDatePicker 组件事件
+ */
+export interface XDatePickerEmits {
+  /**
+   * 更新绑定值
+   */
+  (e: 'update:modelValue', value: XDatePickerProps['modelValue']): void
+
+  /**
+   * 值改变事件
+   */
+  (e: 'change', value: XDatePickerProps['modelValue']): void
 }

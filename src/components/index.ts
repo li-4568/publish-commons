@@ -3,26 +3,34 @@
 // ============================================
 
 import type { App, Plugin } from 'vue'
-import XButton from './XButton'
-import XInput from './XInput'
-import XSelect from './XSelect'
+
+// 导入组件
+import { XButton } from './XButton'
+import { XInput } from './XInput'
+import { XSelect } from './XSelect'
+import { XDatePicker } from './XDatePicker'
 
 // 导出所有组件
-export { XButton, XInput, XSelect }
+export { XButton, XInput, XSelect, XDatePicker }
 
 // 导出所有类型
 export * from './XButton/types'
 export * from './XInput/types'
 export * from './XSelect/types'
+export * from './XDatePicker/types'
 
 // 全局安装方法
 const install = (app: App) => {
   app.component('XButton', XButton)
   app.component('XInput', XInput)
   app.component('XSelect', XSelect)
+  app.component('XDatePicker', XDatePicker)
 }
 
 // 默认导出
 export default {
   install
 } as Plugin
+
+// 命名导出（支持按需引入）
+export { install }

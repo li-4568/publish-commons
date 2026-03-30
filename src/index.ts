@@ -41,6 +41,7 @@ export type {
 } from './components/XSelect/types'
 export type {
   XDatePickerProps,
+  XDatePickerEmits,
   DatePickerSize,
   DatePickerType
 } from './components/XDatePicker/types'

@@ -1,17 +1,18 @@
 <template>
   <div class="xdatepicker-wrapper" :class="wrapperClasses">
-    <!-- 单个日期选择器 -->
-    <DatePicker
-      v-if="type === 'date'"
-      v-model:value="internalSingleValue"
-      :size="size"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :allow-clear="clearable"
-      :status="error ? 'error' : undefined"
-      style="width: 100%"
-      @change="handleSingleChange"
-    />
+    <ConfigProvider :locale="zhCN">
+      <!-- 单个日期选择器 -->
+      <DatePicker
+        v-if="type === 'date'"
+        v-model:value="internalSingleValue"
+        :size="size"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :allow-clear="clearable"
+        :status="error ? 'error' : undefined"
+        style="width: 100%"
+        @change="handleSingleChange"
+      />
     
     <!-- 日期时间选择器 -->
     <DatePicker
@@ -92,14 +93,21 @@
       style="width: 100%"
       @change="handleRangeChange"
     />
+    </ConfigProvider>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { DatePicker as ADatePicker } from 'ant-design-vue'
-import dayjs, { Dayjs } from 'dayjs'
+import { DatePicker as ADatePicker, ConfigProvider } from 'ant-design-vue'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import type { Dayjs } from 'dayjs'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
 import type { XDatePickerProps } from './types'
+
+// 设置 dayjs 为中文
+dayjs.locale('zh-cn')
 
 // 导入组件
 const DatePicker = ADatePicker
@@ -222,13 +230,6 @@ defineExpose({
 })
 </script>
 
-<style scoped>
-.xdatepicker-wrapper :deep(.ant-picker) {
-  width: 100%;
-}
-
-.xdatepicker-wrapper :deep(.ant-picker-dropdown) {
-  width: auto;
-  min-width: 100%;
-}
+<style scoped lang="less">
+  @import './style.less';
 </style>
