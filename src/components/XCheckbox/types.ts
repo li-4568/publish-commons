@@ -105,3 +105,44 @@ export interface XCheckboxSlots {
    */
   default?: () => VueNode
 }
+
+/**
+ * XCheckboxGroup 组件 Props 接口
+ */
+export interface XCheckboxGroupProps {
+  /**
+   * 绑定值
+   */
+  modelValue?: any[]
+  
+  /**
+   * 尺寸
+   */
+  size?: CheckboxSize
+  
+  /**
+   * 是否禁用
+   * @default false
+   */
+  disabled?: boolean
+  
+  /**
+   * 表单名称
+   */
+  name?: string
+}
+
+/**
+ * XCheckboxGroup 组件 Emits 接口
+ */
+export interface XCheckboxGroupEmits {
+  /**
+   * 绑定值变化时触发
+   */
+  (e: 'update:modelValue', value: any[]): void
+  
+  /**
+   * 状态变化时触发
+   */
+  (e: 'change', value: any[]): void
+}

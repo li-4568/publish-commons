@@ -10,8 +10,7 @@ import { XInput } from './components/XInput'
 import { XSelect } from './components/XSelect'
 import { XDatePicker } from './components/XDatePicker'
 import { XCascader } from './components/XCascader'
-import { XCheckbox } from './components/XCheckbox'
-import { XCheckboxGroup } from './components/XCheckboxGroup'
+import { XCheckbox, XCheckboxGroup } from './components/XCheckbox'
 import { XRadio, XRadioGroup } from './components/XRadio'
 
 // 导入样式
@@ -59,12 +58,10 @@ export type {
   XCheckboxProps,
   XCheckboxEmits,
   XCheckboxSlots,
-  CheckboxSize
-} from './components/XCheckbox/types'
-export type {
+  CheckboxSize,
   XCheckboxGroupProps,
   XCheckboxGroupEmits
-} from './components/XCheckboxGroup/types'
+} from './components/XCheckbox/types'
 export type {
   XRadioProps,
   XRadioEmits,
