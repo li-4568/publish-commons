@@ -1,0 +1,124 @@
+// ============================================
+// XCascader 组件样式
+// ============================================
+
+@import '../../styles/variables.less';
+
+// 基础样式
+.xcascader-wrapper {
+  position: relative;
+  display: block;
+  width: 100% !important;
+
+  // 适配不同尺寸
+  &.xcascader-large {
+    .ant-cascader {
+      font-size: @xbtn-font-size-large;
+      height: @xbtn-height-large;
+      line-height: @xbtn-height-large;
+
+      .ant-cascader-input {
+        min-height: @xbtn-height-large;
+        line-height: @xbtn-height-large;
+      }
+    }
+  }
+
+  &.xcascader-middle {
+    .ant-cascader {
+      font-size: @xbtn-font-size-middle;
+      height: @xbtn-height-middle;
+      line-height: @xbtn-height-middle;
+
+      .ant-cascader-input {
+        min-height: @xbtn-height-middle;
+        line-height: @xbtn-height-middle;
+      }
+    }
+  }
+
+  &.xcascader-small {
+    .ant-cascader {
+      font-size: @xbtn-font-size-small;
+      height: @xbtn-height-small;
+      line-height: @xbtn-height-small;
+
+      .ant-cascader-input {
+        min-height: @xbtn-height-small;
+        line-height: @xbtn-height-small;
+      }
+    }
+  }
+
+  // 错误状态样式
+  &.xcascader-error {
+    .ant-cascader {
+      .ant-input-affix-wrapper {
+        border-color: @error-color;
+
+        &:focus-within {
+          box-shadow: 0 0 0 2px rgba(@error-color, 0.2);
+        }
+      }
+    }
+  }
+
+  // 禁用状态样式
+  &.xcascader-disabled {
+    .ant-cascader {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // 错误提示信息
+  .xcascader-error-message {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    font-size: @error-message-font-size;
+    color: @error-color;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+// 多选模式下的标签样式
+.ant-cascader-multiple {
+  .ant-select {    
+    .ant-select-selector {
+      min-height: 32px;
+      padding: 2px 8px;
+
+      .ant-select-selection-item {
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+    }
+  }
+}
+
+// 下拉菜单样式
+.ant-cascader-dropdown {
+  .ant-cascader-menu {
+    // 调整菜单项高度和间距
+    .ant-cascader-menu-item {
+      height: 32px;
+      line-height: 32px;
+      padding: 0 16px;
+    }
+
+    // 选中项样式
+    .ant-cascader-menu-item-selected {
+      background-color: rgba(@primary-color, 0.1);
+    }
+
+    // 禁用项样式
+    .ant-cascader-menu-item-disabled {
+      color: @disabled-color;
+      background-color: transparent;
+    }
+  }
+}

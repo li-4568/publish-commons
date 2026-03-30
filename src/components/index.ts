@@ -9,15 +9,17 @@ import { XButton } from './XButton'
 import { XInput } from './XInput'
 import { XSelect } from './XSelect'
 import { XDatePicker } from './XDatePicker'
+import { XTreeSelect } from './XTreeSelect'
 
 // 导出所有组件
-export { XButton, XInput, XSelect, XDatePicker }
+export { XButton, XInput, XSelect, XDatePicker, XTreeSelect }
 
 // 导出所有类型
 export * from './XButton/types'
 export * from './XInput/types'
 export * from './XSelect/types'
 export * from './XDatePicker/types'
+export * from './XTreeSelect/types'
 
 // 全局安装方法
 const install = (app: App) => {
@@ -25,6 +27,7 @@ const install = (app: App) => {
   app.component('XInput', XInput)
   app.component('XSelect', XSelect)
   app.component('XDatePicker', XDatePicker)
+  app.component('XTreeSelect', XTreeSelect)
 }
 
 // 默认导出

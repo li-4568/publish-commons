@@ -9,12 +9,13 @@ import { XButton } from './components/XButton'
 import { XInput } from './components/XInput'
 import { XSelect } from './components/XSelect'
 import { XDatePicker } from './components/XDatePicker'
+import { XCascader } from './components/XCascader'
 
 // 导入样式
 import './styles/index.less'
 
 // 导出组件
-export { XButton, XInput, XSelect, XDatePicker }
+export { XButton, XInput, XSelect, XDatePicker, XCascader }
 
 // 导出组件类型
 export type {
@@ -45,6 +46,12 @@ export type {
   DatePickerSize,
   DatePickerType
 } from './components/XDatePicker/types'
+export type {
+  XCascaderProps,
+  XCascaderEmits,
+  CascaderOption,
+  CascaderSize
+} from './components/XCascader/types'
 
 // 全局安装方法
 const install = (app: App) => {
@@ -52,6 +59,7 @@ const install = (app: App) => {
   app.component('XInput', XInput)
   app.component('XSelect', XSelect)
   app.component('XDatePicker', XDatePicker)
+  app.component('XCascader', XCascader)
 }
 
 // 默认导出
