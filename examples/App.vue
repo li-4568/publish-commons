@@ -22,6 +22,7 @@
       <XPopoverDemo v-if="currentTab === 'popover'" />
       <XTreeSelectDemo v-if="currentTab === 'treeselect'" />
       <XTooltipDemo v-if="currentTab === 'tooltip'" />
+      <XTreeDemo v-if="currentTab === 'tree'" />
     </main>
   </div>
 </template>
@@ -38,6 +39,7 @@
   import XPopoverDemo from './XPopoverDemo.vue'
   import XTreeSelectDemo from './XTreeSelectDemo.vue'
   import XTooltipDemo from './XTooltipDemo.vue'
+  import XTreeDemo from './XTreeDemo.vue'
 
   const tabs = [
     { key: 'button', label: 'XButton 按钮' },
@@ -49,7 +51,8 @@
     { key: 'radio', label: 'XRadio 单选框' },
     { key: 'popover', label: 'XPopover 气泡卡片' },
     { key: 'treeselect', label: 'XTreeSelect 树形选择' },
-    { key: 'tooltip', label: 'XTooltip 文字提示' }
+    { key: 'tooltip', label: 'XTooltip 文字提示' },
+    { key: 'tree', label: 'XTree 树形组件' }
   ]
 
   const currentTab = ref('button')

@@ -1,0 +1,96 @@
+// XTree 组件样式
+// 注意：此文件中的样式会与组件内部的 scoped 样式合并
+
+// 自定义树节点样式
+.xtree-wrapper {
+  // 可以在这里添加更多全局样式
+}
+
+// 节点选中状态
+:deep(.ant-tree-node-selected) {
+  .ant-tree-node-content-wrapper {
+    background-color: rgba(24, 144, 255, 0.2);
+    border-radius: 4px;
+  }
+}
+
+// 节点悬停状态
+:deep(.ant-tree-node:hover) {
+  .ant-tree-node-content-wrapper {
+    background-color: rgba(24, 144, 255, 0.1);
+    border-radius: 4px;
+  }
+}
+
+// 禁用状态的节点
+:deep(.ant-tree-node-disabled) {
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+  
+  .ant-tree-node-content-wrapper {
+    background-color: transparent;
+  }
+}
+
+// 连接线样式
+:deep(.ant-tree-line) {
+  .ant-tree-line-vertical,
+  .ant-tree-line-horizontal {
+    border-color: #e8e8e8;
+  }
+}
+
+// 展开/折叠图标样式
+:deep(.ant-tree-switcher) {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 12px;
+  
+  &:hover {
+    color: #1890ff;
+  }
+}
+
+// 节点内容样式（修复title偏移问题）
+:deep(.ant-tree-node-content-wrapper) {
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+}
+
+// 自定义title内容样式
+:deep(.ant-tree-title) {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+// 复选框样式
+:deep(.ant-tree-checkbox) {
+  margin-right: 6px;
+  
+  &:hover {
+    .ant-tree-checkbox-inner {
+      border-color: #1890ff;
+    }
+  }
+  
+  &.ant-tree-checkbox-checked {
+    .ant-tree-checkbox-inner {
+      background-color: #1890ff;
+      border-color: #1890ff;
+    }
+  }
+}
+
+// 半选中状态的复选框
+:deep(.ant-tree-checkbox-indeterminate) {
+  .ant-tree-checkbox-inner {
+    background-color: #1890ff;
+    border-color: #1890ff;
+  }
+}
