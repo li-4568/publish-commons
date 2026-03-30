@@ -289,52 +289,50 @@
 
 <style scoped lang="less">
   .tree-demo {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 24px;
   }
   
   .demo-section {
-    margin-bottom: 40px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px;
   }
   
   .demo-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 16px;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
   }
   
   .demo-col {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    flex: 1;
-    min-width: 300px;
+    gap: 16px;
+    width: 100%;
   }
   
   h1 {
-    color: #333;
-    margin-bottom: 32px;
     text-align: center;
+    margin-bottom: 32px;
+    color: rgba(0, 0, 0, 0.85);
   }
   
   h2 {
-    color: #666;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 600;
     margin-bottom: 16px;
-    border-bottom: 2px solid #1890ff;
-    padding-bottom: 8px;
+    color: rgba(0, 0, 0, 0.85);
+    border-left: 4px solid #1890ff;
+    padding-left: 12px;
   }
   
   h3 {
-    color: #888;
     font-size: 14px;
-    margin: 0 0 10px 0;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: rgba(0, 0, 0, 0.65);
   }
   
   .tag {

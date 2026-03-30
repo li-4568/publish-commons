@@ -544,7 +544,7 @@ const handleSearch = (value: string) => {
   addLog(`搜索: ${value}`)
 }
 
-const handleSelect = (value: string | number, node: any) => {
+const handleSelect = (value: any, node: any) => {
   addLog(`选择节点: ${value}`)
 }
 
@@ -613,8 +613,8 @@ const loadTreeData = () => {
 .demo-row {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   gap: 16px;
+  align-items: center;
   width: 100%;
 }
 
@@ -623,7 +623,6 @@ const loadTreeData = () => {
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  margin-bottom: 24px;
 }
 
 .demo-value {

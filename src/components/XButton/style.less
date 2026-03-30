@@ -125,6 +125,108 @@
   }
 }
 
+// 成功按钮样式
+.xbtn-success {
+  .ant-btn-default& {
+    color: @success-color;
+    border-color: @success-color;
+    background-color: transparent;
+
+    &:hover:not(.xbtn-disabled) {
+      color: lighten(@success-color, 10%);
+      border-color: lighten(@success-color, 10%);
+    }
+  }
+
+  .ant-btn-primary& {
+    background-color: @success-color;
+    border-color: @success-color;
+
+    &:hover:not(.xbtn-disabled) {
+      background-color: lighten(@success-color, 10%);
+      border-color: lighten(@success-color, 10%);
+    }
+  }
+
+  &.xbtn-ghost {
+    color: @success-color;
+    border-color: @success-color;
+
+    &:hover:not(.xbtn-disabled) {
+      color: lighten(@success-color, 10%);
+      border-color: lighten(@success-color, 10%);
+    }
+  }
+}
+
+// 警告按钮样式
+.xbtn-warning {
+  .ant-btn-default& {
+    color: @warning-color;
+    border-color: @warning-color;
+    background-color: transparent;
+
+    &:hover:not(.xbtn-disabled) {
+      color: lighten(@warning-color, 10%);
+      border-color: lighten(@warning-color, 10%);
+    }
+  }
+
+  .ant-btn-primary& {
+    background-color: @warning-color;
+    border-color: @warning-color;
+
+    &:hover:not(.xbtn-disabled) {
+      background-color: lighten(@warning-color, 10%);
+      border-color: lighten(@warning-color, 10%);
+    }
+  }
+
+  &.xbtn-ghost {
+    color: @warning-color;
+    border-color: @warning-color;
+
+    &:hover:not(.xbtn-disabled) {
+      color: lighten(@warning-color, 10%);
+      border-color: lighten(@warning-color, 10%);
+    }
+  }
+}
+
+// 错误按钮样式
+.xbtn-error {
+  .ant-btn-default& {
+    color: @error-color;
+    border-color: @error-color;
+    background-color: transparent;
+
+    &:hover:not(.xbtn-disabled) {
+      color: lighten(@error-color, 10%);
+      border-color: lighten(@error-color, 10%);
+    }
+  }
+
+  .ant-btn-primary& {
+    background-color: @error-color;
+    border-color: @error-color;
+
+    &:hover:not(.xbtn-disabled) {
+      background-color: lighten(@error-color, 10%);
+      border-color: lighten(@error-color, 10%);
+    }
+  }
+
+  &.xbtn-ghost {
+    color: @error-color;
+    border-color: @error-color;
+
+    &:hover:not(.xbtn-disabled) {
+      color: lighten(@error-color, 10%);
+      border-color: lighten(@error-color, 10%);
+    }
+  }
+}
+
 // 危险按钮样式增强
 .xbtn-danger {
   &.xbtn-ghost {

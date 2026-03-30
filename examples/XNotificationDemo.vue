@@ -6,10 +6,10 @@
     <section class="demo-section">
       <h2>基本用法</h2>
       <div class="demo-row">
-        <a-button type="primary" @click="showInfo">信息通知</a-button>
-        <a-button type="success" @click="showSuccess">成功通知</a-button>
-        <a-button type="warning" @click="showWarning">警告通知</a-button>
-        <a-button type="error" @click="showError">错误通知</a-button>
+        <XButton type="primary" @click="showInfo">信息通知</XButton>
+        <XButton type="success" @click="showSuccess">成功通知</XButton>
+        <XButton type="warning" @click="showWarning">警告通知</XButton>
+        <XButton type="error" @click="showError">错误通知</XButton>
       </div>
     </section>
     
@@ -17,9 +17,9 @@
     <section class="demo-section">
       <h2>自定义内容</h2>
       <div class="demo-row">
-        <a-button @click="showWithTitle">标题+内容</a-button>
-        <a-button @click="showOnlyMessage">仅内容</a-button>
-        <a-button @click="showLongMessage">长文本内容</a-button>
+        <XButton @click="showWithTitle">标题+内容</XButton>
+        <XButton @click="showOnlyMessage">仅内容</XButton>
+        <XButton @click="showLongMessage">长文本内容</XButton>
       </div>
     </section>
     
@@ -27,9 +27,9 @@
     <section class="demo-section">
       <h2>自动关闭设置</h2>
       <div class="demo-row">
-        <a-button @click="showFast">快速关闭 (2秒)</a-button>
-        <a-button @click="showSlow">缓慢关闭 (8秒)</a-button>
-        <a-button @click="showNoAutoClose">不自动关闭</a-button>
+        <XButton @click="showFast">快速关闭 (2秒)</XButton>
+        <XButton @click="showSlow">缓慢关闭 (8秒)</XButton>
+        <XButton @click="showNoAutoClose">不自动关闭</XButton>
       </div>
     </section>
     
@@ -37,10 +37,10 @@
     <section class="demo-section">
       <h2>位置设置</h2>
       <div class="demo-row">
-        <a-button @click="showTopLeft">左上角</a-button>
-        <a-button @click="showTopRight">右上角</a-button>
-        <a-button @click="showBottomLeft">左下角</a-button>
-        <a-button @click="showBottomRight">右下角</a-button>
+        <XButton @click="showTopLeft">左上角</XButton>
+        <XButton @click="showTopRight">右上角</XButton>
+        <XButton @click="showBottomLeft">左下角</XButton>
+        <XButton @click="showBottomRight">右下角</XButton>
       </div>
     </section>
     
@@ -48,8 +48,8 @@
     <section class="demo-section">
       <h2>事件处理</h2>
       <div class="demo-row">
-        <a-button @click="showWithClick">点击事件</a-button>
-        <a-button @click="showWithClose">关闭事件</a-button>
+        <XButton @click="showWithClick">点击事件</XButton>
+        <XButton @click="showWithClose">关闭事件</XButton>
       </div>
     </section>
     
@@ -57,9 +57,9 @@
     <section class="demo-section">
       <h2>编程式关闭</h2>
       <div class="demo-row">
-        <a-button @click="showClosable">显示通知</a-button>
-        <a-button @click="closeNotification" :disabled="!notificationInstance">关闭通知</a-button>
-        <a-button @click="closeAll">关闭所有</a-button>
+        <XButton @click="showClosable">显示通知</XButton>
+        <XButton @click="closeNotification" :disabled="!notificationInstance">关闭通知</XButton>
+        <XButton @click="closeAll">关闭所有</XButton>
       </div>
     </section>
   </div>
@@ -67,8 +67,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Button as AButton } from 'ant-design-vue'
 import XNotification from '../src/components/XNotification/notification'
+import { XButton } from '../src/index'
 import type { XNotificationInstance } from '../src/components/XNotification/types'
 
 // 通知实例引用
@@ -250,9 +250,15 @@ const closeAll = () => {
 
 <style scoped lang="less">
 .notification-demo {
-  padding: 20px;
+  padding: 24px;
   max-width: 800px;
   margin: 0 auto;
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 32px;
+    color: rgba(0, 0, 0, 0.85);
+  }
 }
 
 .demo-section {
@@ -260,15 +266,19 @@ const closeAll = () => {
 }
 
 .demo-section h2 {
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 600;
   margin-bottom: 16px;
-  color: #262626;
+  color: rgba(0, 0, 0, 0.85);
+  border-left: 4px solid #1890ff;
+  padding-left: 12px;
 }
 
 .demo-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
 }
 </style>

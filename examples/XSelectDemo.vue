@@ -372,8 +372,8 @@ const loadMoreOptions = () => {
 .demo-row {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   gap: 16px;
+  align-items: center;
   width: 100%;
 }
 
@@ -382,7 +382,6 @@ const loadMoreOptions = () => {
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  margin-bottom: 24px;
 }
 
 .demo-value {

@@ -140,31 +140,28 @@ const handleDateChange = (value: any) => {
 
 <style scoped>
 .xdatepicker-demo {
-  max-width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 24px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 32px;
+    color: rgba(0, 0, 0, 0.85);
+  }
 }
 
 .demo-section {
-  margin-bottom: 40px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.demo-section:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.demo-section h2 {
-  margin-top: 0;
-  margin-bottom: 16px;
-  font-size: 20px;
-  font-weight: 500;
-  color: #333;
+  margin-bottom: 32px;
+  
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: rgba(0, 0, 0, 0.85);
+    border-left: 4px solid #1890ff;
+    padding-left: 12px;
+  }
 }
 
 .demo-row {
@@ -180,7 +177,6 @@ const handleDateChange = (value: any) => {
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  margin-bottom: 24px;
 }
 
 .demo-value {

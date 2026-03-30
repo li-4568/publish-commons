@@ -7,7 +7,7 @@ import type { ButtonProps as AntButtonProps } from 'ant-design-vue/es/button'
 /**
  * 按钮类型
  */
-export type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link'
+export type ButtonType = 'primary' | 'default' | 'dashed' | 'text' | 'link' | 'success' | 'error' | 'warning'
 
 /**
  * 按钮尺寸

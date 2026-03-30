@@ -157,38 +157,35 @@ const value11 = ref()
 
 <style scoped lang="less">
 .xcascader-demo {
-  width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 24px;
   
   h1 {
-    font-size: 24px;
-    margin-bottom: 30px;
     text-align: center;
+    margin-bottom: 32px;
+    color: rgba(0, 0, 0, 0.85);
   }
 }
 
 .demo-section {
-  margin-bottom: 40px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  margin-bottom: 32px;
   
   h2 {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 600;
     margin-bottom: 16px;
-    color: #333;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 8px;
+    color: rgba(0, 0, 0, 0.85);
+    border-left: 4px solid #1890ff;
+    padding-left: 12px;
   }
 }
 
 .demo-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
-  margin-bottom: 16px;
+  align-items: center;
   width: 100%;
 }
 
@@ -196,7 +193,6 @@ const value11 = ref()
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 16px;
   width: 100%;
 }
 

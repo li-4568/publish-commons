@@ -8,7 +8,7 @@ import type { VueNode } from 'ant-design-vue/es/_util/type'
 /**
  * 单选框尺寸
  */
-export type RadioSize = 'large' | 'small' | 'default'
+export type RadioSize = 'large' | 'small' | 'default' | 'middle'
 
 /**
  * XRadio 组件 Props 接口

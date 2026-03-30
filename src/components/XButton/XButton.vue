@@ -1,11 +1,11 @@
 <template>
   <Button
-    :type="type"
+    :type="antButtonType"
     :size="size"
     :disabled="isDisabled"
     :loading="loading"
     :ghost="ghost"
-    :danger="danger"
+    :danger="antButtonDanger"
     :block="block"
     :class="buttonClasses"
     v-bind="$attrs"
@@ -36,6 +36,7 @@
   import { Button } from 'ant-design-vue'
   import { LoadingOutlined } from '@ant-design/icons-vue'
   import type { XButtonProps, XButtonEmits } from './types'
+  import type { ButtonProps } from 'ant-design-vue/es/button'
 
   // 定义组件名称
   defineOptions({
@@ -73,6 +74,30 @@
    */
   const showIcon = computed(() => {
     return props.loading || props.icon || slots.icon
+  })
+
+  /**
+   * 计算属性：转换为 Ant Design Vue Button 支持的 type
+   */
+  const antButtonType = computed<ButtonProps['type']>(() => {
+    // Ant Design Vue 的 Button 组件只支持 primary, default, dashed, text, link 类型
+    // 将 success, error, warning 类型转换为 default
+    const validAntTypes: ButtonProps['type'][] = ['primary', 'default', 'dashed', 'text', 'link']
+    // 检查 props.type 是否在 validAntTypes 数组中
+    if (validAntTypes.includes(props.type as ButtonProps['type'])) {
+      // 如果是有效类型，返回它并明确转换为 ButtonProps['type']
+      return props.type as ButtonProps['type']
+    }
+    // 否则返回 'default'
+    return 'default'
+  })
+
+  /**
+   * 计算属性：是否为危险按钮
+   */
+  const antButtonDanger = computed(() => {
+    // 将 error 类型转换为 danger 属性
+    return props.danger || props.type === 'error'
   })
 
   /**

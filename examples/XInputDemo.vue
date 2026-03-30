@@ -487,8 +487,9 @@
 
   .demo-row {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 16px;
+    align-items: center;
     width: 100%;
   }
 
@@ -497,7 +498,6 @@
     flex-direction: column;
     gap: 16px;
     width: 100%;
-    margin-bottom: 24px;
   }
 
   .demo-value {

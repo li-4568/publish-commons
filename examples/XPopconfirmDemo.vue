@@ -7,7 +7,7 @@
       <h2>基本用法</h2>
       <div class="demo-row">
         <XPopconfirm title="确定要删除这条记录吗？" @confirm="handleConfirm">
-          <Button type="danger">删除</Button>
+          <Button danger>删除</Button>
         </XPopconfirm>
         
         <XPopconfirm title="确定要提交吗？" okType="primary" @confirm="handleConfirm">
@@ -74,7 +74,7 @@
           okType="danger"
           @confirm="handleConfirm"
         >
-          <Button type="danger">带描述</Button>
+          <Button danger>带描述</Button>
         </XPopconfirm>
         
         <XPopconfirm @confirm="handleConfirm">
@@ -204,9 +204,15 @@ const handleCancel = () => {
 
 <style scoped lang="less">
 .popconfirm-demo {
-  padding: 20px;
+  padding: 24px;
   max-width: 800px;
   margin: 0 auto;
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 32px;
+    color: rgba(0, 0, 0, 0.85);
+  }
 }
 
 .demo-section {
@@ -214,17 +220,20 @@ const handleCancel = () => {
 }
 
 .demo-section h2 {
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 600;
   margin-bottom: 16px;
-  color: #262626;
+  color: rgba(0, 0, 0, 0.85);
+  border-left: 4px solid #1890ff;
+  padding-left: 12px;
 }
 
 .demo-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 16px;
   align-items: center;
+  width: 100%;
 }
 
 .positions {

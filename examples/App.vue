@@ -1,30 +1,32 @@
 <template>
   <div class="app">
-    <nav class="nav">
+    <aside class="aside">
       <button
         v-for="tab in tabs"
         :key="tab.key"
-        :class="['nav-btn', { active: currentTab === tab.key }]"
+        :class="['menu-btn', { active: currentTab === tab.key }]"
         @click="currentTab = tab.key"
       >
         {{ tab.label }}
       </button>
-    </nav>
+    </aside>
 
     <main class="main">
-      <XButtonDemo v-if="currentTab === 'button'" />
-      <XInputDemo v-if="currentTab === 'input'" />
-      <XSelectDemo v-if="currentTab === 'select'" />
-      <XDatePickerDemo v-if="currentTab === 'datepicker'" />
-      <XCascaderDemo v-if="currentTab === 'cascader'" />
-      <XCheckboxDemo v-if="currentTab === 'checkbox'" />
-      <XRadioDemo v-if="currentTab === 'radio'" />
-      <XPopoverDemo v-if="currentTab === 'popover'" />
-      <XTreeSelectDemo v-if="currentTab === 'treeselect'" />
-      <XTooltipDemo v-if="currentTab === 'tooltip'" />
-      <XTreeDemo v-if="currentTab === 'tree'" />
-      <XNotificationDemo v-if="currentTab === 'notification'" />
-      <XPopconfirmDemo v-if="currentTab === 'popconfirm'" />
+      <div class="content-card">
+        <XButtonDemo v-if="currentTab === 'button'" />
+        <XInputDemo v-if="currentTab === 'input'" />
+        <XSelectDemo v-if="currentTab === 'select'" />
+        <XDatePickerDemo v-if="currentTab === 'datepicker'" />
+        <XCascaderDemo v-if="currentTab === 'cascader'" />
+        <XCheckboxDemo v-if="currentTab === 'checkbox'" />
+        <XRadioDemo v-if="currentTab === 'radio'" />
+        <XPopoverDemo v-if="currentTab === 'popover'" />
+        <XTreeSelectDemo v-if="currentTab === 'treeselect'" />
+        <XTooltipDemo v-if="currentTab === 'tooltip'" />
+        <XTreeDemo v-if="currentTab === 'tree'" />
+        <XNotificationDemo v-if="currentTab === 'notification'" />
+        <XPopconfirmDemo v-if="currentTab === 'popconfirm'" />
+      </div>
     </main>
   </div>
 </template>
@@ -67,43 +69,108 @@
 <style scoped lang="less">
   .app {
     min-height: 100vh;
+    display: flex;
     background: #f5f5f5;
   }
 
-  .nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    gap: 8px;
-    padding: 16px 24px;
+  .aside {
+    width: 240px;
     background: #fff;
-    border-bottom: 1px solid #e8e8e8;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-right: 1px solid #e8e8e8;
+    padding: 16px 0;
+    overflow-y: auto;
   }
 
-  .nav-btn {
-    padding: 8px 16px;
-    border: 1px solid #d9d9d9;
-    border-radius: 6px;
-    background: #fff;
+  .menu-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 24px;
+    text-align: left;
+    border: none;
+    background: transparent;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 14px;
 
     &:hover {
-      border-color: #1890ff;
+      background: #e6f7ff;
       color: #1890ff;
     }
 
     &.active {
       background: #1890ff;
-      border-color: #1890ff;
       color: #fff;
     }
   }
 
   .main {
+    flex: 1;
     padding: 24px;
+    overflow-y: auto;
+  }
+
+  .content-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    min-height: calc(100vh - 96px);
+  }
+
+  /* 统一组件示例样式，与XButtonDemo保持一致 */
+  [class$="-demo"] {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  [class$="-demo"] h1 {
+    text-align: center;
+    margin-bottom: 32px;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .demo-section {
+    margin-bottom: 32px;
+  }
+
+  .demo-section h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: rgba(0, 0, 0, 0.85);
+    border-left: 4px solid #1890ff;
+    padding-left: 12px;
+  }
+
+  .demo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .demo-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .demo-value,
+  .demo-tip {
+    margin-top: 8px;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 14px;
+  }
+
+  .demo-row.ghost-bg {
+    background: #1890ff;
+    padding: 16px;
+    border-radius: 6px;
   }
 </style>

@@ -4,7 +4,7 @@
       :value="modelValue"
       @update:value="(value: any) => emit('update:modelValue', value)"
       :disabled="disabled"
-      :size="size"
+      :size="antRadioSize"
       :name="name"
       v-bind="$attrs"
     >
@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { RadioGroup as ARadioGroup } from 'ant-design-vue'
-import { provide } from 'vue'
+import { provide, computed } from 'vue'
 import type { XRadioGroupProps, XRadioGroupEmits } from './types'
 import './style.less'
 
@@ -35,6 +35,12 @@ const props = withDefaults(defineProps<XRadioGroupProps>(), {
 
 // 定义组件事件
 const emit = defineEmits<XRadioGroupEmits>()
+
+// 计算Ant Design Vue RadioGroup支持的size属性
+const antRadioSize = computed(() => {
+  // 将'middle'转换为'default'，因为Ant Design Vue的RadioGroup不支持'middle'尺寸
+  return props.size === 'middle' ? 'default' : props.size
+})
 
 // 提供 RadioGroup 上下文，供子 Radio 组件使用
 provide('RadioGroup', {
