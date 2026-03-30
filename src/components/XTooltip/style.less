@@ -1,0 +1,28 @@
+// XTooltip 组件样式
+
+.xtooltip-wrapper {
+  display: inline-block;
+}
+
+// 自定义Tooltip样式
+:deep(.ant-tooltip) {
+  .ant-tooltip-inner {
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+  
+  .ant-tooltip-arrow {
+    &::before {
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+  }
+}
+
+// 禁用状态
+:deep(.ant-tooltip-disabled) {
+  cursor: not-allowed;
+}
