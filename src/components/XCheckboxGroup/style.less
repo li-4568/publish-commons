@@ -1,0 +1,62 @@
+// ============================================
+// XCheckboxGroup 组件样式
+// ============================================
+
+@import '../../styles/variables.less';
+
+.xcheckbox-group-wrapper {
+  display: inline-block;
+  
+  // 修复子元素间的间距问题
+  & > .ant-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    
+    & > .ant-checkbox-wrapper {
+      margin-right: 16px;
+      margin-bottom: 8px;
+      
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  
+  // 垂直排列样式
+  &-vertical {
+    & > .ant-checkbox-group {
+      flex-direction: column;
+      
+      & > .ant-checkbox-wrapper {
+        margin-right: 0;
+        margin-bottom: 8px;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// 错误状态
+.xcheckbox-group-wrapper .ant-checkbox-wrapper {
+  &-error {
+    .ant-checkbox {
+      + .ant-checkbox-label {
+        color: @error-color;
+      }
+    }
+  }
+}
+
+// 警告状态
+.xcheckbox-group-wrapper .ant-checkbox-wrapper {
+  &-warning {
+    .ant-checkbox {
+      + .ant-checkbox-label {
+        color: @warning-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,141 @@
+// ============================================
+// XCheckbox 组件样式
+// ============================================
+
+@import '../../styles/variables.less';
+
+// 基础样式
+.xcheckbox-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  
+  // 适配不同尺寸
+  &.xcheckbox-large {
+    .ant-checkbox {
+      font-size: @xbtn-font-size-large;
+      
+      .ant-checkbox-inner {
+        width: 18px;
+        height: 18px;
+      }
+      
+      + .ant-checkbox-label {
+        font-size: @xbtn-font-size-large;
+      }
+    }
+  }
+  
+  &.xcheckbox-middle {
+    .ant-checkbox {
+      font-size: @xbtn-font-size-middle;
+      
+      .ant-checkbox-inner {
+        width: 16px;
+        height: 16px;
+      }
+      
+      + .ant-checkbox-label {
+        font-size: @xbtn-font-size-middle;
+      }
+    }
+  }
+  
+  &.xcheckbox-small {
+    .ant-checkbox {
+      font-size: @xbtn-font-size-small;
+      
+      .ant-checkbox-inner {
+        width: 14px;
+        height: 14px;
+      }
+      
+      + .ant-checkbox-label {
+        font-size: @xbtn-font-size-small;
+      }
+    }
+  }
+  
+  // 错误状态样式
+  &.xcheckbox-error {
+    .ant-checkbox {
+      .ant-checkbox-inner {
+        border-color: @error-color;
+      }
+      
+      &:focus {
+        &:after {
+          border-color: @error-color;
+          box-shadow: 0 0 0 2px rgba(@error-color, 0.2);
+        }
+      }
+    }
+  }
+  
+  // 警告状态样式
+  &.xcheckbox-warning {
+    .ant-checkbox {
+      .ant-checkbox-inner {
+        border-color: @warning-color;
+      }
+      
+      &:focus {
+        &:after {
+          border-color: @warning-color;
+          box-shadow: 0 0 0 2px rgba(@warning-color, 0.2);
+        }
+      }
+    }
+  }
+  
+  // 禁用状态样式
+  &.xcheckbox-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  // 复选框与标签间距
+  .ant-checkbox + .ant-checkbox-label {
+    margin-left: 8px;
+  }
+}
+
+// 复选框组样式
+.xcheckbox-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  
+  // 垂直排列
+  &.xcheckbox-group-vertical {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+// 单独设置复选框输入框样式
+.ant-checkbox {
+  &-inner {
+    border-radius: 4px;
+    transition: all @xbtn-transition-duration;
+    
+    &:after {
+      transition: all @xbtn-transition-duration;
+    }
+  }
+  
+  // 选中状态
+  &-checked {
+    .ant-checkbox-inner {
+      background-color: @primary-color;
+      border-color: @primary-color;
+    }
+  }
+  
+  // 不确定状态
+  &-indeterminate {
+    .ant-checkbox-inner {
+      background-color: @primary-color;
+      border-color: @primary-color;
+    }
+  }
+}
