@@ -18,6 +18,7 @@ import { XTree } from './components/XTree'
 import { XTreeSelect } from './components/XTreeSelect'
 import { XPopconfirm } from './components/XPopconfirm'
 import { XNotification, notification } from './components/XNotification'
+import { XFloatButton } from './components/XFloatButton'
 
 // 导入样式
 import './styles/index.less'
@@ -39,7 +40,8 @@ export {
   XTreeSelect,
   XPopconfirm,
   XNotification,
-  notification
+  notification,
+  XFloatButton
 }
 
 // 导出组件类型
@@ -137,6 +139,14 @@ export type {
   XNotificationType,
   XNotificationPlacement
 } from './components/XNotification/types'
+export type {
+  XFloatButtonProps,
+  XFloatButtonEmits,
+  XFloatButtonSlots,
+  FloatButtonPosition,
+  FloatButtonType,
+  FloatButtonSize
+} from './components/XFloatButton/types'
 
 // 全局安装方法
 const install = (app: App) => {
@@ -155,6 +165,7 @@ const install = (app: App) => {
   app.component('XTreeSelect', XTreeSelect)
   app.component('XPopconfirm', XPopconfirm)
   app.component('XNotification', XNotification)
+  app.component('XFloatButton', XFloatButton)
 }
 
 // 默认导出

@@ -26,6 +26,7 @@
         <XTreeDemo v-if="currentTab === 'tree'" />
         <XNotificationDemo v-if="currentTab === 'notification'" />
         <XPopconfirmDemo v-if="currentTab === 'popconfirm'" />
+        <XFloatButtonDemo v-if="currentTab === 'floatbutton'" />
       </div>
     </main>
   </div>
@@ -46,6 +47,7 @@
   import XTreeDemo from './XTreeDemo.vue'
   import XNotificationDemo from './XNotificationDemo.vue'
   import XPopconfirmDemo from './XPopconfirmDemo.vue'
+  import XFloatButtonDemo from './XFloatButtonDemo.vue'
 
   const tabs = [
     { key: 'button', label: 'XButton 按钮' },
@@ -60,7 +62,8 @@
     { key: 'tooltip', label: 'XTooltip 文字提示' },
     { key: 'tree', label: 'XTree 树形组件' },
     { key: 'notification', label: 'XNotification 通知提醒框' },
-    { key: 'popconfirm', label: 'XPopconfirm 气泡确认框' }
+    { key: 'popconfirm', label: 'XPopconfirm 气泡确认框' },
+    { key: 'floatbutton', label: 'XFloatButton 悬浮按钮' }
   ]
 
   const currentTab = ref('button')

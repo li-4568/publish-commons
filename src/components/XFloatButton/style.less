@@ -1,0 +1,121 @@
+// ============================================
+// XFloatButton 组件样式
+// ============================================
+@import '../../styles/variables.less';
+
+// 悬浮按钮容器
+.xfloat-button-wrapper {
+  position: fixed;
+  z-index: 999;
+  padding: 16px;
+}
+
+// 位置样式
+.xfloat-button-top-left {
+  top: 0;
+  left: 0;
+}
+
+.xfloat-button-top-right {
+  top: 0;
+  right: 0;
+}
+
+.xfloat-button-bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.xfloat-button-bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+// 按钮样式
+.xfloat-button-wrapper {
+  .ant-btn {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  // 成功类型按钮
+  .xfloat-button-success {
+    .ant-btn-primary {
+      background-color: @success-color;
+      border-color: @success-color;
+
+      &:hover, &:focus {
+        background-color: lighten(@success-color, 10%);
+        border-color: lighten(@success-color, 10%);
+      }
+    }
+
+    .ant-btn-ghost {
+      color: @success-color;
+      border-color: @success-color;
+
+      &:hover, &:focus {
+        background-color: rgba(82, 196, 26, 0.1);
+      }
+    }
+  }
+
+  // 警告类型按钮
+  .xfloat-button-warning {
+    .ant-btn-primary {
+      background-color: @warning-color;
+      border-color: @warning-color;
+
+      &:hover, &:focus {
+        background-color: lighten(@warning-color, 10%);
+        border-color: lighten(@warning-color, 10%);
+      }
+    }
+
+    .ant-btn-ghost {
+      color: @warning-color;
+      border-color: @warning-color;
+
+      &:hover, &:focus {
+        background-color: rgba(250, 84, 28, 0.1);
+      }
+    }
+  }
+
+  // 错误类型按钮
+  .xfloat-button-error {
+    .ant-btn-primary {
+      background-color: @error-color;
+      border-color: @error-color;
+
+      &:hover, &:focus {
+        background-color: lighten(@error-color, 10%);
+        border-color: lighten(@error-color, 10%);
+      }
+    }
+
+    .ant-btn-ghost {
+      color: @error-color;
+      border-color: @error-color;
+
+      &:hover, &:focus {
+        background-color: rgba(245, 34, 45, 0.1);
+      }
+    }
+  }
+
+  // 尺寸调整
+  .xfloat-button-large {
+    .ant-btn {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  }
+
+  .xfloat-button-small {
+    .ant-btn {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  }
+}
