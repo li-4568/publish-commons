@@ -33,8 +33,8 @@
   "type": "module",
   "peerDependencies": {
     "ant-design-vue": "^4.0.0",
-    "vue": "^3.3.0",
-    "dayjs": "^1.11.0"
+    "dayjs": "^1.11.0",
+    "vue": "^3.3.0"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
@@ -56,6 +56,8 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.0",
-    "ant-design-vue": "^4.0.0"
+    "ant-design-vue": "^4.0.0",
+    "vxe-pc-ui": "~4.13.20",
+    "xe-utils": "~4.0.4"
   }
 }

@@ -708,8 +708,16 @@ const value29 = ref('')
   import XInput from '../src/components/XInput/XInput.vue'
   import XButton from '../src/components/XButton/XButton.vue'
 
+  // 接受外部传入的props
+  const props = defineProps<{
+    value?: string
+    placeholder?: string
+    disabled?: boolean
+    readonly?: boolean
+  }>()
+
   // 基础用法
-  const value1 = ref('')
+  const value1 = ref(props.value || '')
 
   // 输入框类型
   const value2 = ref('')

@@ -17,7 +17,7 @@ import { XTooltip } from './XTooltip'
 import { XTree } from './XTree'
 import { XTreeSelect } from './XTreeSelect'
 import { XPopconfirm } from './XPopconfirm'
-import { XNotification, notification } from './XNotification'
+import { XNotification } from './XNotification'
 
 // 导出所有组件
 export {
@@ -36,7 +36,6 @@ export {
   XTreeSelect,
   XPopconfirm,
   XNotification,
-  notification
 }
 
 // 导出所有类型

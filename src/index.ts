@@ -20,6 +20,9 @@ import { XPopconfirm } from './components/XPopconfirm'
 import { XNotification, notification } from './components/XNotification'
 import { XFloatButton } from './components/XFloatButton'
 
+// 导入弹窗工具函数
+import { openModal, closeAllModals, closeModalById } from './utils/modal'
+
 // 导入样式
 import './styles/index.less'
 
@@ -41,7 +44,11 @@ export {
   XPopconfirm,
   XNotification,
   notification,
-  XFloatButton
+  XFloatButton,
+  // 导出弹窗工具函数
+  openModal,
+  closeAllModals,
+  closeModalById
 }
 
 // 导出组件类型
@@ -147,6 +154,13 @@ export type {
   FloatButtonType,
   FloatButtonSize
 } from './components/XFloatButton/types'
+
+// 导出弹窗工具函数类型
+export type {
+  ModalConfig,
+  ModalInstance,
+  ModalCallback
+} from './utils/modal'
 
 // 全局安装方法
 const install = (app: App) => {
