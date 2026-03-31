@@ -9,7 +9,10 @@
       <XButton type="primary" @click="openComplexModal">打开复杂弹窗</XButton>
       <XButton type="primary" @click="openComponentModal">打开组件弹窗</XButton>
       <XButton type="primary" @click="openScrollableModal">打开可滚动弹窗</XButton>
-      <XButton type="primary" @click="closeAllModals">关闭所有弹窗</XButton>
+      <XButton type="primary" @click="openLoadingModal">Loading弹窗（自动关闭）</XButton>
+      <XButton type="primary" @click="openManualLoadingModal">Loading弹窗（手动控制）</XButton>
+      <XButton type="primary" @click="openConfirmLoadingModal">确认按钮Loading</XButton>
+    <XButton type="primary" @click="closeAllModals">关闭所有弹窗</XButton>
     </div>
 
       <div class="code-example">
@@ -20,7 +23,8 @@
     &lt;XButton type="primary" @click="openComplexModal"&gt;打开复杂弹窗&lt;/XButton&gt;
     &lt;XButton type="primary" @click="openComponentModal"&gt;打开组件弹窗&lt;/XButton&gt;
     &lt;XButton type="primary" @click="openScrollableModal"&gt;打开可滚动弹窗&lt;/XButton&gt;
-    &lt;XButton type="primary" @click="openLoadingModal"&gt;打开加载弹窗&lt;/XButton&gt;
+    &lt;XButton type="primary" @click="openLoadingModal"&gt;Loading弹窗（自动关闭）&lt;/XButton&gt;
+    &lt;XButton type="primary" @click="openManualLoadingModal"&gt;Loading弹窗（手动控制）&lt;/XButton&gt;
     &lt;XButton type="primary" @click="closeAllModals"&gt;关闭所有弹窗&lt;/XButton&gt;
   &lt;/div&gt;
 &lt;/template&gt;
@@ -28,7 +32,12 @@
 &lt;script setup lang="ts"&gt;
 import { ref, h } from 'vue'
 import XButton from '../src/components/XButton/XButton.vue'
-import { openModal, closeAllModals } from '../src/utils/modal'
+import {
+  openModal,
+  closeAllModals,
+  showModalLoading,
+  hideModalLoading
+} from '../src/utils/modal'
 import XInputDemo from './XInputDemo.vue'
 
 // 打开简单弹窗
@@ -37,6 +46,8 @@ const openSimpleModal = () => {
     {
       title: '简单弹窗',
       content: '这是一个简单的弹窗内容',
+      // 使用 content 时 loading 默认为 false
+      // 使用 component 时 loading 默认为 true（组件加载完成后自动关闭）
       // resize属性默认已设置为true
       // resize: true
       // showZoom属性默认已设置为true
@@ -73,6 +84,7 @@ const openComplexModal = () => {
       showConfirmButton: true,
       // 显示取消按钮
       showCancelButton: true,
+      // 使用 content 时 loading 默认为 false，无需设置
       content: () => h('div', {
         style: { padding: '20px' }
       }, [
@@ -140,7 +152,71 @@ const openComponentModal = () => {
     }
   )
 }
-&lt;/script&gt;</code></pre>
+
+// Loading弹窗（自动关闭）- 组件加载完成后自动关闭loading
+const openLoadingModal = () => {
+  openModal(
+    {
+      title: 'Loading弹窗（自动关闭）',
+      width: 600,
+      showFooter: true,
+      showConfirmButton: true,
+      showCancelButton: true,
+      // loading默认为true，组件加载完成后自动关闭
+      component: XInputDemo,
+      componentProps: {
+        value: '组件加载完成后loading自动关闭',
+        placeholder: '请输入内容'
+      }
+    },
+    {
+      confirm() {
+        console.log('确认按钮被点击')
+      },
+      cancel() {
+        console.log('取消按钮被点击')
+      }
+    }
+  )
+}
+
+// Loading弹窗（手动控制）- 手动控制loading状态
+const openManualLoadingModal = () => {
+  const modal = openModal(
+    {
+      title: 'Loading弹窗（手动控制）',
+      width: 600,
+      showFooter: true,
+      showConfirmButton: true,
+      showCancelButton: true,
+      loading: true, // 开启loading
+      confirmClosable: false, // 确认按钮不关闭弹窗
+      content: () => h('div', {
+        style: { padding: '20px', textAlign: 'center' }
+      }, [
+        h('p', '3秒后自动关闭loading...')
+      ])
+    },
+    {
+      confirm() {
+        console.log('确认按钮被点击')
+      },
+      cancel() {
+        console.log('取消按钮被点击')
+      }
+    }
+  )
+
+  // 3秒后手动关闭loading
+  setTimeout(() =&gt; {
+    // 方式1：通过实例方法
+    modal.setLoading(false)
+    // 方式2：通过工具函数
+    // hideModalLoading(modal.id)
+  }, 3000)
+}
+&lt;/script&gt;
+</code></pre>
       </div>
     </section>
   </div>
@@ -149,7 +225,12 @@ const openComponentModal = () => {
 <script setup lang="ts">
 import { ref, h } from 'vue'
 import XButton from '../src/components/XButton/XButton.vue'
-import { openModal, closeAllModals } from '../src/utils/modal'
+import {
+  openModal,
+  closeAllModals,
+  showModalLoading,
+  hideModalLoading
+} from '../src/utils/modal'
 import XInputDemo from './XInputDemo.vue'
 
 // 打开简单弹窗
@@ -163,7 +244,8 @@ const openSimpleModal = () => {
       // 显示确认按钮
       showConfirmButton: true,
       // 显示取消按钮
-      showCancelButton: true
+      showCancelButton: true,
+      // 使用 content 时 loading 默认为 false，无需设置
     },
     {
       confirm() {
@@ -196,6 +278,7 @@ const openComplexModal = () => {
       showConfirmButton: true,
       // 显示取消按钮
       showCancelButton: true,
+      // 使用 content 时 loading 默认为 false，无需设置
       content: () => h('div', {
         style: { padding: '20px' }
       }, [
@@ -251,6 +334,7 @@ const openComponentModal = () => {
       cancelButtonText: '取消',
       // 确认按钮是否关闭弹窗
       confirmClosable: false,
+      // 使用 component 时 loading 默认为 true，组件加载完成后自动关闭
       component: XInputDemo,
       componentProps: {
         value: '我是弹出框传过来的值',
@@ -277,7 +361,7 @@ const openScrollableModal = () => {
   for (let i = 1; i <= 100; i++) {
     longContent.push(h('p', `这是第 ${i} 行内容，用于测试弹窗的滚动功能。`))
   }
-  
+
   openModal(
     {
       title: '可滚动弹窗',
@@ -289,6 +373,7 @@ const openScrollableModal = () => {
       showConfirmButton: true,
       // 显示取消按钮
       showCancelButton: true,
+      // 使用 content 时 loading 默认为 false，无需设置
       content: () => h('div', {
         style: { padding: '10px' }
       }, [
@@ -305,6 +390,102 @@ const openScrollableModal = () => {
       }
     }
   )
+}
+
+// Loading弹窗（自动关闭）- 组件加载完成后自动关闭loading
+const openLoadingModal = () => {
+  openModal(
+    {
+      title: 'Loading弹窗（自动关闭）',
+      width: 600,
+      showFooter: true,
+      showConfirmButton: true,
+      showCancelButton: true,
+      // loading默认为true，组件加载完成后自动关闭
+      component: XInputDemo,
+      componentProps: {
+        value: '组件加载完成后loading自动关闭',
+        placeholder: '请输入内容'
+      }
+    },
+    {
+      confirm() {
+        console.log('确认按钮被点击')
+      },
+      cancel() {
+        console.log('取消按钮被点击')
+      }
+    }
+  )
+}
+
+// Loading弹窗（手动控制）- 手动控制loading状态
+const openManualLoadingModal = () => {
+  const modal = openModal(
+    {
+      title: 'Loading弹窗（手动控制）',
+      width: 600,
+      showFooter: true,
+      showConfirmButton: true,
+      showCancelButton: true,
+      loading: true, // 开启loading
+      confirmClosable: false, // 确认按钮不关闭弹窗
+      content: () => h('div', {
+        style: { padding: '20px', textAlign: 'center' }
+      }, [
+        h('p', '3秒后自动关闭loading...')
+      ])
+    },
+    {
+      confirm() {
+        console.log('确认按钮被点击')
+      },
+      cancel() {
+        console.log('取消按钮被点击')
+      }
+    }
+  )
+
+  // 3秒后手动关闭loading
+  setTimeout(() => {
+    // 方式1：通过实例方法
+    modal.setLoading(false)
+    // 方式2：通过工具函数
+    // hideModalLoading(modal.id)
+  }, 3000)
+}
+
+// 确认按钮Loading - 通过 setLoading 方法控制loading状态
+const openConfirmLoadingModal = () => {
+  const modal = openModal(
+    {
+      title: '确认按钮Loading',
+      width: 600,
+      showFooter: true,
+      showConfirmButton: true,
+      showCancelButton: true,
+      // 开启loading
+      loading: true,
+      content: () => h('div', {
+        style: { padding: '20px', textAlign: 'center' }
+      }, [
+        h('p', '3秒后自动关闭loading...')
+      ])
+    },
+    {
+      confirm() {
+        console.log('确认按钮被点击')
+      },
+      cancel() {
+        console.log('取消按钮被点击')
+      }
+    }
+  )
+
+  // 3秒后关闭loading
+  setTimeout(() => {
+    modal.setLoading(false)
+  }, 3000)
 }
 
 // 基础用法
