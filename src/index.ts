@@ -19,6 +19,7 @@ import { XTreeSelect } from './components/XTreeSelect'
 import { XPopconfirm } from './components/XPopconfirm'
 import { XNotification, notification } from './components/XNotification'
 import { XFloatButton } from './components/XFloatButton'
+import { XTable } from './components/XTable'
 
 // 导入弹窗工具函数
 import { openModal, closeAllModals, closeModalById } from './utils/modal'
@@ -45,6 +46,7 @@ export {
   XNotification,
   notification,
   XFloatButton,
+  XTable,
   // 导出弹窗工具函数
   openModal,
   closeAllModals,
@@ -162,6 +164,18 @@ export type {
   ModalCallback
 } from './utils/modal'
 
+// 导出XTable类型
+export type {
+  XTableProps,
+  XTableExpose,
+  TableColumnConfig,
+  TableRowConfig,
+  TablePagerConfig,
+  TableSortConfig,
+  TableEditConfig,
+  TableVirtualConfig
+} from './components/XTable/types'
+
 // 全局安装方法
 const install = (app: App) => {
   app.component('XButton', XButton)
@@ -180,6 +194,7 @@ const install = (app: App) => {
   app.component('XPopconfirm', XPopconfirm)
   app.component('XNotification', XNotification)
   app.component('XFloatButton', XFloatButton)
+  app.component('XTable', XTable)
 }
 
 // 默认导出
