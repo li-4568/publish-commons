@@ -346,7 +346,10 @@ export const openModal = (config: ModalConfig, callback?: ModalCallback) => {
       VxeUI.modal.close()
       modalInstances.delete(id)
     },
-    componentRef,
+    // 使用 getter 确保获取最新的 componentRef
+    get componentRef() {
+      return componentRef
+    },
     /**
      * 设置弹窗 loading 状态
      * @param loading 是否显示 loading

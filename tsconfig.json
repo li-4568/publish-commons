@@ -20,7 +20,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "noImplicitAny": false,
+    "allowJs": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/types/**/*.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -74,6 +74,7 @@ export default {
 | [XFloatButton](#xfloatbutton) | 悬浮按钮组件，用于在页面角落显示固定的操作按钮 |
 | [XTable](#xtable) | 表格组件，支持分页、排序、筛选、自定义列等功能 |
 | [XEditor](#xeditor) | 富文本编辑器组件，基于wangEditor封装，支持多种配置和自定义 |
+| [XImageCropper](#ximagcropper) | 图片裁剪组件，基于vue-cropper封装，支持多种配置和自定义 |
 
 ### XButton
 
@@ -1888,6 +1889,76 @@ const handleClear = () => {
   if (editorRef.value) {
     (editorRef.value as any).clear()
   }
+}
+</script>
+```
+
+### XImageCropper
+
+基于 vue-cropper 封装的图片裁剪组件，通过模态框展示，支持多种配置选项和事件。
+
+#### Props
+
+| 名称 | 类型 | 默认值 | 说明 |
+|------|------|------|------|
+| title | `string` | `'裁剪图片'` | 模态框标题 |
+| mode | `'cover' \| 'contain'` | `'cover'` | 图片默认渲染方式 |
+| outputType | `'jpeg' \| 'png' \| 'webp'` | `'png'` | 裁剪生成图片的格式 |
+| canScale | `boolean` | `true` | 是否允许滚轮缩放 |
+| canMove | `boolean` | `true` | 上传图片是否可以移动 |
+| canMoveBox | `boolean` | `true` | 截图框能否拖动 |
+| centerBox | `boolean` | `true` | 截图框是否被限制在图片里面 |
+| infoTrue | `boolean` | `true` | 是否展示真实输出图片宽高 |
+| limitMinSize | `number` | `10` | 裁剪框限制最小区域 |
+
+#### Events
+
+| 名称 | 说明 | 回调参数 |
+|------|------|------|
+| crop | 裁剪完成事件，返回base64数据 | `(base64Data: string) => void` |
+| cropblob | 裁剪完成事件，返回blob数据 | `(blobData: Blob) => void` |
+
+#### 使用示例
+
+```vue
+<template>
+  <!-- 基础用法 -->
+  <XImageCropper @crop="handleCrop" @cropblob="handleCropBlob" />
+
+  <!-- 自定义配置 -->
+  <XImageCropper
+    title="图片裁剪"
+    mode="contain"
+    outputType="jpeg"
+    :canScale="false"
+    @crop="handleCrop"
+  />
+
+  <!-- 裁剪结果展示 -->
+  <div v-if="croppedImage">
+    <h3>裁剪结果：</h3>
+    <img :src="croppedImage" alt="裁剪后的图片" style="max-width: 300px;" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { XImageCropper } from 'publish-commons'
+
+const croppedImage = ref('')
+
+// 处理裁剪结果（base64）
+const handleCrop = (base64Data: string) => {
+  console.log('裁剪完成（base64）:', base64Data)
+  croppedImage.value = base64Data
+}
+
+// 处理裁剪结果（blob）
+const handleCropBlob = (blobData: Blob) => {
+  console.log('裁剪完成（blob）:', blobData)
+  // 可以将blob转换为文件上传到服务器
+  const file = new File([blobData], 'cropped-image.png', { type: blobData.type })
+  // uploadFile(file)
 }
 </script>
 ```

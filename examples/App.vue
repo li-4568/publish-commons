@@ -30,6 +30,7 @@
         <XModalDemo v-if="currentTab === 'modal'" />
         <XTableDemo v-if="currentTab === 'table'" />
         <XEditorDemo v-if="currentTab === 'editor'" />
+        <XImageCropperDemo v-if="currentTab === 'imagecropper'" />
       </div>
     </main>
   </div>
@@ -54,6 +55,7 @@
   import XModalDemo from './XModalDemo.vue'
   import XTableDemo from './XTableDemo.vue'
   import XEditorDemo from './XEditorDemo.vue'
+  import XImageCropperDemo from './XImageCropperDemo.vue'
 
   const tabs = [
     { key: 'button', label: 'XButton 按钮' },
@@ -72,7 +74,8 @@
     { key: 'floatbutton', label: 'XFloatButton 悬浮按钮' },
     { key: 'modal', label: 'XModal 弹窗' },
     { key: 'table', label: 'XTable 表格' },
-    { key: 'editor', label: 'XEditor 富文本编辑器' }
+    { key: 'editor', label: 'XEditor 富文本编辑器' },
+    { key: 'imagecropper', label: 'XImageCropper 图片裁剪' }
   ]
 
   const currentTab = ref('button')

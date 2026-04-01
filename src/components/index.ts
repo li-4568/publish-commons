@@ -19,6 +19,7 @@ import { XTreeSelect } from './XTreeSelect'
 import { XPopconfirm } from './XPopconfirm'
 import { XNotification } from './XNotification'
 import { XTable } from './XTable'
+import { XImageCropper } from './XImageCropper'
 
 // 导出所有组件
 export {
@@ -38,6 +39,7 @@ export {
   XPopconfirm,
   XNotification,
   XTable,
+  XImageCropper,
 }
 
 // 导出所有类型
@@ -55,6 +57,7 @@ export * from './XTreeSelect/types'
 export * from './XPopconfirm/types'
 export * from './XNotification/types'
 export * from './XTable/types'
+export * from './XImageCropper/types'
 
 // 全局安装方法
 const install = (app: App) => {
@@ -74,6 +77,7 @@ const install = (app: App) => {
   app.component('XPopconfirm', XPopconfirm)
   app.component('XNotification', XNotification)
   app.component('XTable', XTable)
+  app.component('XImageCropper', XImageCropper)
 }
 
 // 默认导出
