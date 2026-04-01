@@ -230,85 +230,109 @@ const handleClick = () => {
 </template>
 
 <script setup lang="ts">
-  /**
-   * XButton 组件使用示例
-   */
-  import { ref } from 'vue'
-  import XButton from '../src/components/XButton/XButton.vue'
+/**
+ * XButton 组件使用示例
+ */
+import { ref } from 'vue'
+import XButton from '../src/components/XButton/XButton.vue'
 
-  // 加载状态
-  const isLoading = ref(false)
+// 加载状态
+const isLoading = ref(false)
 
-  // 点击计数
-  const clickCount = ref(0)
+// 点击计数
+const clickCount = ref(0)
 
-  /**
-   * 处理加载按钮点击
-   */
-  const handleLoading = () => {
-    isLoading.value = true
-    setTimeout(() => {
-      isLoading.value = false
-    }, 2000)
-  }
+/**
+ * 处理加载按钮点击
+ */
+const handleLoading = () => {
+  isLoading.value = true
+  setTimeout(() => {
+    isLoading.value = false
+  }, 2000)
+}
 
-  /**
-   * 处理普通点击
-   */
-  const handleClick = () => {
-    clickCount.value++
-  }
+/**
+ * 处理普通点击
+ */
+const handleClick = () => {
+  clickCount.value++
+}
 </script>
 
 <style scoped lang="less">
-  .xbutton-demo {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+.xbutton-demo {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
 
-  .demo-section {
-    margin-bottom: 40px;
+  h1 {
+    text-align: center;
+    margin-bottom: 32px;
+    color: rgba(0, 0, 0, 0.85);
   }
+}
 
-  .demo-row {
-    margin-bottom: 20px;
-    display: flex;
-    gap: 16px;
-    align-items: center;
+.demo-section {
+  margin-bottom: 32px;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: rgba(0, 0, 0, 0.85);
+    border-left: 4px solid #1890ff;
+    padding-left: 12px;
   }
+}
 
-  .demo-col {
-    width: 300px;
-    margin-bottom: 20px;
-  }
+.demo-row {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
 
-  .demo-tip {
-    margin-top: 16px;
-    color: #666;
-  }
+.demo-col {
+  width: 300px;
+  margin-bottom: 20px;
+}
 
-  .code-example {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    border: 1px solid #f0f0f0;
-    border-radius: 8px;
-    overflow: hidden;
-  }
+.demo-tip {
+  margin-top: 16px;
+  color: rgba(0, 0, 0, 0.65);
+}
 
-  .code-example h3 {
-    padding: 10px 16px;
+.code-example {
+  margin-top: 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  overflow: hidden;
+
+  h3 {
     margin: 0;
-    background-color: #fafafa;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 10px 16px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
+    background-color: #fafafa;
+    border-bottom: 1px solid #d9d9d9;
+    color: rgba(0, 0, 0, 0.85);
   }
 
-  .code-example pre {
+  pre {
     margin: 0;
     padding: 16px;
-    background: #fff;
+    background-color: #fafafa;
     overflow-x: auto;
+
+    code {
+      font-family: Menlo, Monaco, 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(0, 0, 0, 0.85);
+    }
   }
+}
 </style>
