@@ -322,7 +322,7 @@ const basicTableColumns = ref([
   { field: 'name', title: '姓名' },
   { field: 'age', title: '年龄' },
   { field: 'address', title: '地址' },
-  { field: 'status', title: '状态', formatter: ({ cellValue }) => {
+  { field: 'status', title: '状态', formatter: ({ cellValue }: { cellValue: string }) => {
     return cellValue === 'active' ? '激活' : '禁用'
   }},
 ])
@@ -347,7 +347,7 @@ const pagedTableColumns = ref([
   { field: 'name', title: '姓名' },
   { field: 'age', title: '年龄' },
   { field: 'address', title: '地址' },
-  { field: 'status', title: '状态', formatter: ({ cellValue }) => {
+  { field: 'status', title: '状态', formatter: ({ cellValue }: { cellValue: string }) => {
     return cellValue === 'active' ? '激活' : '禁用'
   }},
 ])
@@ -385,7 +385,7 @@ const sortTableColumns = ref([
   { field: 'name', title: '姓名', sortable: true },
   { field: 'age', title: '年龄', sortable: true },
   { field: 'address', title: '地址' },
-  { field: 'status', title: '状态', formatter: ({ cellValue }) => {
+  { field: 'status', title: '状态', formatter: ({ cellValue }: { cellValue: string }) => {
     return cellValue === 'active' ? '激活' : '禁用'
   }},
 ])
@@ -423,7 +423,7 @@ const customColumnTableColumns = ref([
   { field: 'name', title: '姓名' },
   { field: 'age', title: '年龄' },
   { field: 'address', title: '地址' },
-  { field: 'status', title: '状态', formatter: ({ cellValue }) => {
+  { field: 'status', title: '状态', formatter: ({ cellValue }: { cellValue: string }) => {
     // 不使用h函数，直接返回格式化的字符串
     return cellValue === 'active' ? '激活' : '禁用'
   }},
