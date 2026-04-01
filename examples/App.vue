@@ -29,6 +29,7 @@
         <XFloatButtonDemo v-if="currentTab === 'floatbutton'" />
         <XModalDemo v-if="currentTab === 'modal'" />
         <XTableDemo v-if="currentTab === 'table'" />
+        <XEditorDemo v-if="currentTab === 'editor'" />
       </div>
     </main>
   </div>
@@ -52,6 +53,7 @@
   import XFloatButtonDemo from './XFloatButtonDemo.vue'
   import XModalDemo from './XModalDemo.vue'
   import XTableDemo from './XTableDemo.vue'
+  import XEditorDemo from './XEditorDemo.vue'
 
   const tabs = [
     { key: 'button', label: 'XButton 按钮' },
@@ -69,7 +71,8 @@
     { key: 'popconfirm', label: 'XPopconfirm 气泡确认框' },
     { key: 'floatbutton', label: 'XFloatButton 悬浮按钮' },
     { key: 'modal', label: 'XModal 弹窗' },
-    { key: 'table', label: 'XTable 表格' }
+    { key: 'table', label: 'XTable 表格' },
+    { key: 'editor', label: 'XEditor 富文本编辑器' }
   ]
 
   const currentTab = ref('button')

@@ -73,6 +73,7 @@ export default {
 | [XNotification](#xnotification) | 通知组件，支持四种通知类型，提供编程式调用和组件两种使用方式 |
 | [XFloatButton](#xfloatbutton) | 悬浮按钮组件，用于在页面角落显示固定的操作按钮 |
 | [XTable](#xtable) | 表格组件，支持分页、排序、筛选、自定义列等功能 |
+| [XEditor](#xeditor) | 富文本编辑器组件，基于wangEditor封装，支持多种配置和自定义 |
 
 ### XButton
 
@@ -1757,6 +1758,136 @@ const handleClick = () => {
   console.log('悬浮按钮被点击')
   // 实现返回顶部功能示例
   window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+</script>
+```
+
+### XEditor
+
+基于 wangEditor 封装的富文本编辑器组件，支持多种配置、工具栏定制和自定义扩展，提供简洁易用的API和丰富的功能。
+
+#### Props
+
+| 名称               | 类型                                  | 默认值      | 说明                                   |
+|--------------------|---------------------------------------|-------------|----------------------------------------|
+| modelValue         | `string`                               | -           | 绑定值（编辑器内容）                   |
+| defaultValue       | `string`                               | -           | 默认值（编辑器内容）                   |
+| disabled           | `boolean`                              | `false`     | 是否禁用                               |
+| readOnly           | `boolean`                              | `false`     | 是否只读                               |
+| height             | `string  number`                     | `'300px'`   | 编辑器高度                             |
+| width              | `string  number`                     | `'100%'`    | 编辑器宽度                             |
+| placeholder        | `string`                               | `'请输入内容...'` | 占位符                          |
+| toolbar            | `any[]  boolean`                     | `true`      | 工具栏配置，可传入数组自定义工具栏，或传入boolean控制显示/隐藏 |
+| menuConfig         | `any`                                  | `{}`        | 菜单配置                               |
+| extendConfig       | `any`                                  | `{}`        | 扩展配置                               |
+| onCreated          | `(editor: IDomEditor) => void`         | -           | 编辑器实例初始化回调                   |
+| onChange           | `(content: string) => void`            | -           | 编辑器内容变化回调                     |
+| onFocus            | `() => void`                          | -           | 编辑器聚焦回调                         |
+| onBlur             | `() => void`                          | -           | 编辑器失焦回调                         |
+| onDestroyed        | `() => void`                          | -           | 编辑器销毁回调                         |
+
+#### Events
+
+| 名称               | 说明                     | 回调参数                                  |
+|--------------------|--------------------------|-------------------------------------------|
+| update:modelValue  | 值变化事件               | `(value: string) => void`                 |
+| change             | 内容变化事件             | `(content: string) => void`               |
+| focus              | 聚焦事件                 | `() => void`                               |
+| blur               | 失焦事件                 | `() => void`                               |
+| created            | 实例创建完成事件         | `(editor: IDomEditor) => void`             |
+| destroyed          | 销毁事件                 | `() => void`                               |
+
+#### 使用示例
+
+```vue
+<template>
+  <!-- 基础用法 -->
+  <XEditor v-model="content" placeholder="请输入内容..." />
+
+  <!-- 自定义尺寸 -->
+  <XEditor v-model="content" height="400px" width="500px" />
+
+  <!-- 只读模式 -->
+  <XEditor v-model="content" readOnly />
+
+  <!-- 禁用模式 -->
+  <XEditor v-model="content" disabled />
+
+  <!-- 自定义工具栏 -->
+  <XEditor 
+    v-model="content" 
+    :toolbar="['bold', 'italic', 'underline', 'link', 'orderedList', 'unorderedList']" 
+  />
+
+  <!-- 隐藏工具栏 -->
+  <XEditor v-model="content" :toolbar="false" />
+
+  <!-- 监听事件 -->
+  <XEditor 
+    v-model="content" 
+    @focus="handleFocus" 
+    @blur="handleBlur" 
+    @change="handleChange" 
+  />
+
+  <!-- 使用实例方法 -->
+  <div>
+    <XEditor ref="editorRef" v-model="content" />
+    <XButton type="primary" @click="handleGetContent">获取内容</XButton>
+    <XButton type="default" @click="handleSetContent">设置内容</XButton>
+    <XButton type="default" @click="handleFocusEditor">聚焦</XButton>
+    <XButton type="default" @click="handleClear">清空</XButton>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { XEditor, XButton } from 'publish-commons'
+import type { XEditorInstance } from 'publish-commons'
+
+// 编辑器内容
+const content = ref<string>('<p>Hello, XEditor!</p>')
+
+// 编辑器引用
+const editorRef = ref<InstanceType<typeof XEditor> | null>(null)
+
+// 事件处理
+const handleFocus = () => {
+  console.log('编辑器聚焦')
+}
+
+const handleBlur = () => {
+  console.log('编辑器失焦')
+}
+
+const handleChange = (newContent: string) => {
+  console.log('内容变化:', newContent)
+}
+
+// 实例方法调用
+const handleGetContent = () => {
+  if (editorRef.value) {
+    const currentContent = (editorRef.value as any).getContent()
+    console.log('当前内容:', currentContent)
+  }
+}
+
+const handleSetContent = () => {
+  if (editorRef.value) {
+    (editorRef.value as any).setContent('<p>通过实例方法设置的内容</p>')
+  }
+}
+
+const handleFocusEditor = () => {
+  if (editorRef.value) {
+    (editorRef.value as any).focus()
+  }
+}
+
+const handleClear = () => {
+  if (editorRef.value) {
+    (editorRef.value as any).clear()
+  }
 }
 </script>
 ```

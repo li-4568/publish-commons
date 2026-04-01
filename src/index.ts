@@ -20,6 +20,7 @@ import { XPopconfirm } from './components/XPopconfirm'
 import { XNotification, notification } from './components/XNotification'
 import { XFloatButton } from './components/XFloatButton'
 import { XTable } from './components/XTable'
+import { XEditor } from './components/XEditor'
 
 // 导入弹窗工具函数
 import { openModal, closeAllModals, closeModalById } from './utils/modal'
@@ -47,6 +48,7 @@ export {
   notification,
   XFloatButton,
   XTable,
+  XEditor,
   // 导出弹窗工具函数
   openModal,
   closeAllModals,
@@ -176,6 +178,13 @@ export type {
   TableVirtualConfig
 } from './components/XTable/types'
 
+// 导出XEditor类型
+export type {
+  XEditorProps,
+  XEditorEmits,
+  XEditorInstance
+} from './components/XEditor/types'
+
 // 全局安装方法
 const install = (app: App) => {
   app.component('XButton', XButton)
@@ -195,6 +204,7 @@ const install = (app: App) => {
   app.component('XNotification', XNotification)
   app.component('XFloatButton', XFloatButton)
   app.component('XTable', XTable)
+  app.component('XEditor', XEditor)
 }
 
 // 默认导出
