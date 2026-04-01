@@ -28,6 +28,7 @@
         <XPopconfirmDemo v-if="currentTab === 'popconfirm'" />
         <XFloatButtonDemo v-if="currentTab === 'floatbutton'" />
         <XModalDemo v-if="currentTab === 'modal'" />
+        <XTableDemo v-if="currentTab === 'table'" />
       </div>
     </main>
   </div>
@@ -50,6 +51,7 @@
   import XPopconfirmDemo from './XPopconfirmDemo.vue'
   import XFloatButtonDemo from './XFloatButtonDemo.vue'
   import XModalDemo from './XModalDemo.vue'
+  import XTableDemo from './XTableDemo.vue'
 
   const tabs = [
     { key: 'button', label: 'XButton 按钮' },
@@ -66,7 +68,8 @@
     { key: 'notification', label: 'XNotification 通知提醒框' },
     { key: 'popconfirm', label: 'XPopconfirm 气泡确认框' },
     { key: 'floatbutton', label: 'XFloatButton 悬浮按钮' },
-    { key: 'modal', label: 'XModal 弹窗' }
+    { key: 'modal', label: 'XModal 弹窗' },
+    { key: 'table', label: 'XTable 表格' }
   ]
 
   const currentTab = ref('button')

@@ -18,6 +18,7 @@ import { XTree } from './XTree'
 import { XTreeSelect } from './XTreeSelect'
 import { XPopconfirm } from './XPopconfirm'
 import { XNotification } from './XNotification'
+import { XTable } from './XTable'
 
 // 导出所有组件
 export {
@@ -36,6 +37,7 @@ export {
   XTreeSelect,
   XPopconfirm,
   XNotification,
+  XTable,
 }
 
 // 导出所有类型
@@ -52,6 +54,7 @@ export * from './XTree/types'
 export * from './XTreeSelect/types'
 export * from './XPopconfirm/types'
 export * from './XNotification/types'
+export * from './XTable/types'
 
 // 全局安装方法
 const install = (app: App) => {
@@ -70,6 +73,7 @@ const install = (app: App) => {
   app.component('XTreeSelect', XTreeSelect)
   app.component('XPopconfirm', XPopconfirm)
   app.component('XNotification', XNotification)
+  app.component('XTable', XTable)
 }
 
 // 默认导出

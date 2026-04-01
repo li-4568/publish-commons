@@ -1,0 +1,27 @@
+// XTable 组件样式
+@import '../../styles/variables.less';
+
+// 表头单元格边框样式
+.x-table-grid {
+  width: 100% !important; // 确保表格始终占满容器宽度
+  .vxe-header--column, .vxe-header--column-inner {
+    border-right: 1px solid @border-color-base;
+    border-bottom: 1px solid @border-color-base;
+  }
+  
+  // 最后一列的右侧边框
+  .vxe-header--column:last-child {
+    border-right: 1px solid @border-color-base;
+  }
+  
+  // 表头行的下边框
+  .vxe-header--row {
+    border-bottom: 1px solid @border-color-base;
+  }
+  
+  // 调整表头样式与内容单元格一致
+  .vxe-header--column {
+    background: #f9fafd;
+  }
+}
+
