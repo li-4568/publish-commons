@@ -1,27 +1,25 @@
 <template>
   <div :class="pickerWrapperClasses">
     <!-- 月份选择器主体 -->
-    <ConfigProvider :locale="zhCN">
-      <DatePicker
-        v-model:value="internalValue"
-        :size="size"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :allow-clear="clearable"
-        :bordered="bordered"
-        :class="pickerClasses"
-        :status="computedErrorMessage ? 'error' : undefined"
-        picker="month"
-        :format="format"
-        :value-format="valueFormat"
-        v-bind="$attrs"
-        style="width: 100%"
-        @change="handleChange"
-        @blur="handleBlur"
-        @focus="handleFocus"
-        @clear="handleClear"
-      />
-    </ConfigProvider>
+    <DatePicker
+      v-model:value="internalValue"
+      :locale="locale"
+      :size="size"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :allow-clear="clearable"
+      :bordered="bordered"
+      :class="pickerClasses"
+      :status="computedErrorMessage ? 'error' : undefined"
+      picker="month"
+      :format="format"
+      v-bind="$attrs"
+      style="width: 100%"
+      @change="handleChange"
+      @blur="handleBlur"
+      @focus="handleFocus"
+      @clear="handleClear"
+    />
 
     <!-- 错误提示信息 -->
     <div v-if="computedErrorMessage" class="xmonthpicker-error-message">
@@ -36,15 +34,13 @@
    * 月份选择器，基于 Ant Design Vue DatePicker 封装
    */
   import { computed, ref, watch } from 'vue'
-  import { DatePicker, ConfigProvider } from 'ant-design-vue'
-  import zhCN from 'ant-design-vue/es/locale/zh_CN'
+  import { DatePicker } from 'ant-design-vue'
+  import locale from 'ant-design-vue/es/date-picker/locale/zh_CN'
   import dayjs from 'dayjs'
   import 'dayjs/locale/zh-cn'
 
-  // 强制设置 locale
-  if (dayjs.locale() !== 'zh-cn') {
-    dayjs.locale('zh-cn')
-  }
+  // 强制设置 dayjs locale
+  dayjs.locale('zh-cn')
 
   // 定义组件名称
   defineOptions({
@@ -93,8 +89,8 @@
     readonly: false,
     clearable: false,
     bordered: true,
-    format: (date) => dayjs(date).locale('zh-cn').format('M月'),
-    valueFormat: 'MM',
+    format: 'M月',
+    valueFormat: 'YYYY-MM',
     required: false,
     rules: () => [],
     validateTrigger: () => ['change', 'blur'],
@@ -114,8 +110,17 @@
 
 
 
-  // 内部值，用于v-model
-  const internalValue = ref<string | dayjs.Dayjs | undefined>(props.modelValue || props.value || undefined)
+  /**
+   * 将字符串转换为 dayjs 对象
+   */
+  const parseValue = (val: string | null | undefined): dayjs.Dayjs | undefined => {
+    if (!val) return undefined
+    const parsed = dayjs(val, 'YYYY-MM')
+    return parsed.isValid() ? parsed : undefined
+  }
+
+  // 内部值，用于v-model - DatePicker 需要 dayjs 对象或 undefined
+  const internalValue = ref<dayjs.Dayjs | undefined>(parseValue(props.modelValue || props.value))
 
   // 内部错误信息状态
   const internalErrorMessage = ref<string>()
@@ -166,10 +171,11 @@
    * 处理值改变事件
    */
   const handleChange = (value: dayjs.Dayjs | string | null, dateString: string) => {
-    internalValue.value = dateString || undefined
-    emit('update:modelValue', dateString || null)
-    emit('update:value', dateString || null)
-    emit('change', dateString || null, value)
+    internalValue.value = value && dayjs(value).isValid() ? dayjs(value) : undefined
+    const emitValue = dateString || null
+    emit('update:modelValue', emitValue)
+    emit('update:value', emitValue)
+    emit('change', emitValue, value as dayjs.Dayjs | null)
 
     // 根据触发时机决定是否校验
     if (props.validateOnChange && props.validateTrigger?.includes('change')) {
@@ -185,7 +191,8 @@
 
     // 失焦时校验
     if (props.validateTrigger?.includes('blur')) {
-      runValidation(typeof internalValue.value === 'string' ? internalValue.value : undefined)
+      const valueStr = internalValue.value?.isValid?.() ? internalValue.value.format('YYYY-MM') : undefined
+      runValidation(valueStr)
     }
   }
 
@@ -293,7 +300,17 @@
   watch(
     () => props.modelValue,
     (newValue) => {
-      internalValue.value = newValue || undefined
+      internalValue.value = parseValue(newValue)
+    }
+  )
+
+  /**
+   * 监听props.value变化（兼容旧版）
+   */
+  watch(
+    () => props.value,
+    (newValue) => {
+      internalValue.value = parseValue(newValue)
     }
   )
 
@@ -304,7 +321,8 @@
     () => internalValue.value,
     (newValue) => {
       if (props.validateOnChange && props.validateTrigger?.includes('change')) {
-        runValidation(typeof newValue === 'string' ? newValue : undefined)
+        const valueStr = newValue?.isValid?.() ? newValue.format('YYYY-MM') : undefined
+        runValidation(valueStr)
       }
     },
     { immediate: false }
@@ -318,7 +336,8 @@
      * 手动触发校验
      */
     validate: () => {
-      return runValidation(typeof internalValue.value === 'string' ? internalValue.value : undefined)
+      const valueStr = internalValue.value?.isValid?.() ? internalValue.value.format('YYYY-MM') : undefined
+      return runValidation(valueStr)
     },
 
     /**

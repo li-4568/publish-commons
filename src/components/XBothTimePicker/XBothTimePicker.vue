@@ -1,26 +1,25 @@
 <template>
   <div :class="pickerWrapperClasses">
     <!-- 双向时间选择器主体 -->
-    <ConfigProvider :locale="zhCN">
-      <TimePicker.RangePicker
-        v-model:value="internalValue"
-        :size="size"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :allow-clear="clearable"
-        :bordered="bordered"
-        :class="pickerClasses"
-        :status="computedErrorMessage ? 'error' : undefined"
-        :format="format"
-        :value-format="valueFormat"
-        v-bind="$attrs"
-        style="width: 100%"
-        @change="handleChange"
-        @blur="handleBlur"
-        @focus="handleFocus"
-        @clear="handleClear"
-      />
-    </ConfigProvider>
+    <DatePicker.RangePicker
+      v-model:value="internalValue"
+      :size="size"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :allow-clear="clearable"
+      :bordered="bordered"
+      :class="pickerClasses"
+      :status="computedErrorMessage ? 'error' : undefined"
+      :format="format"
+      :value-format="valueFormat"
+      :picker="'time'"
+      v-bind="$attrs"
+      style="width: 100%"
+      @change="handleChange"
+      @blur="handleBlur"
+      @focus="handleFocus"
+      @clear="handleClear"
+    />
 
     <!-- 错误提示信息 -->
     <div v-if="computedErrorMessage" class="xbothtimepicker-error-message">
@@ -35,8 +34,7 @@
    * 双向时间选择器，基于 Ant Design Vue TimePicker.RangePicker 封装
    */
   import { computed, ref, watch } from 'vue'
-  import { TimePicker, ConfigProvider } from 'ant-design-vue'
-  import zhCN from 'ant-design-vue/es/locale/zh_CN'
+  import { DatePicker } from 'ant-design-vue'
   import dayjs from 'dayjs'
   import 'dayjs/locale/zh-cn'
 

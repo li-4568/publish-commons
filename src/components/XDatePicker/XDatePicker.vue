@@ -144,30 +144,35 @@ const getRangePlaceholder = computed(() => {
 
 // 单个值转换函数
 const convertToSingleDayjs = (value: XDatePickerProps['modelValue']): Dayjs | undefined => {
-  if (value === undefined || value === null) return undefined
+  if (value === undefined || value === null || value === '') return undefined
   if (Array.isArray(value)) return undefined
   if (typeof value === 'number' || typeof value === 'string') {
-    return dayjs(value)
+    const parsed = dayjs(value)
+    // 检查是否有效日期
+    return parsed.isValid() ? parsed : undefined
   }
   if (value instanceof Date) {
-    return dayjs(value)
+    return dayjs(value).isValid() ? dayjs(value) : undefined
   }
-  return value as Dayjs
+  return (value as Dayjs).isValid?.() ? value as Dayjs : undefined
 }
 
 // 范围值转换函数
 const convertToRangeDayjs = (value: XDatePickerProps['modelValue']): [Dayjs, Dayjs] | undefined => {
   if (value === undefined || value === null) return undefined
   if (!Array.isArray(value)) return undefined
-  return value.map(item => {
+  const result = value.map((item: any) => {
+    if (item === undefined || item === null || item === '') return undefined
     if (typeof item === 'number' || typeof item === 'string') {
-      return dayjs(item)
+      const parsed = dayjs(item)
+      return parsed.isValid() ? parsed : undefined
     }
     if (item instanceof Date) {
-      return dayjs(item)
+      return dayjs(item).isValid() ? dayjs(item) : undefined
     }
-    return item as Dayjs
-  }) as [Dayjs, Dayjs]
+    return (item as Dayjs).isValid?.() ? item as Dayjs : undefined
+  }).filter(Boolean) as Dayjs[]
+  return result.length === 2 ? (result as [Dayjs, Dayjs]) : undefined
 }
 
 // 从 Dayjs 转换为格式化的字符串

@@ -42,6 +42,14 @@ export interface ModalConfig extends Omit<Partial<VxeModalProps>, 'modelValue' |
    */
   maxHeight?: number | string | null
   /**
+   * 确认按钮文本
+   */
+  confirmButtonText?: string
+  /**
+   * 取消按钮文本
+   */
+  cancelButtonText?: string
+  /**
    * 确认事件回调（可选）
    */
   confirm?: () => void
@@ -98,6 +106,23 @@ export interface ModalConfig extends Omit<Partial<VxeModalProps>, 'modelValue' |
    * 默认：使用 component 时为 true，使用 content 时为 false
    */
   loading?: boolean
+  /**
+   * 是否显示表尾（可选）
+   * 默认：true
+   */
+  showFooter?: boolean
+  /**
+   * 是否显示确认按钮（可选）
+   * 需配合 showFooter 使用
+   * 默认：true
+   */
+  showConfirmButton?: boolean
+  /**
+   * 是否显示取消按钮（可选）
+   * 需配合 showFooter 使用
+   * 默认：true
+   */
+  showCancelButton?: boolean
 }
 
 // 回调函数类型
@@ -139,6 +164,11 @@ export const openModal = (config: ModalConfig, callback?: ModalCallback) => {
     'onUpdate:modelValue': onUpdateModelValue,
     maxHeight,
     loading,
+    confirmButtonText,
+    cancelButtonText,
+    showFooter,
+    showConfirmButton,
+    showCancelButton,
     ...restConfig
   } = config
   
@@ -196,6 +226,22 @@ export const openModal = (config: ModalConfig, callback?: ModalCallback) => {
     }
   }
 
+  // 声明 modalInstance 变量，用于在回调中引用
+  let modalInstance!: ModalInstance
+
+  // 包装 confirm 回调以支持异步操作，并传入弹窗实例
+  const wrapConfirmCallback = (callback?: (instance: ModalInstance) => void | Promise<void>) => {
+    return () => {
+      const result = callback?.(modalInstance)
+      // 如果返回的是 Promise，确保错误被捕获
+      if (result instanceof Promise) {
+        result.catch(() => {
+          // 错误已处理
+        })
+      }
+    }
+  }
+
   // 准备VxeUI.modal.open需要的选项
   const modalOptions: any = {
     ...restConfig,
@@ -206,24 +252,32 @@ export const openModal = (config: ModalConfig, callback?: ModalCallback) => {
     // 使用 VxeUI 原生 loading
     loading: currentLoading,
     id,
+    // 传递确认和取消按钮文本
+    confirmButtonText,
+    cancelButtonText,
+    // 表尾和按钮显示控制
+    showFooter: showFooter !== undefined ? showFooter : true,
+    showConfirmButton: showConfirmButton !== undefined ? showConfirmButton : true,
+    showCancelButton: showCancelButton !== undefined ? showCancelButton : true,
     // 使用函数插槽
     slots: {
       default() {
         // 渲染实际内容
         const renderContent = () => {
           if (component) {
-            // 确保componentProps中不包含confirm、cancel等事件回调属性
-            const filteredComponentProps = {
-              ...componentProps,
-              // 排除事件回调属性
-              confirm: undefined,
-              cancel: undefined,
-              close: undefined,
-              onConfirm: undefined,
-              onCancel: undefined,
-              onClose: undefined
-            }
-            
+            // 从 componentProps 中排除事件回调和按钮文本属性
+            const {
+              confirm: _confirm,
+              cancel: _cancel,
+              close: _close,
+              onConfirm: _onConfirm,
+              onCancel: _onCancel,
+              onClose: _onClose,
+              confirmButtonText: _confirmButtonText,
+              cancelButtonText: _cancelButtonText,
+              ...filteredComponentProps
+            } = componentProps || {}
+
             return h(component, {
               ...filteredComponentProps,
               ref: (el: any) => {
@@ -245,7 +299,7 @@ export const openModal = (config: ModalConfig, callback?: ModalCallback) => {
             return content
           }
         }
-        
+
         // 如果设置了maxHeight，使用容器包裹内容
         if (modalMaxHeight) {
           const isFullHeight = modalMaxHeight === '100%' || modalMaxHeight === '100vh'
@@ -259,34 +313,47 @@ export const openModal = (config: ModalConfig, callback?: ModalCallback) => {
             }
           }, [renderContent()])
         }
-        
+
         // 否则直接返回内容
         return renderContent()
       }
     }
   }
-  
-  // 单独处理从config中解构出的事件回调，避免传递给组件
-  // 将所有事件回调统一转换为 Vue 3 风格（onXxx 格式），避免被当作普通属性传递
-  // 包装 confirm 回调以支持异步操作
-  const wrapConfirmCallback = (callback?: () => void | Promise<void>) => {
-    return () => {
-      const result = callback?.()
-      // 如果返回的是 Promise，确保错误被捕获
-      if (result instanceof Promise) {
-        result.catch(() => {
-          // 错误已处理
-        })
-      }
-    }
+
+  // 创建弹窗实例
+  modalInstance = {
+    id,
+    close() {
+      // 使用 VxeUI.modal.close 关闭弹窗
+      VxeUI.modal.close()
+      modalInstances.delete(id)
+    },
+    // 使用 getter 确保获取最新的 componentRef
+    get componentRef() {
+      return componentRef
+    },
+    /**
+     * 设置弹窗 loading 状态
+     * @param loading 是否显示 loading
+     */
+    setLoading(loading: boolean) {
+      currentLoading = loading
+      updateModalLoading()
+    },
   }
 
+  // 存储弹窗实例
+  modalInstances.set(id, modalInstance)
+
+  // 单独处理从config中解构出的事件回调，避免传递给组件
+  // 设置 confirm 和 onConfirm 回调
   if (confirm) modalOptions.onConfirm = wrapConfirmCallback(confirm)
-  if (cancel) modalOptions.onCancel = cancel
-  if (close) modalOptions.onClose = close
   if (onConfirm) modalOptions.onConfirm = wrapConfirmCallback(onConfirm)
+  if (cancel) modalOptions.onCancel = cancel
   if (onCancel) modalOptions.onCancel = onCancel
+  if (close) modalOptions.onClose = close
   if (onClose) modalOptions.onClose = onClose
+
   // 包装 onShow 回调，用于初始化 loading 状态
   modalOptions.onShow = () => {
     // 延迟一点确保 DOM 已渲染
@@ -337,35 +404,10 @@ export const openModal = (config: ModalConfig, callback?: ModalCallback) => {
       }
     })
   }
-  
+
   // 使用 VxeUI.modal.open 打开弹窗
   VxeUI.modal.open(modalOptions)
-  
-  // 创建弹窗实例
-  const modalInstance: ModalInstance = {
-    id,
-    close() {
-      // 使用 VxeUI.modal.close 关闭弹窗
-      VxeUI.modal.close()
-      modalInstances.delete(id)
-    },
-    // 使用 getter 确保获取最新的 componentRef
-    get componentRef() {
-      return componentRef
-    },
-    /**
-     * 设置弹窗 loading 状态
-     * @param loading 是否显示 loading
-     */
-    setLoading(loading: boolean) {
-      currentLoading = loading
-      updateModalLoading()
-    },
-  }
-  
-  // 存储弹窗实例
-  modalInstances.set(id, modalInstance)
-  
+
   // 返回弹窗实例，包含组件引用和setLoading方法
   return modalInstance
 }

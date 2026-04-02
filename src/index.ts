@@ -15,6 +15,7 @@ import { XTimePicker } from './components/XTimePicker'
 import { XYearPicker } from './components/XYearPicker'
 import { XBothTimePicker } from './components/XBothTimePicker'
 import { XTextarea } from './components/XTextarea'
+import { XForm } from './components/XForm'
 import { XCascader } from './components/XCascader'
 import { XCheckbox, XCheckboxGroup } from './components/XCheckbox'
 import { XRadio, XRadioGroup } from './components/XRadio'
@@ -57,6 +58,7 @@ export {
   XYearPicker,
   XBothTimePicker,
   XTextarea,
+  XForm,
   XCascader,
   XCheckbox,
   XCheckboxGroup,
@@ -243,6 +245,7 @@ const install = (app: App) => {
   app.component('XYearPicker', XYearPicker)
   app.component('XBothTimePicker', XBothTimePicker)
   app.component('XTextarea', XTextarea)
+  app.component('XForm', XForm)
   app.component('XCascader', XCascader)
   app.component('XCheckbox', XCheckbox)
   app.component('XCheckboxGroup', XCheckboxGroup)
