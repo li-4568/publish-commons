@@ -25,6 +25,12 @@ import { XImageCropper } from './components/XImageCropper'
 
 // 导入弹窗工具函数
 import { openModal, closeAllModals, closeModalById } from './utils/modal'
+// 导入文件工具函数
+import { previewFile, downloadFile, printFile } from './utils/file'
+
+// 导入v-viewer
+import Viewer from 'v-viewer'
+import 'viewerjs/dist/viewer.css'
 
 // 导入样式
 import './styles/index.less'
@@ -54,7 +60,11 @@ export {
   // 导出弹窗工具函数
   openModal,
   closeAllModals,
-  closeModalById
+  closeModalById,
+  // 导出文件工具函数
+  previewFile,
+  downloadFile,
+  printFile
 }
 
 // 导出组件类型
@@ -214,6 +224,9 @@ const install = (app: App) => {
   app.component('XTable', XTable)
   app.component('XEditor', XEditor)
   app.component('XImageCropper', XImageCropper)
+  
+  // 注册v-viewer
+  app.use(Viewer)
 }
 
 // 默认导出

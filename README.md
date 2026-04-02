@@ -76,6 +76,16 @@ export default {
 | [XEditor](#xeditor) | 富文本编辑器组件，基于wangEditor封装，支持多种配置和自定义 |
 | [XImageCropper](#ximagcropper) | 图片裁剪组件，基于vue-cropper封装，支持多种配置和自定义 |
 
+## 工具函数
+
+### 文件操作工具
+
+| 函数名称 | 描述 |
+|---------|------|
+| [previewFile](#previewfile) | 预览文件，支持图片、视频、PDF、Excel、Word等多种文件类型 |
+| [downloadFile](#downloadfile) | 下载文件，支持指定文件名和URL |
+| [printFile](#printfile) | 打印文件，支持PDF等可打印文件类型 |
+
 ### XButton
 
 基于 Ant Design Vue Button 封装的增强按钮组件，支持多种类型、尺寸和自定义样式。
@@ -1962,6 +1972,108 @@ const handleCropBlob = (blobData: Blob) => {
 }
 </script>
 ```
+
+### previewFile
+
+文件预览函数，支持图片、视频、PDF、Excel、Word等多种文件类型。
+
+#### 参数
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| fileList | `object \| array` | 文件对象或文件对象数组。单个文件时为对象，多个文件时为数组。 |
+
+#### 文件对象结构
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| name | `string` | 文件名 |
+| url | `string` | 文件URL |
+| bytes | `number` | 文件大小（字节） |
+| uploadUserName | `string` | 上传用户 |
+| uploadTime | `string` | 上传时间 |
+
+#### 使用示例
+
+```typescript
+import { previewFile } from 'publish-commons'
+
+// 预览单个文件
+previewFile({
+  name: 'example.jpg',
+  url: 'https://example.com/images/example.jpg',
+  bytes: 1024000,
+  uploadUserName: '张三',
+  uploadTime: '2023-01-01 12:00:00'
+})
+
+// 预览多个文件
+previewFile([
+  {
+    name: 'image.jpg',
+    url: 'https://example.com/images/image.jpg'
+  },
+  {
+    name: 'video.mp4',
+    url: 'https://example.com/videos/video.mp4'
+  }
+])
+```
+
+### downloadFile
+
+文件下载函数，支持指定文件名和URL。
+
+#### 参数
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| file | `object` | 文件对象 |
+
+#### 文件对象结构
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| name | `string` | 文件名 |
+| url | `string` | 文件URL |
+
+#### 使用示例
+
+```typescript
+import { downloadFile } from 'publish-commons'
+
+downloadFile({
+  name: 'example.pdf',
+  url: 'https://example.com/files/example.pdf'
+})
+```
+
+### printFile
+
+文件打印函数，支持PDF等可打印文件类型。
+
+#### 参数
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| file | `object` | 文件对象 |
+
+#### 文件对象结构
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| name | `string` | 文件名 |
+| url | `string` | 文件URL |
+
+#### 使用示例
+
+```typescript
+import { printFile } from 'publish-commons'
+
+printFile({
+  name: 'example.pdf',
+  url: 'https://example.com/files/example.pdf'
+})
 
 ## 主题定制
 

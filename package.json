@@ -57,9 +57,12 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.0",
+    "@vue-office/docx": "^1.6.3",
+    "@vue-office/excel": "^1.7.14",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
     "ant-design-vue": "^4.0.0",
+    "v-viewer": "^3.0.23",
     "vue-cropper": "^1.1.4",
     "vxe-pc-ui": "~4.13.20",
     "vxe-table": "^4.18.10",

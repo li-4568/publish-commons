@@ -248,11 +248,14 @@ export const openModal = (config: ModalConfig, callback?: ModalCallback) => {
         
         // 如果设置了maxHeight，使用容器包裹内容
         if (modalMaxHeight) {
+          const isFullHeight = modalMaxHeight === '100%' || modalMaxHeight === '100vh'
           return h('div', {
             style: {
-              maxHeight: modalMaxHeight,
+              height: isFullHeight ? '100%' : undefined,
+              maxHeight: isFullHeight ? undefined : modalMaxHeight,
               overflow: 'auto',
-              padding: '0 16px 16px'
+              padding: '0 16px 16px',
+              boxSizing: 'border-box'
             }
           }, [renderContent()])
         }
