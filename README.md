@@ -70,6 +70,13 @@ export default {
 | [XInput](#xinput) | 输入框组件，支持多种类型、尺寸、验证规则和自定义样式 |
 | [XSelect](#xselect) | 下拉选择组件，支持单选、多选、标签模式等功能 |
 | [XDatePicker](#xdatepicker) | 日期选择组件，支持多种日期格式、范围选择等功能 |
+| [XMonthPicker](#xmonthpicker) | 月份选择组件，用于选择单个月份 |
+| [XRangePicker](#xrangepicker) | 日期范围选择组件，用于选择开始和结束日期 |
+| [XTimePicker](#xtimepicker) | 时间选择组件，用于选择单个时间 |
+| [XYearPicker](#xyearpicker) | 年份选择组件，用于选择单个年份 |
+| [XBothTimePicker](#xbothtimepicker) | 双向时间选择组件，用于选择开始和结束时间 |
+| [XTextarea](#xtextarea) | 文本域组件，用于输入多行文本 |
+| [XForm](#xform) | 表单组件，基于Ant Design Vue Form封装，支持表单项渲染 |
 | [XCascader](#xcascader) | 级联选择组件，支持单选、多选、自定义选项等功能 |
 | [XCheckbox](#xcheckbox) | 复选框组件，支持单独使用和分组使用 |
 | [XRadio](#xradio) | 单选框组件，支持单独使用和分组使用 |

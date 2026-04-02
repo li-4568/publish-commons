@@ -125,7 +125,7 @@
         hideRequiredMark: false,
         layout: 'horizontal'
       },
-      onConfirm: async (instance: any) => {
+      onConfirm: async (instance?: any) => {
         try {
           loading.value = true
           instance.setLoading(true)
