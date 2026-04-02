@@ -1,6 +1,6 @@
 {
   "name": "publish-commons",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "公共组件库，封装通用组件、业务需求组件和可定制组件",
   "main": "dist/publish-commons.umd.js",
   "module": "dist/publish-commons.es.js",
