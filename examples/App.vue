@@ -33,6 +33,7 @@
         <XImageCropperDemo v-if="currentTab === 'imagecropper'" />
         <XFilePreviewDemo v-if="currentTab === 'filepreview'" />
         <XTableSearchDemo v-if="currentTab === 'tablesearch'" />
+        <XFormItemDemo v-if="currentTab === 'formitem'" />
       </div>
     </main>
   </div>
@@ -60,6 +61,7 @@
   import XImageCropperDemo from './XImageCropperDemo.vue'
   import XFilePreviewDemo from './XFilePreviewDemo.vue'
   import XTableSearchDemo from './XTableSearchDemo.vue'
+  import XFormItemDemo from './XFormItemDemo.vue'
 
   const tabs = [
     { key: 'button', label: 'XButton 按钮' },
@@ -81,7 +83,8 @@
     { key: 'editor', label: 'XEditor 富文本编辑器' },
     { key: 'imagecropper', label: 'XImageCropper 图片裁剪' },
     { key: 'filepreview', label: 'XFilePreview 文件预览' },
-    { key: 'tablesearch', label: 'XTableSearch 表格搜索' }
+    { key: 'tablesearch', label: 'XTableSearch 表格搜索' },
+    { key: 'formitem', label: 'XFormItem 表单项目' }
   ]
 
   const currentTab = ref('button')

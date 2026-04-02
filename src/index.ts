@@ -6,7 +6,7 @@ import type { App, Plugin } from 'vue'
 
 // 导入组件
 import { XButton } from './components/XButton'
-import { XInput } from './components/XInput'
+import { XInput, XInputFloat, XInputNeg, XInputNum } from './components/XInput'
 import { XSelect } from './components/XSelect'
 import { XDatePicker } from './components/XDatePicker'
 import { XCascader } from './components/XCascader'
@@ -40,6 +40,9 @@ import './styles/index.less'
 export {
   XButton,
   XInput,
+  XInputFloat,
+  XInputNeg,
+  XInputNum,
   XSelect,
   XDatePicker,
   XCascader,
@@ -217,6 +220,9 @@ export type {
 const install = (app: App) => {
   app.component('XButton', XButton)
   app.component('XInput', XInput)
+  app.component('XInputFloat', XInputFloat)
+  app.component('XInputNeg', XInputNeg)
+  app.component('XInputNum', XInputNum)
   app.component('XSelect', XSelect)
   app.component('XDatePicker', XDatePicker)
   app.component('XCascader', XCascader)
