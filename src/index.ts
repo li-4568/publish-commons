@@ -9,6 +9,12 @@ import { XButton } from './components/XButton'
 import { XInput, XInputFloat, XInputNeg, XInputNum } from './components/XInput'
 import { XSelect } from './components/XSelect'
 import { XDatePicker } from './components/XDatePicker'
+import { XMonthPicker } from './components/XMonthPicker'
+import { XRangePicker } from './components/XRangePicker'
+import { XTimePicker } from './components/XTimePicker'
+import { XYearPicker } from './components/XYearPicker'
+import { XBothTimePicker } from './components/XBothTimePicker'
+import { XTextarea } from './components/XTextarea'
 import { XCascader } from './components/XCascader'
 import { XCheckbox, XCheckboxGroup } from './components/XCheckbox'
 import { XRadio, XRadioGroup } from './components/XRadio'
@@ -45,6 +51,12 @@ export {
   XInputNum,
   XSelect,
   XDatePicker,
+  XMonthPicker,
+  XRangePicker,
+  XTimePicker,
+  XYearPicker,
+  XBothTimePicker,
+  XTextarea,
   XCascader,
   XCheckbox,
   XCheckboxGroup,
@@ -225,6 +237,12 @@ const install = (app: App) => {
   app.component('XInputNum', XInputNum)
   app.component('XSelect', XSelect)
   app.component('XDatePicker', XDatePicker)
+  app.component('XMonthPicker', XMonthPicker)
+  app.component('XRangePicker', XRangePicker)
+  app.component('XTimePicker', XTimePicker)
+  app.component('XYearPicker', XYearPicker)
+  app.component('XBothTimePicker', XBothTimePicker)
+  app.component('XTextarea', XTextarea)
   app.component('XCascader', XCascader)
   app.component('XCheckbox', XCheckbox)
   app.component('XCheckboxGroup', XCheckboxGroup)
