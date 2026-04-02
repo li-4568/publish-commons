@@ -83,12 +83,15 @@ const emit = defineEmits<XTreeSelectEmits>()
 const isMultiple = computed(() => props.mode === 'multiple')
 
 // 内部值
+const currentValue = computed(() => props.value ?? props.modelValue)
+
 const internalValue = computed({
   get() {
-    return props.modelValue
+    return currentValue.value
   },
-  set(value) {
-    emit('update:modelValue', value)
+  set(val) {
+    emit('update:modelValue', val)
+    emit('update:value', val)
   }
 })
 
@@ -120,9 +123,10 @@ const wrapperClasses = computed(() => {
 })
 
 // 处理值变化
-const handleChange = (value: any) => {
-  emit('update:modelValue', value)
-  emit('change', value)
+const handleChange = (val: any) => {
+  emit('update:modelValue', val)
+  emit('update:value', val)
+  emit('change', val)
 }
 
 // 处理下拉框打开/关闭
@@ -147,7 +151,7 @@ const handleTreeExpand = (expandedKeys: any[]) => {
 
 // 监听值变化
 watch(
-  () => props.modelValue,
+  () => currentValue.value,
   (newValue) => {
     internalValue.value = newValue
   }

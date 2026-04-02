@@ -5,14 +5,14 @@
       :size="size"
       :mode="mode"
       :disabled="disabled"
-      :placeholder="placeholder"
       :clearable="clearable"
+      :placeholder="placeholder"
       :max-tag-count="maxTagCount"
       :show-search="showSearch"
       :filter-option="filterOption"
       :not-found-content="notFoundContent"
       :get-popup-container="getPopupContainer"
-      style="width: 100%" 
+      style="width: 100%"
       @change="handleChange"
       @open-change="handleOpenChange"
       @focus="handleFocus"
@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 import { Select, SelectOption } from 'ant-design-vue'
 import type { XSelectProps } from './types'
 
@@ -54,7 +54,7 @@ const props = withDefaults(defineProps<XSelectProps>(), {
   clearable: false,
   disabled: false,
   required: false,
-  placeholder: '',
+  placeholder: '请选择',
   maxTagCount: undefined,
   errorMessage: '',
   showSearch: false,
@@ -63,15 +63,16 @@ const props = withDefaults(defineProps<XSelectProps>(), {
 })
 
 // 定义 Emits
-const emit = defineEmits(['update:modelValue', 'change', 'openChange', 'focus', 'blur', 'clear', 'tagRemove'])
+const emit = defineEmits(['update:modelValue', 'update:value', 'change', 'openChange', 'focus', 'blur', 'clear', 'tagRemove'])
 
 // 内部值
 const internalValue = computed({
   get() {
-    return props.modelValue
+    return props.value ?? props.modelValue
   },
   set(value) {
     emit('update:modelValue', value)
+    emit('update:value', value)
     emit('change', value)
   }
 })
@@ -104,19 +105,12 @@ const wrapperClasses = computed(() => {
   return classes
 })
 
-// 监听值变化
-watch(
-  () => props.modelValue,
-  (newValue) => {
-    internalValue.value = newValue
-  }
-)
-
 /**
  * 处理值变化事件
  */
 const handleChange = (value: any) => {
   emit('update:modelValue', value)
+  emit('update:value', value)
   emit('change', value)
 }
 

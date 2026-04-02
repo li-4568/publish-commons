@@ -69,9 +69,14 @@ export type TreeSelectMode = 'single' | 'multiple'
  */
 export interface XTreeSelectProps extends Omit<AntTreeSelectProps, 'size' | 'treeData' | 'value'> {
   /**
-   * 绑定值
+   * 绑定值（用于 v-model）
    */
   modelValue?: string | string[] | number | number[]
+
+  /**
+   * 绑定值（用于 Form 组件，与 modelValue 等价）
+   */
+  value?: string | string[] | number | number[]
 
   /**
    * 树形数据
@@ -195,9 +200,14 @@ export interface XTreeSelectProps extends Omit<AntTreeSelectProps, 'size' | 'tre
  */
 export interface XTreeSelectEmits {
   /**
-   * 更新绑定值
+   * 更新绑定值（v-model）
    */
   (e: 'update:modelValue', value: XTreeSelectProps['modelValue']): void
+
+  /**
+   * 更新绑定值（Form 组件使用）
+   */
+  (e: 'update:value', value: XTreeSelectProps['modelValue']): void
 
   /**
    * 值改变事件

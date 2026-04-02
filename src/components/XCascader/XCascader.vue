@@ -1,8 +1,8 @@
 <template>
   <div class="xcascader-wrapper">
     <ACascader
-      :value="modelValue"
-      @update:value="(value: any) => emit('update:modelValue', value)"
+      :value="value ?? modelValue"
+      @update:value="(val: any) => { emit('update:modelValue', val); emit('update:value', val); }"
       :options="options"
       :size="size"
       :placeholder="placeholder"

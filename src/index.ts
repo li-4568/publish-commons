@@ -22,6 +22,7 @@ import { XFloatButton } from './components/XFloatButton'
 import { XTable } from './components/XTable'
 import { XEditor } from './components/XEditor'
 import { XImageCropper } from './components/XImageCropper'
+import { XTableSearch } from './components/XTableSearch'
 
 // 导入弹窗工具函数
 import { openModal, closeAllModals, closeModalById } from './utils/modal'
@@ -57,6 +58,7 @@ export {
   XTable,
   XEditor,
   XImageCropper,
+  XTableSearch,
   // 导出弹窗工具函数
   openModal,
   closeAllModals,
@@ -203,6 +205,14 @@ export type {
   XImageCropperEmits
 } from './components/XImageCropper/types'
 
+// 导出XTableSearch类型
+export type {
+  XTableSearchProps,
+  XTableSearchEmits,
+  XTableSearchSlots,
+  SearchItem
+} from './components/XTableSearch/types'
+
 // 全局安装方法
 const install = (app: App) => {
   app.component('XButton', XButton)
@@ -224,6 +234,7 @@ const install = (app: App) => {
   app.component('XTable', XTable)
   app.component('XEditor', XEditor)
   app.component('XImageCropper', XImageCropper)
+  app.component('XTableSearch', XTableSearch)
   
   // 注册v-viewer
   app.use(Viewer)

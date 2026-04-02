@@ -1,8 +1,8 @@
 <template>
   <div class="xradio-group-wrapper" :class="{ 'xradio-group-wrapper-vertical': direction === 'vertical' }">
     <ARadioGroup
-      :value="modelValue"
-      @update:value="(value: any) => emit('update:modelValue', value)"
+      :value="value ?? modelValue"
+      @update:value="(val: any) => { emit('update:modelValue', val); emit('update:value', val); }"
       :disabled="disabled"
       :size="antRadioSize"
       :name="name"
@@ -44,12 +44,12 @@ const antRadioSize = computed(() => {
 
 // 提供 RadioGroup 上下文，供子 Radio 组件使用
 provide('RadioGroup', {
-  get value() { return props.modelValue },  // 使用 getter 确保获取最新值
+  get value() { return props.value ?? props.modelValue },  // 使用 getter 确保获取最新值
   get disabled() { return props.disabled },
   get size() { return props.size },
   get name() { return props.name },
   get direction() { return props.direction },
-  onChange: (value: any) => emit('update:modelValue', value)
+  onChange: (val: any) => { emit('update:modelValue', val); emit('update:value', val); }
 })
 </script>
 

@@ -4,7 +4,7 @@
     <Input
       :type="inputType"
       :size="size"
-      :value="modelValue"
+      :value="value ?? modelValue"
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
@@ -73,6 +73,7 @@
     type: 'text',
     size: 'middle',
     modelValue: '',
+    value: '',
     placeholder: '',
     disabled: false,
     readonly: false,
@@ -323,6 +324,7 @@
    */
   const handleUpdateValue = (value: string) => {
     emit('update:modelValue', value)
+    emit('update:value', value)
   }
 
   /**

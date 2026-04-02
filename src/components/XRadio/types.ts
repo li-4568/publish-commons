@@ -114,10 +114,15 @@ export interface XRadioSlots {
  */
 export interface XRadioGroupProps {
   /**
-   * 绑定值
+   * 绑定值（用于 v-model）
    */
   modelValue?: any
-  
+
+  /**
+   * 绑定值（用于 Form 组件，与 modelValue 等价）
+   */
+  value?: any
+
   /**
    * 默认值
    */
@@ -149,10 +154,15 @@ export interface XRadioGroupProps {
  */
 export interface XRadioGroupEmits {
   /**
-   * 绑定值变化时触发
+   * 绑定值变化时触发（v-model）
    */
   (e: 'update:modelValue', value: any): void
-  
+
+  /**
+   * 绑定值变化时触发（Form 组件使用）
+   */
+  (e: 'update:value', value: any): void
+
   /**
    * 状态变化时触发
    */

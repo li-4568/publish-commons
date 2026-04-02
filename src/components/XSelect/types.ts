@@ -47,9 +47,14 @@ export type SelectMode = 'multiple' | 'tags' | undefined
  */
 export interface XSelectProps extends Omit<AntSelectProps, 'size' | 'value' | 'options'> {
   /**
-   * 绑定值
+   * 绑定值（用于 v-model）
    */
   modelValue?: string | number | (string | number)[]
+
+  /**
+   * 绑定值（用于 Form 组件，与 modelValue 等价）
+   */
+  value?: string | number | (string | number)[]
 
   /**
    * 下拉框尺寸

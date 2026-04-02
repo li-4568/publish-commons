@@ -127,6 +127,7 @@ const props = withDefaults(defineProps<XDatePickerProps>(), {
 // 定义事件
 const emit = defineEmits<{
   'update:modelValue': [value: XDatePickerProps['modelValue']]
+  'update:value': [value: XDatePickerProps['modelValue']]
   'change': [value: XDatePickerProps['modelValue']]
 }>()
 
@@ -169,23 +170,51 @@ const convertToRangeDayjs = (value: XDatePickerProps['modelValue']): [Dayjs, Day
   }) as [Dayjs, Dayjs]
 }
 
-// 从 Dayjs 转换为 Date
+// 从 Dayjs 转换为格式化的字符串
 const convertFromDayjs = (value: Dayjs | [Dayjs, Dayjs] | undefined): XDatePickerProps['modelValue'] => {
   if (value === undefined || value === null) return undefined
-  if (Array.isArray(value)) {
-    return value.map(item => item.toDate()) as [Date, Date]
+
+  // 根据类型返回不同的格式
+  const getFormat = () => {
+    switch (props.type) {
+      case 'date':
+        return 'YYYY-MM-DD'
+      case 'datetime':
+        return 'YYYY-MM-DD HH:mm:ss'
+      case 'month':
+        return 'YYYY-MM'
+      case 'year':
+        return 'YYYY'
+      case 'week':
+        return 'YYYY-MM-DD'
+      case 'daterange':
+        return 'YYYY-MM-DD'
+      case 'datetimerange':
+        return 'YYYY-MM-DD HH:mm:ss'
+      default:
+        return 'YYYY-MM-DD'
+    }
   }
-  return value.toDate()
+
+  const format = getFormat()
+
+  if (Array.isArray(value)) {
+    return value.map(item => item.format(format)) as [string, string]
+  }
+  return value.format(format)
 }
 
+// 获取当前值（优先使用 value，其次 modelValue）
+const currentValue = computed(() => props.value ?? props.modelValue)
+
 // 内部单个值
-const internalSingleValue = ref<Dayjs | undefined>(convertToSingleDayjs(props.modelValue))
+const internalSingleValue = ref<Dayjs | undefined>(convertToSingleDayjs(currentValue.value))
 
 // 内部范围值
-const internalRangeValue = ref<[Dayjs, Dayjs] | undefined>(convertToRangeDayjs(props.modelValue))
+const internalRangeValue = ref<[Dayjs, Dayjs] | undefined>(convertToRangeDayjs(currentValue.value))
 
 // 监听外部值变化
-watch(() => props.modelValue, (newValue) => {
+watch(() => currentValue.value, (newValue) => {
   if (props.type === 'daterange' || props.type === 'datetimerange') {
     internalRangeValue.value = convertToRangeDayjs(newValue)
   } else {
@@ -198,16 +227,18 @@ const handleSingleChange = (value: string | Dayjs) => {
   const dayjsValue = typeof value === 'string' ? dayjs(value) : value
   const convertedValue = convertFromDayjs(dayjsValue)
   emit('update:modelValue', convertedValue)
+  emit('update:value', convertedValue)
   emit('change', convertedValue)
 }
 
 // 处理范围选择器的变化
 const handleRangeChange = (value: [string, string] | [Dayjs, Dayjs]) => {
-  const dayjsValue = Array.isArray(value) ? value.map(item => 
+  const dayjsValue = Array.isArray(value) ? value.map((item: any) =>
     typeof item === 'string' ? dayjs(item) : item
   ) as [Dayjs, Dayjs] : value as [Dayjs, Dayjs]
   const convertedValue = convertFromDayjs(dayjsValue)
   emit('update:modelValue', convertedValue)
+  emit('update:value', convertedValue)
   emit('change', convertedValue)
 }
 

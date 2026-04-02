@@ -48,9 +48,14 @@ export interface CascaderOption {
  */
 export interface XCascaderProps extends Omit<AntCascaderProps, 'size' | 'value' | 'options' | 'modelValue'> {
   /**
-   * 绑定值
+   * 绑定值（用于 v-model）
    */
   modelValue?: ValueType
+
+  /**
+   * 绑定值（用于 Form 组件，与 modelValue 等价）
+   */
+  value?: ValueType
   
   /**
    * 选项数据
@@ -110,25 +115,30 @@ export interface XCascaderProps extends Omit<AntCascaderProps, 'size' | 'value' 
  */
 export interface XCascaderEmits {
   /**
-   * 绑定值变化时触发
+   * 绑定值变化时触发（v-model）
    */
   (e: 'update:modelValue', value: ValueType | null): void
-  
+
+  /**
+   * 绑定值变化时触发（Form 组件使用）
+   */
+  (e: 'update:value', value: ValueType | null): void
+
   /**
    * 选择变化时触发
    */
   (e: 'change', value: ValueType | null, selectedOptions: CascaderOption[]): void
-  
+
   /**
    * 清除时触发
    */
   (e: 'clear'): void
-  
+
   /**
    * 焦点时触发
    */
   (e: 'focus', event: FocusEvent): void
-  
+
   /**
    * 失焦时触发
    */

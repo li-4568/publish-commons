@@ -97,10 +97,16 @@ export interface XInputProps extends Omit<AntInputProps, 'type' | 'size' | 'valu
   size?: InputSize
 
   /**
-   * 输入框内容
+   * 输入框内容（用于 v-model）
    * @default ''
    */
   modelValue?: string | number
+
+  /**
+   * 输入框内容（用于 Form 组件，与 modelValue 等价）
+   * @default ''
+   */
+  value?: string | number
 
   /**
    * 占位提示文字
@@ -182,9 +188,14 @@ export interface XInputProps extends Omit<AntInputProps, 'type' | 'size' | 'valu
  */
 export interface XInputEmits {
   /**
-   * 输入事件
+   * 输入事件（v-model）
    */
   (e: 'update:modelValue', value: string): void
+
+  /**
+   * 输入事件（Form 组件使用）
+   */
+  (e: 'update:value', value: string): void
 
   /**
    * 输入事件（实时）

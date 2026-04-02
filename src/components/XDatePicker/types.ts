@@ -19,9 +19,14 @@ export type DatePickerType = 'date' | 'datetime' | 'month' | 'year' | 'week' | '
  */
 export interface XDatePickerProps extends Omit<AntDatePickerProps, 'size' | 'value' | 'type' | 'picker'> {
   /**
-   * 绑定值
+   * 绑定值（用于 v-model）
    */
   modelValue?: string | number | Date | [Date, Date] | [string, string] | [number, number]
+
+  /**
+   * 绑定值（用于 Form 组件，与 modelValue 等价）
+   */
+  value?: string | number | Date | [Date, Date] | [string, string] | [number, number]
 
   /**
    * 日期选择器尺寸
@@ -80,9 +85,14 @@ export interface XDatePickerProps extends Omit<AntDatePickerProps, 'size' | 'val
  */
 export interface XDatePickerEmits {
   /**
-   * 更新绑定值
+   * 更新绑定值（v-model）
    */
   (e: 'update:modelValue', value: XDatePickerProps['modelValue']): void
+
+  /**
+   * 更新绑定值（Form 组件使用）
+   */
+  (e: 'update:value', value: XDatePickerProps['modelValue']): void
 
   /**
    * 值改变事件

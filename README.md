@@ -83,6 +83,7 @@ export default {
 | [XTable](#xtable) | 表格组件，支持分页、排序、筛选、自定义列等功能 |
 | [XEditor](#xeditor) | 富文本编辑器组件，基于wangEditor封装，支持多种配置和自定义 |
 | [XImageCropper](#ximagcropper) | 图片裁剪组件，基于vue-cropper封装，支持多种配置和自定义 |
+| [XTableSearch](#xtablesearch) | 表格搜索组件，支持多类型搜索项、高级搜索和自定义操作 |
 
 ## 工具函数
 
@@ -1977,6 +1978,214 @@ const handleCropBlob = (blobData: Blob) => {
   // 可以将blob转换为文件上传到服务器
   const file = new File([blobData], 'cropped-image.png', { type: blobData.type })
   // uploadFile(file)
+}
+</script>
+```
+
+### XTableSearch
+
+基于 Ant Design Vue 封装的表格搜索组件，支持多种搜索项类型、高级搜索和自定义操作按钮。
+
+#### Props
+
+| 名称 | 类型 | 默认值 | 说明 |
+|------|------|------|------|
+| searchItems | `SearchItem[]` | - | 搜索项配置数组 |
+| searchText | `string` | `'搜索'` | 搜索按钮文本 |
+| resetText | `string` | `'重置'` | 重置按钮文本 |
+| showAdvanced | `boolean` | `false` | 是否显示高级搜索 |
+| advancedDefaultOpen | `boolean` | `false` | 高级搜索默认展开状态 |
+| itemsPerRow | `number` | `2` | 每行显示的搜索项数量 |
+
+#### SearchItem 配置
+
+| 名称 | 类型 | 说明 |
+|------|------|------|
+| type | `'input' \| 'select' \| 'date' \| 'datetime' \| 'cascader' \| 'checkbox' \| 'radio' \| 'treeSelect'` | 搜索项类型 |
+| field | `string` | 搜索字段名 |
+| label | `string` | 搜索项标签 |
+| placeholder | `string` | 占位符 |
+| options | `{ value: string \| number; label: string; disabled?: boolean }[]` | 选择器选项（仅select类型） |
+| cascaderOptions | `any[]` | 级联选择器选项（仅cascader类型） |
+| radioOptions | `{ value: string \| number; label: string; disabled?: boolean }[]` | 单选框选项（仅radio类型） |
+| treeData | `any[]` | 树形选择器数据（仅treeSelect类型） |
+| required | `boolean` | 是否必填 |
+| defaultValue | `string \| number \| Date \| boolean \| any[]` | 初始值 |
+| render | `(params: any) => VueNode` | 自定义渲染函数 |
+| rules | `any[]` | 验证规则 |
+| help | `string` | 帮助信息 |
+| extra | `string` | 额外信息 |
+| tooltip | `string` | 提示信息 |
+| props | `Record<string, any>` | 组件属性 |
+| events | `Record<string, Function>` | 组件事件 |
+
+#### Events
+
+| 名称 | 说明 | 回调参数 |
+|------|------|------|
+| search | 搜索事件 | `(params: Record<string, any>) => void` |
+| reset | 重置事件 | `() => void` |
+| advanced-change | 高级搜索展开/收起事件 | `(isOpen: boolean) => void` |
+
+#### Slots
+
+| 名称 | 说明 | 参数 |
+|------|------|------|
+| actions | 自定义操作按钮区域 | - |
+| [field] | 自定义搜索项 | `{ item: SearchItem }` |
+
+#### 使用示例
+
+```vue
+<template>
+  <!-- 基础用法 -->
+  <XTableSearch
+    :searchItems="searchItems"
+    @search="handleSearch"
+    @reset="handleReset"
+  />
+
+  <!-- 带高级搜索 -->
+  <XTableSearch
+    :searchItems="advancedSearchItems"
+    :showAdvanced="true"
+    :advancedDefaultOpen="false"
+    @search="handleAdvancedSearch"
+    @reset="handleAdvancedReset"
+    @advanced-change="handleAdvancedChange"
+  />
+
+  <!-- 自定义操作按钮 -->
+  <XTableSearch
+    :searchItems="searchItems"
+    @search="handleSearch"
+    @reset="handleReset"
+  >
+    <template #actions>
+      <XButton @click="handleReset">重置</XButton>
+      <XButton type="default" @click="handleClear">清空</XButton>
+      <XButton type="primary" @click="handleSearch">搜索</XButton>
+    </template>
+  </XTableSearch>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { XTableSearch, XButton } from 'publish-commons'
+import type { SearchItem } from 'publish-commons'
+
+// 基础搜索项
+const searchItems: SearchItem[] = [
+  {
+    type: 'input',
+    field: 'name',
+    label: '姓名',
+    placeholder: '请输入姓名',
+    defaultValue: ''
+  },
+  {
+    type: 'select',
+    field: 'status',
+    label: '状态',
+    placeholder: '请选择状态',
+    options: [
+      { value: 'active', label: '激活' },
+      { value: 'inactive', label: '未激活' }
+    ]
+  }
+]
+
+// 带高级搜索的搜索项
+const advancedSearchItems: SearchItem[] = [
+  {
+    type: 'input',
+    field: 'name',
+    label: '姓名',
+    placeholder: '请输入姓名',
+    defaultValue: ''
+  },
+  {
+    type: 'select',
+    field: 'status',
+    label: '状态',
+    placeholder: '请选择状态',
+    options: [
+      { value: 'active', label: '激活' },
+      { value: 'inactive', label: '未激活' }
+    ]
+  },
+  {
+    type: 'date',
+    field: 'startDate',
+    label: '开始日期',
+    placeholder: '请选择开始日期'
+  },
+  {
+    type: 'datetime',
+    field: 'createDate',
+    label: '创建时间',
+    placeholder: '请选择创建时间'
+  },
+  {
+    type: 'cascader',
+    field: 'region',
+    label: '地区',
+    placeholder: '请选择地区',
+    cascaderOptions: cascaderOptions
+  },
+  {
+    type: 'checkbox',
+    field: 'enabled',
+    label: '是否启用',
+    defaultValue: false
+  }
+]
+
+// 级联选择器选项
+const cascaderOptions = [
+  {
+    value: 'zhejiang',
+    label: '浙江省',
+    children: [
+      {
+        value: 'hangzhou',
+        label: '杭州市',
+        children: [
+          { value: 'xihu', label: '西湖区' },
+          { value: 'jianggan', label: '江干区' }
+        ]
+      }
+    ]
+  }
+]
+
+// 处理搜索
+const handleSearch = (params: any) => {
+  console.log('搜索参数:', params)
+  // 执行搜索逻辑
+}
+
+// 处理重置
+const handleReset = () => {
+  console.log('重置搜索')
+  // 执行重置逻辑
+}
+
+// 处理高级搜索
+const handleAdvancedSearch = (params: any) => {
+  console.log('高级搜索参数:', params)
+  // 执行高级搜索逻辑
+}
+
+// 处理高级重置
+const handleAdvancedReset = () => {
+  console.log('重置高级搜索')
+  // 执行高级重置逻辑
+}
+
+// 处理高级搜索展开/收起
+const handleAdvancedChange = (isOpen: boolean) => {
+  console.log('高级搜索状态:', isOpen ? '展开' : '收起')
 }
 </script>
 ```

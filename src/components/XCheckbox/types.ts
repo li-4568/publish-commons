@@ -16,14 +16,19 @@ export type CheckboxSize = 'large' | 'middle' | 'small'
  */
 export interface XCheckboxProps extends Omit<AntCheckboxProps, 'size' | 'value' | 'modelValue' | 'label'> {
   /**
-   * 绑定值（单独使用时）
+   * 绑定值（单独使用时，用于 v-model）
    */
   modelValue?: boolean
-  
+
+  /**
+   * 绑定值（单独使用时，用于 Form 组件）
+   */
+  value?: any
+
   /**
    * 选项值（在 CheckboxGroup 中使用时）
    */
-  value?: any
+  optionValue?: any
   
   /**
    * 尺寸
@@ -71,25 +76,30 @@ export interface XCheckboxProps extends Omit<AntCheckboxProps, 'size' | 'value' 
  */
 export interface XCheckboxEmits {
   /**
-   * 绑定值变化时触发
+   * 绑定值变化时触发（v-model）
    */
   (e: 'update:modelValue', value: boolean | null): void
-  
+
+  /**
+   * 绑定值变化时触发（Form 组件使用）
+   */
+  (e: 'update:value', value: boolean | null): void
+
   /**
    * 状态变化时触发
    */
   (e: 'change', checked: boolean): void
-  
+
   /**
    * 点击时触发
    */
   (e: 'click', event: MouseEvent): void
-  
+
   /**
    * 焦点时触发
    */
   (e: 'focus', event: FocusEvent): void
-  
+
   /**
    * 失焦时触发
    */
