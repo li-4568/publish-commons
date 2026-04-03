@@ -35,6 +35,7 @@
         <XTableSearchDemo v-if="currentTab === 'tablesearch'" />
         <XFormItemDemo v-if="currentTab === 'formitem'" />
         <XFormDemo v-if="currentTab === 'form'" />
+        <XChartDemo v-if="currentTab === 'chart'" />
       </div>
     </main>
   </div>
@@ -64,6 +65,7 @@
   import XTableSearchDemo from './XTableSearchDemo.vue'
   import XFormItemDemo from './XFormItemDemo.vue'
   import XFormDemo from './XFormDemo.vue'
+  import XChartDemo from './XChartDemo.vue'
 
   const tabs = [
     { key: 'button', label: 'XButton 按钮' },
@@ -87,7 +89,8 @@
     { key: 'filepreview', label: 'XFilePreview 文件预览' },
     { key: 'tablesearch', label: 'XTableSearch 表格搜索' },
     { key: 'formitem', label: 'XFormItem 表单项目' },
-    { key: 'form', label: 'XForm 表单' }
+    { key: 'form', label: 'XForm 表单' },
+    { key: 'chart', label: 'XChart 图表' }
   ]
 
   const currentTab = ref('button')

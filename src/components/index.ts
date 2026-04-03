@@ -21,6 +21,7 @@ import { XNotification } from './XNotification'
 import { XTable } from './XTable'
 import { XImageCropper } from './XImageCropper'
 import { XTableSearch } from './XTableSearch'
+import XChart, { registerChartType, type ChartType, type ChartDataItem } from './XChart'
 
 // 导出所有组件
 export {
@@ -42,6 +43,10 @@ export {
   XTable,
   XImageCropper,
   XTableSearch,
+  XChart,
+  registerChartType,
+  ChartType,
+  ChartDataItem,
 }
 
 // 导出所有类型
@@ -82,6 +87,7 @@ const install = (app: App) => {
   app.component('XTable', XTable)
   app.component('XImageCropper', XImageCropper)
   app.component('XTableSearch', XTableSearch)
+  app.component('XChart', XChart)
 }
 
 // 默认导出

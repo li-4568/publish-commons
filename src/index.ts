@@ -30,6 +30,8 @@ import { XTable } from './components/XTable'
 import { XEditor } from './components/XEditor'
 import { XImageCropper } from './components/XImageCropper'
 import { XTableSearch } from './components/XTableSearch'
+import XChart from './components/XChart'
+import { registerChartType } from './components/XChart'
 
 // 导入弹窗工具函数
 import { openModal, closeAllModals, closeModalById } from './utils/modal'
@@ -76,6 +78,8 @@ export {
   XEditor,
   XImageCropper,
   XTableSearch,
+  XChart,
+  registerChartType,
   // 导出弹窗工具函数
   openModal,
   closeAllModals,
@@ -229,6 +233,12 @@ export type {
   XTableSearchSlots,
   SearchItem
 } from './components/XTableSearch/types'
+
+// 导出XChart类型
+export type {
+  ChartType,
+  ChartDataItem
+} from './components/XChart/chart/chart'
 
 // 全局安装方法
 const install = (app: App) => {

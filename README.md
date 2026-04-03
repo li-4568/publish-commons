@@ -91,6 +91,7 @@ export default {
 | [XEditor](#xeditor) | 富文本编辑器组件，基于wangEditor封装，支持多种配置和自定义 |
 | [XImageCropper](#ximagcropper) | 图片裁剪组件，基于vue-cropper封装，支持多种配置和自定义 |
 | [XTableSearch](#xtablesearch) | 表格搜索组件，支持多类型搜索项、高级搜索和自定义操作 |
+| [XChart](#xchart) | 图表组件，基于ECharts封装，支持多种图表类型和自定义配置 |
 
 ## 工具函数
 
@@ -2194,6 +2195,245 @@ const handleAdvancedReset = () => {
 const handleAdvancedChange = (isOpen: boolean) => {
   console.log('高级搜索状态:', isOpen ? '展开' : '收起')
 }
+</script>
+```
+
+### XChart
+
+基于 ECharts 封装的图表组件，支持多种图表类型、自定义配置和动态扩展。
+
+#### Props
+
+| 名称 | 类型 | 默认值 | 说明 |
+|------|------|------|------|
+| dataSource | `ChartDataItem[]` | `[]` | 数据源 |
+| componentType | `ChartType` | `'bar'` | 图表类型 |
+| title | `string` | `''` | 标题 |
+| unit | `string` | `''` | 单位 |
+| xKey | `string` | `'label'` | X轴字段名 |
+| yKey | `string` | `'value'` | Y轴字段名 |
+| isRoll | `boolean` | `false` | 柱状图是否翻转（横向） |
+| lineM | `boolean` | `false` | 折线图是否为多线模式 |
+| lineDefault | `string[]` | `['label', 'data']` | 多线模式默认字段 |
+| smooth | `boolean` | `false` | 折线是否平滑 |
+| seriesKey | `string` | `'series'` | 散点图系列字段 |
+| indicatorKey | `string` | `'indicator'` | 雷达图指标字段 |
+| renderer | `'canvas' \| 'svg'` | `'canvas'` | 渲染器类型 |
+| option | `any` | `undefined` | 自定义 ECharts 配置，会与自动生成的配置合并，优先级更高 |
+| optionFn | `(data: ChartDataItem[], type: ChartType, defaultOption: any) => any` | `undefined` | 自定义配置生成函数，如果提供，会完全替代内置的配置生成逻辑 |
+
+#### Events
+
+| 名称 | 说明 | 回调参数 |
+|------|------|------|
+| chartClick | 图表点击事件 | `(params: any) => void` |
+| chartInit | 图表初始化事件 | `(chart: any) => void` |
+
+#### 支持的图表类型
+
+- `bar` - 柱状图
+- `barRound` - 圆角柱状图
+- `pie` - 饼图
+- `line` - 折线图
+- `scatter` - 散点图
+- `radar` - 雷达图
+
+#### 注册自定义图表类型
+
+```typescript
+import { registerChartType } from 'publish-commons'
+
+// 注册自定义图表类型
+registerChartType('customChart', (data, title, unit) => {
+  return {
+    // 自定义 ECharts 配置
+    title: {
+      text: title,
+      left: 'center'
+    },
+    series: [
+      {
+        type: 'custom',
+        data: data.map(item => item.value)
+        // 其他配置...
+      }
+    ]
+  }
+})
+
+// 使用自定义图表类型
+// <XChart componentType="customChart" :dataSource="data" />
+```
+
+#### 使用示例
+
+```vue
+<template>
+  <!-- 基础柱状图 -->
+  <XChart
+    :dataSource="barData"
+    componentType="bar"
+    title="销售额统计"
+    unit="元"
+  />
+
+  <!-- 横向柱状图 -->
+  <XChart
+    :dataSource="barData"
+    componentType="bar"
+    title="销售额统计"
+    unit="元"
+    :isRoll="true"
+  />
+
+  <!-- 饼图 -->
+  <XChart
+    :dataSource="pieData"
+    componentType="pie"
+    title="销售占比"
+  />
+
+  <!-- 折线图 -->
+  <XChart
+    :dataSource="lineData"
+    componentType="line"
+    title="销售趋势"
+    unit="元"
+    :smooth="true"
+  />
+
+  <!-- 多线折线图 -->
+  <XChart
+    :dataSource="multiLineData"
+    componentType="line"
+    title="多系列销售趋势"
+    unit="元"
+    :lineM="true"
+    :lineDefault="['category', 'value1', 'value2']"
+  />
+
+  <!-- 散点图 -->
+  <XChart
+    :dataSource="scatterData"
+    componentType="scatter"
+    title="散点分布"
+    xKey="x"
+    yKey="y"
+    seriesKey="series"
+  />
+
+  <!-- 雷达图 -->
+  <XChart
+    :dataSource="radarData"
+    componentType="radar"
+    title="能力评估"
+    indicatorKey="indicator"
+  />
+
+  <!-- 自定义配置 -->
+  <XChart
+    :dataSource="barData"
+    componentType="bar"
+    title="销售额统计"
+    unit="元"
+    :option="{
+      xAxis: {
+        axisLabel: {
+          rotate: 45
+        }
+      },
+      series: [
+        {
+          itemStyle: {
+            color: '#1890ff'
+          }
+        }
+      ]
+    }"
+  />
+
+  <!-- 使用自定义配置生成函数 -->
+  <XChart
+    :dataSource="barData"
+    componentType="bar"
+    title="销售额统计"
+    unit="元"
+    :optionFn="(data, type, defaultOption) => {
+      // 自定义配置逻辑
+      return {
+        ...defaultOption,
+        series: [
+          {
+            ...defaultOption.series[0],
+            itemStyle: {
+              color: function(params) {
+                // 根据数据值设置颜色
+                return params.value > 10000 ? '#52c41a' : '#1890ff'
+              }
+            }
+          }
+        ]
+      }
+    }"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { XChart } from 'publish-commons'
+
+// 柱状图数据
+const barData = ref([
+  { label: '一月', value: 12000 },
+  { label: '二月', value: 19000 },
+  { label: '三月', value: 15000 },
+  { label: '四月', value: 18000 },
+  { label: '五月', value: 22000 }
+])
+
+// 饼图数据
+const pieData = ref([
+  { label: '产品A', value: 35 },
+  { label: '产品B', value: 25 },
+  { label: '产品C', value: 20 },
+  { label: '产品D', value: 20 }
+])
+
+// 折线图数据
+const lineData = ref([
+  { label: '一月', value: 12000 },
+  { label: '二月', value: 19000 },
+  { label: '三月', value: 15000 },
+  { label: '四月', value: 18000 },
+  { label: '五月', value: 22000 }
+])
+
+// 多线折线图数据
+const multiLineData = ref([
+  { category: '一月', value1: 12000, value2: 15000 },
+  { category: '二月', value1: 19000, value2: 17000 },
+  { category: '三月', value1: 15000, value2: 19000 },
+  { category: '四月', value1: 18000, value2: 21000 },
+  { category: '五月', value1: 22000, value2: 23000 }
+])
+
+// 散点图数据
+const scatterData = ref([
+  { x: 10, y: 20, series: '系列1' },
+  { x: 15, y: 25, series: '系列1' },
+  { x: 20, y: 30, series: '系列1' },
+  { x: 25, y: 35, series: '系列2' },
+  { x: 30, y: 40, series: '系列2' }
+])
+
+// 雷达图数据
+const radarData = ref([
+  { indicator: '销售', value: 80 },
+  { indicator: '市场', value: 60 },
+  { indicator: '研发', value: 90 },
+  { indicator: '服务', value: 70 },
+  { indicator: '财务', value: 85 }
+])
 </script>
 ```
 

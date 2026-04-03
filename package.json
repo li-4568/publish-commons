@@ -38,6 +38,7 @@
     "vue": "^3.3.0"
   },
   "devDependencies": {
+    "@types/echarts": "^4.9.22",
     "@types/node": "^25.5.0",
     "@typescript-eslint/eslint-plugin": "^8.57.2",
     "@typescript-eslint/parser": "^8.57.2",
@@ -62,6 +63,7 @@
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
     "ant-design-vue": "^4.0.0",
+    "echarts": "^6.0.0",
     "v-viewer": "^3.0.23",
     "vue-cropper": "^1.1.4",
     "vxe-pc-ui": "~4.13.20",
