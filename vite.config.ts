@@ -8,8 +8,12 @@ export default defineConfig({
     vue(),
     dts({
       insertTypesEntry: true,
-      copyDtsFiles: true,
-      entryRoot: resolve(__dirname, 'src')
+      copyDtsFiles: false,
+      outDir: 'dist',
+      staticImport: true,
+      clearPureImport: true,
+      rollupTypes: true,
+      bundledPackages: ['publish-commons']
     })
   ],
   resolve: {
