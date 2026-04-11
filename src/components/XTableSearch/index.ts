@@ -9,4 +9,7 @@ export {
   type SearchItem
 }
 
+// 导出 composables
+export { useTableSearch } from './composables'
+
 export default XTableSearch

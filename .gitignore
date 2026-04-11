@@ -49,3 +49,11 @@ Thumbs.db
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+
+# VitePress
+docs/.vitepress/cache
+docs/.vitepress/dist
+
+# Editor directories
+.trae/
+.claude/

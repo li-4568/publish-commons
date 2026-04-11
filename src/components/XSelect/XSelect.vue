@@ -68,7 +68,9 @@ const emit = defineEmits(['update:modelValue', 'update:value', 'change', 'openCh
 // 内部值
 const internalValue = computed({
   get() {
-    return props.value ?? props.modelValue
+    const val = props.value ?? props.modelValue
+    // 空字符串视为未选择，显示占位符
+    return val === '' ? undefined : val
   },
   set(value) {
     emit('update:modelValue', value)

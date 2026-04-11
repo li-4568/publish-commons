@@ -14,6 +14,9 @@ export { XInput, XInputFloat, XInputNeg, XInputNum }
 // 导出类型
 export type { XInputProps, XInputEmits, XInputSlots, InputType, InputSize } from './types'
 
+// 导出 composables
+export { useInput, useInputEvents } from './composables'
+
 // 默认导出（带 install 方法）
 export default {
   install(app: App) {

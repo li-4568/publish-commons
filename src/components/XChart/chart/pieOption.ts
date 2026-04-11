@@ -27,7 +27,7 @@ export default function pieOption(
     return null;
   }
   
-  let legendArr: string[] = [];
+  const legendArr: string[] = [];
   let seriesArr: PieDataItem[] = [];
 
   // 计算总和

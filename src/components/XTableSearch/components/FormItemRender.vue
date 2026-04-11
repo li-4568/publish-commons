@@ -40,6 +40,7 @@
 import { computed } from 'vue'
 import { FormItem, Col } from 'ant-design-vue'
 import XInput from '../../XInput/XInput.vue'
+import XInputNum from '../../XInput/XInputNum.vue'
 import XSelect from '../../XSelect/XSelect.vue'
 import XDatePicker from '../../XDatePicker/XDatePicker.vue'
 import XCascader from '../../XCascader/XCascader.vue'
@@ -60,6 +61,8 @@ const currentComponent = computed(() => {
   switch (props.item.type) {
     case 'input':
       return XInput
+    case 'inputNum':
+      return XInputNum
     case 'select':
       return XSelect
     case 'date':

@@ -1,16 +1,14 @@
 <template>
   <div class="x-editor-container">
     <div class="x-editor-wrapper" :style="containerStyle">
-      <!-- 工具栏 -->
       <Toolbar
-        v-if="props.toolbar !== false && editorRef"
+        v-if="toolbar !== false && editorRef"
         class="x-editor-toolbar"
         :editor="editorRef"
         :defaultConfig="toolbarConfig"
         :mode="mode"
       />
-      
-      <!-- 编辑器内容区 -->
+
       <Editor
         class="x-editor-content"
         v-model="editorContent"
@@ -27,13 +25,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, onBeforeUnmount } from 'vue'
+import { onBeforeUnmount } from 'vue'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
-import type { IDomEditor } from '@wangeditor/editor'
 import { XEditorProps, XEditorEmits } from './types'
+import { useEditor, useEditorConfig, useEditorMethods } from './composables'
 import '@wangeditor/editor/dist/css/style.css'
 
-// Props
+defineOptions({
+  name: 'XEditor',
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<XEditorProps>(), {
   modelValue: '',
   defaultValue: '',
@@ -43,137 +45,44 @@ const props = withDefaults(defineProps<XEditorProps>(), {
   placeholder: '请输入内容...',
   toolbar: true,
   menuConfig: () => ({}),
-  extendConfig: () => ({})
+  extendConfig: () => ({}),
 })
 
-// Emits
 const emit = defineEmits<XEditorEmits>()
 
-// 编辑器实例
-const editorRef = ref<IDomEditor | undefined>()
-
-// 编辑器内容
-const editorContent = ref<string>(props.modelValue || props.defaultValue)
-
-// 模式（默认使用默认模式）
-const mode = ref<'default' | 'simple'>('default')
-
-// 容器样式
-const containerStyle = computed(() => {
-  return {
-    width: props.width,
-    height: props.height
-  }
-})
-
-// 工具栏配置
-const toolbarConfig = computed(() => {
-  let config: any = {
-    excludeKeys: [],
-    ...props.menuConfig
-  }
-  
-  // 处理工具栏配置
-  if (Array.isArray(props.toolbar)) {
-    // 自定义工具栏数组
-    config.toolbarKeys = props.toolbar
-  } else if (typeof props.toolbar === 'object' && props.toolbar !== null) {
-    // 详细的工具栏配置
-    config = {
-      ...config,
-      ...props.toolbar
-    }
-  }
-  
-  return config
-})
-
-// 编辑器配置
-const editorConfig = computed(() => {
-  return {
-    placeholder: props.placeholder,
-    autoFocus: false,
-    readOnly: props.readOnly,
-    ...props.extendConfig
-  }
-})
-
-// 监听modelValue变化
-watch(
-  () => props.modelValue,
-  (newValue) => {
-    if (newValue !== editorContent.value) {
-      editorContent.value = newValue || ''
-    }
-  },
-  { immediate: true }
-)
-
-// 监听editorContent变化
-watch(
+const {
+  editorRef,
   editorContent,
-  (newValue) => {
-    emit('update:modelValue', newValue)
-    emit('change', newValue)
-  }
-)
+  mode,
+  containerStyle,
+  handleCreated,
+  handleChange,
+  handleFocus,
+  handleBlur,
+} = useEditor({ props, emit })
 
-// 编辑器创建完成
-const handleCreated = (editor: IDomEditor) => {
-  editorRef.value = editor
-  if (props.onCreated) {
-    props.onCreated(editor)
-  }
-  emit('created', editor)
-}
+const { toolbarConfig, editorConfig } = useEditorConfig({ props })
 
-// 内容变化
-const handleChange = () => {
-  if (props.onChange && editorContent.value) {
-    props.onChange(editorContent.value)
-  }
-}
-
-// 聚焦
-const handleFocus = () => {
-  if (props.onFocus) {
-    props.onFocus()
-  }
-  emit('focus')
-}
-
-// 失焦
-const handleBlur = () => {
-  if (props.onBlur) {
-    props.onBlur()
-  }
-  emit('blur')
-}
+const { getEditor, setContent, getContent, focus, blur, clear, insertText, getHtml, getText } =
+  useEditorMethods(editorRef, editorContent)
 
 // 组件销毁前清理
 onBeforeUnmount(() => {
-  if (props.onDestroyed) {
-    props.onDestroyed()
-  }
+  props.onDestroyed?.()
   emit('destroyed')
 })
 
 // 暴露实例方法
 defineExpose({
-  getEditor: () => editorRef.value,
-  setContent: (content: string) => {
-    editorContent.value = content
-  },
-  getContent: () => editorContent.value,
-  focus: () => {
-    editorRef.value?.focus()
-  },
-  blur: () => {
-    editorRef.value?.blur()
-  },
-  clear: () => {
-    editorContent.value = ''
-  }
+  getEditor,
+  setContent,
+  getContent,
+  focus,
+  blur,
+  clear,
+  insertText,
+  getHtml,
+  getText,
 })
 </script>
 

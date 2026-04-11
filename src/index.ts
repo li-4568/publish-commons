@@ -4,8 +4,19 @@
 
 import type { App, Plugin } from 'vue'
 
-// 导入组件
+// ============================================
+// 基础组件 (Basic)
+// ============================================
 import { XButton } from './components/XButton'
+import { XTooltip } from './components/XTooltip'
+import { XPopover } from './components/XPopover'
+import { XPopconfirm } from './components/XPopconfirm'
+import { XFloatButton } from './components/XFloatButton'
+import { XNotification, notification } from './components/XNotification'
+
+// ============================================
+// 表单组件 (Form)
+// ============================================
 import { XInput, XInputFloat, XInputNeg, XInputNum } from './components/XInput'
 import { XSelect } from './components/XSelect'
 import { XDatePicker } from './components/XDatePicker'
@@ -19,19 +30,21 @@ import { XForm } from './components/XForm'
 import { XCascader } from './components/XCascader'
 import { XCheckbox, XCheckboxGroup } from './components/XCheckbox'
 import { XRadio, XRadioGroup } from './components/XRadio'
-import { XPopover } from './components/XPopover'
-import { XTooltip } from './components/XTooltip'
+
+// ============================================
+// 数据展示 (Data Display)
+// ============================================
 import { XTree } from './components/XTree'
 import { XTreeSelect } from './components/XTreeSelect'
-import { XPopconfirm } from './components/XPopconfirm'
-import { XNotification, notification } from './components/XNotification'
-import { XFloatButton } from './components/XFloatButton'
 import { XTable } from './components/XTable'
+import XChart, { registerChartType } from './components/XChart'
+
+// ============================================
+// 高级组件 (Advanced)
+// ============================================
 import { XEditor } from './components/XEditor'
 import { XImageCropper } from './components/XImageCropper'
 import { XTableSearch } from './components/XTableSearch'
-import XChart from './components/XChart'
-import { registerChartType } from './components/XChart'
 
 // 导入弹窗工具函数
 import { openModal, closeAllModals, closeModalById } from './utils/modal'

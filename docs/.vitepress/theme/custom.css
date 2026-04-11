@@ -1,0 +1,112 @@
+/* VitePress Custom Styles */
+
+:root {
+  --vp-c-brand-1: #1890ff;
+  --vp-c-brand-2: #40a9ff;
+  --vp-c-brand-3: #096dd9;
+  /* 侧边栏宽度 */
+  --vp-sidebar-width: 200px;
+  --vp-aside-width: 160px;
+}
+
+/* ========== 侧边栏样式 ========== */
+.VPSidebar {
+  width: var(--vp-sidebar-width) !important;
+  padding: 64px 12px 24px !important;
+  top: 0 !important;
+  z-index: 999;
+}
+
+.VPSidebar .group {
+  width: 100% !important;
+}
+
+.VPSidebar .VPLink {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.VPSidebar .VPLink .text {
+  padding: 6px 12px;
+}
+
+.VPSidebar .group-title {
+  padding: 16px 12px 8px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+}
+
+/* ========== 导航栏样式 ========== */
+.VPNav {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--vp-c-bg);
+}
+
+.VPNavBar {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.VPNavBar.has-sidebar .title {
+  padding-left: 10px !important;
+  width: var(--vp-sidebar-width) !important;
+}
+
+/* 导航栏内容区域 */
+.VPNavBar .content {
+  padding: 0 24px 0 0;
+}
+
+/* ========== 主内容区域 ========== */
+.VPContent.has-sidebar {
+  padding: 64px 0 0 var(--vp-sidebar-width) !important;
+}
+
+/* ========== 文档内容区域 - 自适应布局 ========== */
+.VPDoc {
+  padding: 0 !important;
+}
+
+.VPDoc .container {
+  display: flex;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+/* 左侧主要内容区域 - 自适应填充 */
+.VPDoc .content {
+  flex: 1;
+  min-width: 0;
+  max-width: none !important;
+  padding: 32px 48px;
+}
+
+/* 右侧目录区域 - 固定宽度 */
+.VPDoc .aside {
+  width: var(--vp-aside-width) !important;
+  min-width: var(--vp-aside-width) !important;
+  padding-right: 24px;
+}
+
+/* ========== 内容容器最大宽度限制 ========== */
+.VPDoc.has-aside .content-container {
+  max-width: none !important;
+}
+
+/* ========== 文档表格样式 ========== */
+.vp-doc table {
+  width: 100%;
+  display: table;
+}
+
+/* ========== Demo 容器样式 ========== */
+.demo-container {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 24px;
+  margin: 16px 0;
+}

@@ -1,0 +1,1 @@
+export { useTableSearch } from './useTableSearch'
