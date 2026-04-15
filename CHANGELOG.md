@@ -50,7 +50,7 @@
 - 基于 Vite 的构建工具
 - 支持 ES Module 和 UMD 格式
 
-[Unreleased]: https://github.com/liyujie/publish-commons/compare/v1.0.5...HEAD
-[1.0.5]: https://github.com/liyujie/publish-commons/compare/v1.0.4...v1.0.5
-[1.0.4]: https://github.com/liyujie/publish-commons/compare/v1.0.0...v1.0.4
-[1.0.0]: https://github.com/liyujie/publish-commons/releases/tag/v1.0.0
+[Unreleased]: https://github.com/li-4568/publish-commons/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/li-4568/publish-commons/compare/v1.0.4...v1.0.5
+[1.0.4]: https://github.com/li-4568/publish-commons/compare/v1.0.0...v1.0.4
+[1.0.0]: https://github.com/li-4568/publish-commons/releases/tag/v1.0.0

@@ -5,9 +5,9 @@ import type { VNode } from 'vue'
  */
 export interface SearchItem {
   /**
-   * 搜索项类型：input | select | date | datetime | cascader | checkbox | radio | treeSelect
+   * 搜索项类型：input | inputNum | select | date | datetime | cascader | checkbox | radio | treeSelect
    */
-  type: 'input' | 'select' | 'date' | 'datetime' | 'cascader' | 'checkbox' | 'radio' | 'treeSelect'
+  type: 'input' | 'inputNum' | 'select' | 'date' | 'datetime' | 'cascader' | 'checkbox' | 'radio' | 'treeSelect'
   /**
    * 搜索字段名
    */

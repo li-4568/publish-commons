@@ -27,7 +27,7 @@ export default defineConfig({
     nav: [
       { text: '指南', link: '/guide/' },
       { text: '组件', link: '/components/button' },
-      { text: 'GitHub', link: 'https://github.com/liyujie/publish-commons' }
+      { text: 'GitHub', link: 'https://github.com/li-4568/publish-commons' }
     ],
     sidebar: {
       '/guide/': [
@@ -76,11 +76,18 @@ export default defineConfig({
             { text: 'ImageCropper 图片裁剪', link: '/components/imagecropper' },
             { text: 'Notification 通知', link: '/components/notification' },
           ]
+        },
+        {
+          text: '工具函数',
+          items: [
+            { text: 'Modal 弹窗', link: '/components/modal' },
+            { text: 'Preview 文件预览', link: '/components/preview' }
+          ]
         }
       ]
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/liyujie/publish-commons' }
+      { icon: 'github', link: 'https://github.com/li-4568/publish-commons' }
     ],
     footer: {
       message: '基于 MIT 协议发布',

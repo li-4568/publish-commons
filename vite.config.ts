@@ -50,5 +50,9 @@ export default defineConfig({
         }
       }
     }
+  },
+  // 开发模式配置
+  optimizeDeps: {
+    include: ['vue', 'ant-design-vue', '@ant-design/icons-vue', 'dayjs']
   }
 })
